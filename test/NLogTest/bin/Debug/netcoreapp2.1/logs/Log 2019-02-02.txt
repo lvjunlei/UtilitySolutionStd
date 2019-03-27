@@ -1,0 +1,1 @@
+2019-02-02 14:20:10.9551 Utility.Logs.LogAdapter.Log Info: Hello World  Program.Main => LogAdapter.Info => LogAdapter.Log

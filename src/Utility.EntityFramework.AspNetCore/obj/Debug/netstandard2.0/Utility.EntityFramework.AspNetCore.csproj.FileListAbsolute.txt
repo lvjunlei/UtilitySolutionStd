@@ -1,0 +1,16 @@
+D:\1234\src\Utility.EntityFramework.AspNetCore\bin\Debug\netstandard2.0\Utility.EntityFramework.AspNetCore.deps.json
+D:\1234\src\Utility.EntityFramework.AspNetCore\bin\Debug\netstandard2.0\Utility.EntityFramework.AspNetCore.dll
+D:\1234\src\Utility.EntityFramework.AspNetCore\bin\Debug\netstandard2.0\Utility.EntityFramework.AspNetCore.pdb
+D:\1234\src\Utility.EntityFramework.AspNetCore\bin\Debug\netstandard2.0\Microsoft.AspNetCore.Http.Abstractions.dll
+D:\1234\src\Utility.EntityFramework.AspNetCore\bin\Debug\netstandard2.0\Utility.dll
+D:\1234\src\Utility.EntityFramework.AspNetCore\bin\Debug\netstandard2.0\Utility.EntityFramework.dll
+D:\1234\src\Utility.EntityFramework.AspNetCore\bin\Debug\netstandard2.0\Utility.EntityFramework.pdb
+D:\1234\src\Utility.EntityFramework.AspNetCore\bin\Debug\netstandard2.0\Utility.pdb
+D:\1234\src\Utility.EntityFramework.AspNetCore\bin\Debug\netstandard2.0\Microsoft.AspNetCore.Http.Abstractions.xml
+D:\1234\src\Utility.EntityFramework.AspNetCore\obj\Debug\netstandard2.0\Utility.EntityFramework.AspNetCore.csprojAssemblyReference.cache
+D:\1234\src\Utility.EntityFramework.AspNetCore\obj\Debug\netstandard2.0\Utility.EntityFramework.AspNetCore.csproj.CoreCompileInputs.cache
+D:\1234\src\Utility.EntityFramework.AspNetCore\obj\Debug\netstandard2.0\Utility.EntityFramework.AspNetCore.AssemblyInfoInputs.cache
+D:\1234\src\Utility.EntityFramework.AspNetCore\obj\Debug\netstandard2.0\Utility.EntityFramework.AspNetCore.AssemblyInfo.cs
+D:\1234\src\Utility.EntityFramework.AspNetCore\obj\Debug\netstandard2.0\Utility.EntityFramework.AspNetCore.csproj.CopyComplete
+D:\1234\src\Utility.EntityFramework.AspNetCore\obj\Debug\netstandard2.0\Utility.EntityFramework.AspNetCore.dll
+D:\1234\src\Utility.EntityFramework.AspNetCore\obj\Debug\netstandard2.0\Utility.EntityFramework.AspNetCore.pdb

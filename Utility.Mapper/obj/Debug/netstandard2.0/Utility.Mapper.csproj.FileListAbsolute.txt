@@ -1,0 +1,10 @@
+F:\Work\GitHub\UtilitySolutionStd\Utility.Mapper\bin\Debug\netstandard2.0\Utility.Mapper.deps.json
+F:\Work\GitHub\UtilitySolutionStd\Utility.Mapper\bin\Debug\netstandard2.0\Utility.Mapper.dll
+F:\Work\GitHub\UtilitySolutionStd\Utility.Mapper\obj\Debug\netstandard2.0\Utility.Mapper.csproj.CoreCompileInputs.cache
+F:\Work\GitHub\UtilitySolutionStd\Utility.Mapper\obj\Debug\netstandard2.0\Utility.Mapper.AssemblyInfoInputs.cache
+F:\Work\GitHub\UtilitySolutionStd\Utility.Mapper\obj\Debug\netstandard2.0\Utility.Mapper.AssemblyInfo.cs
+F:\Work\GitHub\UtilitySolutionStd\Utility.Mapper\obj\Debug\netstandard2.0\Utility.Mapper.csprojAssemblyReference.cache
+D:\1234\Utility.Mapper\obj\Debug\netstandard2.0\Utility.Mapper.csprojAssemblyReference.cache
+D:\1234\Utility.Mapper\obj\Debug\netstandard2.0\Utility.Mapper.csproj.CoreCompileInputs.cache
+D:\1234\Utility.Mapper\obj\Debug\netstandard2.0\Utility.Mapper.AssemblyInfoInputs.cache
+D:\1234\Utility.Mapper\obj\Debug\netstandard2.0\Utility.Mapper.AssemblyInfo.cs

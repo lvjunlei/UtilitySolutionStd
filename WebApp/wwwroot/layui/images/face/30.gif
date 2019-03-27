@@ -1,0 +1,64 @@
+the last generated columnt. We
+	      // can come up with an optimistic estimate, however, by assuming that
+	      // mappings are contiguous (i.e. given two consecutive mappings, the
+	      // first mapping ends where the second one starts).
+	      if (index + 1 < this._generatedMappings.length) {
+	        var nextMapping = this._generatedMappings[index + 1];
+	
+	        if (mapping.generatedLine === nextMapping.generatedLine) {
+	          mapping.lastGeneratedColumn = nextMapping.generatedColumn - 1;
+	          continue;
+	        }
+	      }
+	
+	      // The last mapping for each line spans the entire line.
+	      mapping.lastGeneratedColumn = Infinity;
+	    }
+	  };
+	
+	/**
+	 * Returns the original source, line, and column information for the generated
+	 * source's line and column positions provided. The only argument is an object
+	 * with the following properties:
+	 *
+	 *   - line: The line number in the generated source.
+	 *   - column: The column number in the generated source.
+	 *   - bias: Either 'SourceMapConsumer.GREATEST_LOWER_BOUND' or
+	 *     'SourceMapConsumer.LEAST_UPPER_BOUND'. Specifies whether to return the
+	 *     closest element that is smaller than or greater than the one we are
+	 *     searching for, respectively, if the exact element cannot be found.
+	 *     Defaults to 'SourceMapConsumer.GREATEST_LOWER_BOUND'.
+	 *
+	 * and an object is returned with the following properties:
+	 *
+	 *   - source: The original source file, or null.
+	 *   - line: The line number in the original source, or null.
+	 *   - column: The column number in the original source, or null.
+	 *   - name: The original identifier, or null.
+	 */
+	BasicSourceMapConsumer.prototype.originalPositionFor =
+	  function SourceMapConsumer_originalPositionFor(aArgs) {
+	    var needle = {
+	      generatedLine: util.getArg(aArgs, 'line'),
+	      generatedColumn: util.getArg(aArgs, 'column')
+	    };
+	
+	    var index = this._findMapping(
+	      needle,
+	      this._generatedMappings,
+	      "generatedLine",
+	      "generatedColumn",
+	      util.compareByGeneratedPositionsDeflated,
+	      util.getArg(aArgs, 'bias', SourceMapConsumer.GREATEST_LOWER_BOUND)
+	    );
+	
+	    if (index >= 0) {
+	      var mapping = this._generatedMappings[index];
+	
+	      if (mapping.generatedLine === needle.generatedLine) {
+	        var source = util.getArg(mapping, 'source', null);
+	        if (source !== null) {
+	          source = this._sources.at(source);
+	          if (this.sourceRoot != null) {
+	            source = util.join(this.sourceRoot, source);
+	         

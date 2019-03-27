@@ -1,0 +1,330 @@
+                           lastGeneratedColumn);
+          remainingLines[remainingLinesIndex] = nextLine.substr(mapping.generatedColumn -
+                                              lastGeneratedColumn);
+          lastGeneratedColumn = mapping.generatedColumn;
+          addMappingWithCode(lastMapping, code);
+          // No more remaining code, continue
+          lastMapping = mapping;
+          return;
+        }
+      }
+      // We add the generated code until the first mapping
+      // to the SourceNode without any mapping.
+      // Each line is added as separate string.
+      while (lastGeneratedLine < mapping.generatedLine) {
+        node.add(shiftNextLine());
+        lastGeneratedLine++;
+      }
+      if (lastGeneratedColumn < mapping.generatedColumn) {
+        var nextLine = remainingLines[remainingLinesIndex];
+        node.add(nextLine.substr(0, mapping.generatedColumn));
+        remainingLines[remainingLinesIndex] = nextLine.substr(mapping.generatedColumn);
+        lastGeneratedColumn = mapping.generatedColumn;
+      }
+      lastMapping = mapping;
+    }, this);
+    // We have processed all mappings.
+    if (remainingLinesIndex < remainingLines.length) {
+      if (lastMapping) {
+        // Associate the remaining code in the current line with "lastMapping"
+        addMappingWithCode(lastMapping, shiftNextLine());
+      }
+      // and add the remaining lines without any mapping
+      node.add(remainingLines.splice(remainingLinesIndex).join(""));
+    }
+
+    // Copy sourcesContent into SourceNode
+    aSourceMapConsumer.sources.forEach(function (sourceFile) {
+      var content = aSourceMapConsumer.sourceContentFor(sourceFile);
+      if (content != null) {
+        if (aRelativePath != null) {
+          sourceFile = util.join(aRelativePath, sourceFile);
+        }
+        node.setSourceContent(sourceFile, content);
+      }
+    });
+
+    return node;
+
+    function addMappingWithCode(mapping, code) {
+      if (mapping === null || mapping.source === undefined) {
+        node.add(code);
+      } else {
+        var source = aRelativePath
+          ? util.join(aRelativePath, mapping.source)
+          : mapping.source;
+        node.add(new SourceNode(mapping.originalLine,
+                                mapping.originalColumn,
+                                source,
+                                code,
+                                mapping.name));
+      }
+    }
+  };
+
+/**
+ * Add a chunk of generated JS to this source node.
+ *
+ * @param aChunk A string snippet of generated JS code, another instance of
+ *        SourceNode, or an array where each member is one of those things.
+ */
+SourceNode.prototype.add = function SourceNode_add(aChunk) {
+  if (Array.isArray(aChunk)) {
+    aChunk.forEach(function (chunk) {
+      this.add(chunk);
+    }, this);
+  }
+  else if (aChunk[isSourceNode] || typeof aChunk === "string") {
+    if (aChunk) {
+      this.children.push(aChunk);
+    }
+  }
+  else {
+    throw new TypeError(
+      "Expected a SourceNode, string, or an array of SourceNodes and strings. Got " + aChunk
+    );
+  }
+  return this;
+};
+
+/**
+ * Add a chunk of generated JS to the beginning of this source node.
+ *
+ * @param aChunk A string snippet of generated JS code, another instance of
+ *        SourceNode, or an array where each member is one of those things.
+ */
+SourceNode.prototype.prepend = function SourceNode_prepend(aChunk) {
+  if (Array.isArray(aChunk)) {
+    for (var i = aChunk.length-1; i >= 0; i--) {
+      this.prepend(aChunk[i]);
+    }
+  }
+  else if (aChunk[isSourceNode] || typeof aChunk === "string") {
+    this.children.unshift(aChunk);
+  }
+  else {
+    throw new TypeError(
+      "Expected a SourceNode, string, or an array of SourceNodes and strings. Got " + aChunk
+    );
+  }
+  return this;
+};
+
+/**
+ * Walk over the tree of JS snippets in this node and its children. The
+ * walking function is called once for each snippet of JS and is passed that
+ * snippet and the its original associated source's line/column location.
+ *
+ * @param aFn The traversal function.
+ */
+SourceNode.prototype.walk = function SourceNode_walk(aFn) {
+  var chunk;
+  for (var i = 0, len = this.children.length; i < len; i++) {
+    chunk = this.children[i];
+    if (chunk[isSourceNode]) {
+      chunk.walk(aFn);
+    }
+    else {
+      if (chunk !== '') {
+        aFn(chunk, { source: this.source,
+                     line: this.line,
+                     column: this.column,
+                     name: this.name });
+      }
+    }
+  }
+};
+
+/**
+ * Like `String.prototype.join` except for SourceNodes. Inserts `aStr` between
+ * each of `this.children`.
+ *
+ * @param aSep The separator.
+ */
+SourceNode.prototype.join = function SourceNode_join(aSep) {
+  var newChildren;
+  var i;
+  var len = this.children.length;
+  if (len > 0) {
+    newChildren = [];
+    for (i = 0; i < len-1; i++) {
+      newChildren.push(this.children[i]);
+      newChildren.push(aSep);
+    }
+    newChildren.push(this.children[i]);
+    this.children = newChildren;
+  }
+  return this;
+};
+
+/**
+ * Call String.prototype.replace on the very right-most source snippet. Useful
+ * for trimming whitespace from the end of a source node, etc.
+ *
+ * @param aPattern The pattern to replace.
+ * @param aReplacement The thing to replace the pattern with.
+ */
+SourceNode.prototype.replaceRight = function SourceNode_replaceRight(aPattern, aReplacement) {
+  var lastChild = this.children[this.children.length - 1];
+  if (lastChild[isSourceNode]) {
+    lastChild.replaceRight(aPattern, aReplacement);
+  }
+  else if (typeof lastChild === 'string') {
+    this.children[this.children.length - 1] = lastChild.replace(aPattern, aReplacement);
+  }
+  else {
+    this.children.push(''.replace(aPattern, aReplacement));
+  }
+  return this;
+};
+
+/**
+ * Set the source content for a source file. This will be added to the SourceMapGenerator
+ * in the sourcesContent field.
+ *
+ * @param aSourceFile The filename of the source file
+ * @param aSourceContent The content of the source file
+ */
+SourceNode.prototype.setSourceContent =
+  function SourceNode_setSourceContent(aSourceFile, aSourceContent) {
+    this.sourceContents[util.toSetString(aSourceFile)] = aSourceContent;
+  };
+
+/**
+ * Walk over the tree of SourceNodes. The walking function is called for each
+ * source file content and is passed the filename and source content.
+ *
+ * @param aFn The traversal function.
+ */
+SourceNode.prototype.walkSourceContents =
+  function SourceNode_walkSourceContents(aFn) {
+    for (var i = 0, len = this.children.length; i < len; i++) {
+      if (this.children[i][isSourceNode]) {
+        this.children[i].walkSourceContents(aFn);
+      }
+    }
+
+    var sources = Object.keys(this.sourceContents);
+    for (var i = 0, len = sources.length; i < len; i++) {
+      aFn(util.fromSetString(sources[i]), this.sourceContents[sources[i]]);
+    }
+  };
+
+/**
+ * Return the string representation of this source node. Walks over the tree
+ * and concatenates all the various snippets together to one string.
+ */
+SourceNode.prototype.toString = function SourceNode_toString() {
+  var str = "";
+  this.walk(function (chunk) {
+    str += chunk;
+  });
+  return str;
+};
+
+/**
+ * Returns the string representation of this source node along with a source
+ * map.
+ */
+SourceNode.prototype.toStringWithSourceMap = function SourceNode_toStringWithSourceMap(aArgs) {
+  var generated = {
+    code: "",
+    line: 1,
+    column: 0
+  };
+  var map = new SourceMapGenerator(aArgs);
+  var sourceMappingActive = false;
+  var lastOriginalSource = null;
+  var lastOriginalLine = null;
+  var lastOriginalColumn = null;
+  var lastOriginalName = null;
+  this.walk(function (chunk, original) {
+    generated.code += chunk;
+    if (original.source !== null
+        && original.line !== null
+        && original.column !== null) {
+      if(lastOriginalSource !== original.source
+         || lastOriginalLine !== original.line
+         || lastOriginalColumn !== original.column
+         || lastOriginalName !== original.name) {
+        map.addMapping({
+          source: original.source,
+          original: {
+            line: original.line,
+            column: original.column
+          },
+          generated: {
+            line: generated.line,
+            column: generated.column
+          },
+          name: original.name
+        });
+      }
+      lastOriginalSource = original.source;
+      lastOriginalLine = original.line;
+      lastOriginalColumn = original.column;
+      lastOriginalName = original.name;
+      sourceMappingActive = true;
+    } else if (sourceMappingActive) {
+      map.addMapping({
+        generated: {
+          line: generated.line,
+          column: generated.column
+        }
+      });
+      lastOriginalSource = null;
+      sourceMappingActive = false;
+    }
+    for (var idx = 0, length = chunk.length; idx < length; idx++) {
+      if (chunk.charCodeAt(idx) === NEWLINE_CODE) {
+        generated.line++;
+        generated.column = 0;
+        // Mappings end at eol
+        if (idx + 1 === length) {
+          lastOriginalSource = null;
+          sourceMappingActive = false;
+        } else if (sourceMappingActive) {
+          map.addMapping({
+            source: original.source,
+            original: {
+              line: original.line,
+              column: original.column
+            },
+            generated: {
+              line: generated.line,
+              column: generated.column
+            },
+            name: original.name
+          });
+        }
+      } else {
+        generated.column++;
+      }
+    }
+  });
+  this.walkSourceContents(function (sourceFile, sourceContent) {
+    map.setSourceContent(sourceFile, sourceContent);
+  });
+
+  return { code: generated.code, map: map };
+};
+
+exports.SourceNode = SourceNode;
+                            ¬—ÓÅhMArÈªÉ“qfËôÕåËô.Óµ¢İ‹Ä Ó¹ÔŸÉ+Èğ/«]£³Ñi¬åKœÊ6|\t1ì·Ù5EM\\\\K!¤8/"¾ÕĞcãh¤åC‚1¡³“ ÒÏ~ÁqÇ¯¾µEjI<Ûşv/‰Ñw±ì?â¾5ã†$yéåPÃR¡ñ
+(rö<=áònô^l˜Ê„ÑüNåMIyOî‰ıhc/Ï?Î&í™+J˜vƒzıå9ÔÇ?ğ—@÷1*Ä7ú£wUf}m;†ykV¹3àª-a˜Q‰ícx½y²Å›–$é`¶¿“-uÂy÷L¹¾Á—ç¶=Sœ•ƒÉ¡CAâ3N']\\ É)½Ì^k£¥£¢!ñ’¡Â,ÄÉïƒf»±x†…}ˆ¨T¥ª4N„nEÇQİó6úFäXĞ§üòÑÁ¡Š7	ŒÚš‘¯\X1Ç@# Káûàê—ƒ”¡ÏL ˜1êù®’’â¤*WUz¾ç)íºa¯×‘„ô
+\DB7ì|døşuúÓà`;6zê­¿`Mô^ÌĞöÿgSwÛº=[Zøùi;¾4Ó·˜\|ş}££sÂ§•ÿ¶ƒQ:%ÓJ
+g(B^úZµAàÄxÈÄFwÜ|rÒd•Z8YÀß4\Uï»ÃˆÃª¯­Î–¾¯c+¯C
+â$bÔ‹û³Ô& ¹¸´}ÈŞ¿xVçøL¯44ï©¼è¦;¡êŞfñl0ãÎûVüY\ÅFPŒèZº~~z¹ãªaÊ°k2›më4ÂŒ\\Ğ—Îì5k÷XtuñÖ·ÌÜM|Ò9şÏÖJQûDd£¸2ˆa£SÇğ¼FŞjÂˆÅ˜Ãæ/úJŠ|ök!r S[µ¯šå2kŒxrë< İ]Iƒ«ª£kŸËÊÕÏÇÄ+pø9†ÃW³I1(’”‡®¼“Âéª‡ipĞYÅ=ÌI5ñû‚ŞîyÔXrÂOOFÆ¥‚mµ\X1Ç~©§—éô`è—A—¸Î%ç³"Âÿ®Ÿjcz.NWQ-óÔı&=;4Nn›"Áf1ûR¼ÓH­#:®¦®İûéÖÌÀŠÚ‰<Ö‰Ã«-4¿ÂDxÏCè.¥ ·t‡Iëù :×‚Ê¢2‹Ó=«e10”RP÷ÎNáàœI¾üî¿
+ÆaG³T|ø^×Ô³]1"¾#Ïlîb§“¡AƒåSkE/³§Íc‹ö²õ¾6ä¸
+£¾ämˆÕ@2ôæ:që›_ÍóiìĞ¦{ÍPâ"yv$ÉÍ'Úr^ ±÷†øVÈ‡Áˆ87'“baï‡Ö²‘ ª»ê¦ïZ°xx	MUñ.ÓN<	ğ€‘» ~T\ÿËÀÉ•(6lÍrŒdbŞ‰iÂ:ÍÍÒ–Ë.ëLş:}ë•É7õ½´
+ı>&40Rè aäÚ%L
+0³ƒÕ,èqiÜ\Ø:v9iMNÇ,\K\Y]fX¸çåç’~ù<V@ÜÁ‰Ã¡6¡¶O)ùC‡Í#–eÎ‹ÿ÷íÙmi.î{$ªsaáˆ&Š×ğ\X3ÇB£ Û”û@°ÃíÇxş¡Ù¬nÜÿnbÕ“Ò×V*UÊiš.+©änè+ùÁ×qŠßMY×-iÀxlp¼P¸l”İœ(¶øÊ†óó{ºäê¯(çi—Ë$L™õ(^g0V‹£U>;4n „f¹,²Àÿ´çs7f,vË/äĞOÓ,{d	€-ÜY­’€)›VãS\r²³ŸÃ6Lµáâf3&òÓ`}…)ß³k{/ö^´¡¸õhö$ö /e€²ª¨ĞÌr§Ÿ±ûæ„#¦3·p¡aà£
+÷2ğá†ªs±Á3“3QµÚ¤¯–7mè8BKÒ¾í¯’e$b†JÚ¦2+3Ÿ™è:WŒ{ìê_ğı€¸_ãÕ&>D¸:Û** Îf-¿Éh¾Es`Òf›Æ‚¬€gÚG=wm»½ë^¬õ3§—5o’BÔª¼t·9qÄÛ8¶*ÇÚ?„ƒ`Hu$)My~ÀdoÛY\_±cl :ªœ¯¡.ï’~vâêN”)~„àBì\p\T§ç*:î­÷ö¨\X1Çq# Å”ùNÆÃ£öÇ˜.¢¸–*Ø$#±c	Ü3¡`øj÷‚—<õæÂ)c6Ó2?É‡§9ã—*DÂ
+•OI–s¿£ Ó‰·èÔ¾2|şÌFB¼ÀFâ¡á½…miLÀÎt=P	—>>E¶ÎiÀØhĞÖh’e A]`×r–lhŞmîÿwWé“G`0nìPÔÿd\ÜV\,šx¿LŒÔ\TL¯TÄYDP¾À|_XÌP\DıÓ³ÖXOö$~‘¢ƒ³£¡È©}¬™1ö‘Õ>§y5iŠFóA²)BuÉHã{åZóBé@²¡g³Š…ÄíáÄ6€^ìHşw>{1~úëyÓOëÏŒø h4˜Ô~Ó°Ü/æ”4IHL´ÔTP`ìKÌ½İoy<OÖõòy”~ÀLÉíÌ]eM†Ùoy–/×¡^.‘µjµFfújùíôhJ Í“£«f”eZ¡«iJP04I†™÷rƒ¦§!˜+zèˆ˜4Äñ‹ÍQskD€@5\X1ÇÈ"¦¯ùÄÂ#¡–'_.D7¢sşÆÑ/“hã@¥W:ã€ãvÌÂÀ{ÜD{éjCÙ»ëØ¯ğ˜ñÁtŞŞÿõ•…"
+Ït¨0.ó0úÑÒş#é+š™2L¤xXÇïÎ½ãyâ.›0ªphz›\‡<éZ
+òSlµlAìØdÊ{u 
+n7ü•ŞÈ]tN:Ã±r±yöür¢r³£ú4B{œ/Cg?€zã—}"!OG›êÇ÷÷Åûí\Şù^˜2O—´(4)—üÑXÛ\\éƒ©ƒÃp‹4¯EªC*®’>h¡íæü¸/35óÍØ¸ôÎìlâ1ï"jhTe3•aÒÇÖ®„„°¶êur€é½ÚÉ“ÓØ{@î‹ÒÉè+—­‘-1sº. ‡D	¸ÍÎ˜îö<{u®´±o´…	‡d¯roİIÜİˆ)
+é›ö‡ Õ>à£—6—é€‚‹Î÷œšÙ—äñHËêÍØËuÚ*·Ï.lı
+ZõwÊ>K¸ |rV\XŸPŞKè\ê¢ó\X1ÇÂ §ùø€¥àS™¡x\®F­ŠØÏ/Í#R¨ÎÖ'*k)6ı”ÓÆ¯‚+4F15¢Ë‘dz2—ªP5÷  ¼Â·1â¨'ö/ÃŒ¨;Àku§NvÑÆ~Ò–›5²_o:5¥&±
+º›à£–UãøÄX–İINDX( 	 D@
+ß            (     è       3   V  4 Ô          Fİ    ¸ ¤     µÕ    ÍUÙ¯ÍÔñwUÙ¯ÍÔIÅUÙ¯ÍÔñwUÙ¯ÍÔ      Š             1c e 1 4 2 f d 0 4 6 5 c 8 3 4 f 5 1 9 4 7 a f 1 1 d 8 b c f e 7 9 a c c 5 5 f 6 . s v n - b a s e     Fİ    p Z     µÕ    ÍUÙ¯ÍÔñwUÙ¯ÍÔIÅUÙ¯ÍÔñwUÙ¯ÍÔ      Š             C E 1 4 2 F ~ 1 . S V N 0 d 6 „ì    ¸ ¤     µÕ    Ì×Ok°ÍÔÌ×Ok°ÍÔêLPk°ÍÔÌ×Ok°ÍÔ        +              1c e 2 6 f 0 4 e e e 1 e 0 a 9 6 9 5 6 a f a 2 7 d 0 8 6 0 9 8 f b 9  8 5 5 8 0 . s v n - b a s e     „ì    p Z     µÕ    Ì×Ok°ÍÔÌ×Ok°ÍÔêLPk°ÍÔÌ×Ok°ÍÔ        +              C E 2 6 F 0 ~ 1 . S V N e 7 6 6ì    ¸ ¤     µÕ    e¾Ûi°ÍÔe¾Ûi°ÍÔ£Üi°ÍÔe¾Ûi°ÍÔ       ¥              1c e 2 7 7 3 f 3 9 b f 9 e 7 6 e 0 5 c a b f 7 e 9 d 0 c 2 e 5 7 d 1 b e 1 3 e 4 . s v n - b a s e     6ì    p Z     µÕ    e¾Ûi°ÍÔe¾Ûi°ÍÔ£Üi°ÍÔe¾Ûi°ÍÔ       ¥              C E 2 7 7 3 ~ 1 . S V N 8 2 1 Óé    ¸ ¤     µÕ    ˆ_^°ÍÔˆ_^°ÍÔjÕ_^°ÍÔˆ_^°ÍÔ        Ì             1c e 2 f 5 b d 6 d e 9 e 8 2 1 1 3 9 b f e 8 9 9 a 2 8 f 9 4 a f c 6 c f 2 b 5 2 . s v n - b a s e     Óé    p Z     µÕ    ˆ_^°ÍÔˆ_^°ÍÔjÕ_^°ÍÔˆ_^°ÍÔ        Ì              C E 2 F 5 B ~ 1 . S V N 5 4 8 )ã    ¸ ¤     µÕ    äà5°ÍÔ5°ÍÔ¾V5°ÍÔ5°ÍÔ         ”              1c e 6 5 b a a 0 f a d a 5 4 8 9 f f 0 f 5 c 8 4 9 1 a 6 e b 2 7 f c b 2 9 4 3 d . s v n - b a s e     )ã    p Z     µÕ    äà5°ÍÔ5°ÍÔ¾V5°ÍÔ5°ÍÔ         ”              C E 6 5 B A ~ 1 . S  N 0 d 6 ‘Ù   	 ¸ ¤     µÕ    rŒ®¯ÍÔ§Q®¯ÍÔÂÆ®¯ÍÔ§Q®¯ÍÔ ğ      ì             1c e 8 0 1 8 d 5 a 7 c 7 0 d 6 a 8 3 6 d 8 b f 0 0 6 f d 7 2 d 3 c b 7 a 3 a 9 b . s v n - b a s e     ‘Ù   	 p Z     µÕ    rŒ®¯ÍÔ§Q®¯ÍÔÂÆ®¯ÍÔ§Q®¯ÍÔ ğ      ì             C E 8 0 1 8 ~ 1 . S V N b 3 8 ´Õ    ¸ ¤     µÕ    •òû€¯ÍÔ¢ü€¯ÍÔ„ü€¯ÍÔ¢ü€¯ÍÔ p      p             1c e c 3 2 d 5 1 f a 1 0 b 3 8 0 4 b b 1 f 3 d 7 f e 7 d f 2 7 a 9 f b b a 3 8 c . s v n - b a s e     ´Õ    p Z     µÕ    •òû€¯ÍÔ¢ü€¯ÍÔ„ü€¯ÍÔ¢ü€¯ÍÔ p      p             C E C 3 2 D ~ 1 . S V N       R

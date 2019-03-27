@@ -1,0 +1,80 @@
+r_originalPositionFor(aArgs) {
+	    var needle = {
+	      generatedLine: util.getArg(aArgs, 'line'),
+	      generatedColumn: util.getArg(aArgs, 'column')
+	    };
+	
+	    // Find the section containing the generated position we're trying to map
+	    // to an original position.
+	    var sectionIndex = binarySearch.search(needle, this._sections,
+	      function(needle, section) {
+	        var cmp = needle.generatedLine - section.generatedOffset.generatedLine;
+	        if (cmp) {
+	          return cmp;
+	        }
+	
+	        return (needle.generatedColumn -
+	                section.generatedOffset.generatedColumn);
+	      });
+	    var section = this._sections[sectionIndex];
+	
+	    if (!section) {
+	      return {
+	        source: null,
+	        line: null,
+	        column: null,
+	        name: null
+	      };
+	    }
+	
+	    return section.consumer.originalPositionFor({
+	      line: needle.generatedLine -
+	        (section.generatedOffset.generatedLine - 1),
+	      column: needle.generatedColumn -
+	        (section.generatedOffset.generatedLine === needle.generatedLine
+	         ? section.generatedOffset.generatedColumn - 1
+	         : 0),
+	      bias: aArgs.bias
+	    });
+	  };
+	
+	/**
+	 * Return true if we have the source content for every source in the source
+	 * map, false otherwise.
+	 */
+	IndexedSourceMapConsumer.prototype.hasContentsOfAllSources =
+	  function IndexedSourceMapConsumer_hasContentsOfAllSources() {
+	    return this._sections.every(function (s) {
+	      return s.consumer.hasContentsOfAllSources();
+	    });
+	  };
+	
+	/**
+	 * Returns the original source content. The only argument is the url of the
+	 * original source file. Returns null if no original source content is
+	 * available.
+	 */
+	IndexedSourceMapConsumer.prototype.sourceContentFor =
+	  function IndexedSourceMapConsumer_sourceContentFor(aSource, nullOnMissing) {
+	    for (var i = 0; i < this._sections.length; i++) {
+	      var section = this._sections[i];
+	
+	      var content = section.consumer.sourceContentFor(aSource, true);
+	      if (content) {
+	        return content;
+	      }
+	    }
+	    if (nullOnMissing) {
+	      return null;
+	    }
+	    else {
+	      throw new Error('"' + aSource + '" is not in the SourceMap.');
+	    }
+	  };
+	
+	/**
+	 * Returns the generated line and column information for the original source,
+	 * line, and column positions provided. The only argument is an object with
+	 * the following properties:
+	 *
+	 *   - source: The fil

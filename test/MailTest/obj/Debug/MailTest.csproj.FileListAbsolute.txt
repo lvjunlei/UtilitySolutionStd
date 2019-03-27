@@ -1,0 +1,13 @@
+F:\Work\GitHub\FileSolution\MailTest\bin\Debug\MailTest.exe.config
+F:\Work\GitHub\FileSolution\MailTest\bin\Debug\MailTest.exe
+F:\Work\GitHub\FileSolution\MailTest\bin\Debug\MailTest.pdb
+F:\Work\GitHub\FileSolution\MailTest\bin\Debug\BouncyCastle.Crypto.dll
+F:\Work\GitHub\FileSolution\MailTest\bin\Debug\MailKit.dll
+F:\Work\GitHub\FileSolution\MailTest\bin\Debug\MimeKit.dll
+F:\Work\GitHub\FileSolution\MailTest\bin\Debug\MailKit.xml
+F:\Work\GitHub\FileSolution\MailTest\bin\Debug\MimeKit.xml
+F:\Work\GitHub\FileSolution\MailTest\obj\Debug\MailTest.csproj.CoreCompileInputs.cache
+F:\Work\GitHub\FileSolution\MailTest\obj\Debug\MailTest.csproj.CopyComplete
+F:\Work\GitHub\FileSolution\MailTest\obj\Debug\MailTest.exe
+F:\Work\GitHub\FileSolution\MailTest\obj\Debug\MailTest.pdb
+F:\Work\GitHub\FileSolution\MailTest\obj\Debug\MailTest.csprojAssemblyReference.cache

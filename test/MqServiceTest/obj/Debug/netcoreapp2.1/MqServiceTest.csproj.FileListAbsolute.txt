@@ -1,0 +1,14 @@
+F:\Work\GitHub\FileSolution\MqServiceTest\bin\Debug\netcoreapp2.1\MqServiceTest.deps.json
+F:\Work\GitHub\FileSolution\MqServiceTest\bin\Debug\netcoreapp2.1\MqServiceTest.runtimeconfig.json
+F:\Work\GitHub\FileSolution\MqServiceTest\bin\Debug\netcoreapp2.1\MqServiceTest.runtimeconfig.dev.json
+F:\Work\GitHub\FileSolution\MqServiceTest\bin\Debug\netcoreapp2.1\MqServiceTest.dll
+F:\Work\GitHub\FileSolution\MqServiceTest\bin\Debug\netcoreapp2.1\MqServiceTest.pdb
+F:\Work\GitHub\FileSolution\MqServiceTest\bin\Debug\netcoreapp2.1\Utility.RabbitMQ.dll
+F:\Work\GitHub\FileSolution\MqServiceTest\bin\Debug\netcoreapp2.1\Utility.RabbitMQ.pdb
+F:\Work\GitHub\FileSolution\MqServiceTest\obj\Debug\netcoreapp2.1\MqServiceTest.csprojAssemblyReference.cache
+F:\Work\GitHub\FileSolution\MqServiceTest\obj\Debug\netcoreapp2.1\MqServiceTest.csproj.CoreCompileInputs.cache
+F:\Work\GitHub\FileSolution\MqServiceTest\obj\Debug\netcoreapp2.1\MqServiceTest.AssemblyInfoInputs.cache
+F:\Work\GitHub\FileSolution\MqServiceTest\obj\Debug\netcoreapp2.1\MqServiceTest.AssemblyInfo.cs
+F:\Work\GitHub\FileSolution\MqServiceTest\obj\Debug\netcoreapp2.1\MqServiceTest.csproj.CopyComplete
+F:\Work\GitHub\FileSolution\MqServiceTest\obj\Debug\netcoreapp2.1\MqServiceTest.dll
+F:\Work\GitHub\FileSolution\MqServiceTest\obj\Debug\netcoreapp2.1\MqServiceTest.pdb

@@ -1,0 +1,17 @@
+F:\Work\GitHub\FileSolution\NLogTest\bin\Debug\netcoreapp2.1\NLogTest.deps.json
+F:\Work\GitHub\FileSolution\NLogTest\bin\Debug\netcoreapp2.1\NLogTest.runtimeconfig.json
+F:\Work\GitHub\FileSolution\NLogTest\bin\Debug\netcoreapp2.1\NLogTest.runtimeconfig.dev.json
+F:\Work\GitHub\FileSolution\NLogTest\bin\Debug\netcoreapp2.1\NLogTest.dll
+F:\Work\GitHub\FileSolution\NLogTest\obj\Debug\netcoreapp2.1\NLogTest.csprojAssemblyReference.cache
+F:\Work\GitHub\FileSolution\NLogTest\obj\Debug\netcoreapp2.1\NLogTest.csproj.CoreCompileInputs.cache
+F:\Work\GitHub\FileSolution\NLogTest\obj\Debug\netcoreapp2.1\NLogTest.AssemblyInfoInputs.cache
+F:\Work\GitHub\FileSolution\NLogTest\obj\Debug\netcoreapp2.1\NLogTest.AssemblyInfo.cs
+F:\Work\GitHub\FileSolution\NLogTest\bin\Debug\netcoreapp2.1\NLog.config
+F:\Work\GitHub\FileSolution\NLogTest\bin\Debug\netcoreapp2.1\NLogTest.pdb
+F:\Work\GitHub\FileSolution\NLogTest\obj\Debug\netcoreapp2.1\NLogTest.dll
+F:\Work\GitHub\FileSolution\NLogTest\obj\Debug\netcoreapp2.1\NLogTest.pdb
+F:\Work\GitHub\FileSolution\NLogTest\bin\Debug\netcoreapp2.1\Utility.Logs.dll
+F:\Work\GitHub\FileSolution\NLogTest\bin\Debug\netcoreapp2.1\Utility.Logs.pdb
+F:\Work\GitHub\FileSolution\NLogTest\obj\Debug\netcoreapp2.1\NLogTest.csproj.CopyComplete
+F:\Work\GitHub\FileSolution\NLogTest\bin\Debug\netcoreapp2.1\Utility.dll
+F:\Work\GitHub\FileSolution\NLogTest\bin\Debug\netcoreapp2.1\Utility.pdb

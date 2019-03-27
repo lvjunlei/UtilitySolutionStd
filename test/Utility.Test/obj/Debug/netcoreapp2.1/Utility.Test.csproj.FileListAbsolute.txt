@@ -1,0 +1,14 @@
+F:\Work\GitHub\FileSolution\Utility.Test\bin\Debug\netcoreapp2.1\Utility.Test.deps.json
+F:\Work\GitHub\FileSolution\Utility.Test\bin\Debug\netcoreapp2.1\Utility.Test.runtimeconfig.json
+F:\Work\GitHub\FileSolution\Utility.Test\bin\Debug\netcoreapp2.1\Utility.Test.runtimeconfig.dev.json
+F:\Work\GitHub\FileSolution\Utility.Test\bin\Debug\netcoreapp2.1\Utility.Test.dll
+F:\Work\GitHub\FileSolution\Utility.Test\bin\Debug\netcoreapp2.1\Utility.Test.pdb
+F:\Work\GitHub\FileSolution\Utility.Test\bin\Debug\netcoreapp2.1\Utility.dll
+F:\Work\GitHub\FileSolution\Utility.Test\bin\Debug\netcoreapp2.1\Utility.pdb
+F:\Work\GitHub\FileSolution\Utility.Test\obj\Debug\netcoreapp2.1\Utility.Test.csprojAssemblyReference.cache
+F:\Work\GitHub\FileSolution\Utility.Test\obj\Debug\netcoreapp2.1\Utility.Test.csproj.CoreCompileInputs.cache
+F:\Work\GitHub\FileSolution\Utility.Test\obj\Debug\netcoreapp2.1\Utility.Test.AssemblyInfoInputs.cache
+F:\Work\GitHub\FileSolution\Utility.Test\obj\Debug\netcoreapp2.1\Utility.Test.AssemblyInfo.cs
+F:\Work\GitHub\FileSolution\Utility.Test\obj\Debug\netcoreapp2.1\Utility.Test.csproj.CopyComplete
+F:\Work\GitHub\FileSolution\Utility.Test\obj\Debug\netcoreapp2.1\Utility.Test.dll
+F:\Work\GitHub\FileSolution\Utility.Test\obj\Debug\netcoreapp2.1\Utility.Test.pdb

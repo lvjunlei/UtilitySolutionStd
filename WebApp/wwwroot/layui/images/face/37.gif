@@ -1,0 +1,38 @@
+
+	 */
+	SourceNode.fromStringWithSourceMap =
+	  function SourceNode_fromStringWithSourceMap(aGeneratedCode, aSourceMapConsumer, aRelativePath) {
+	    // The SourceNode we want to fill with the generated code
+	    // and the SourceMap
+	    var node = new SourceNode();
+	
+	    // All even indices of this array are one line of the generated code,
+	    // while all odd indices are the newlines between two adjacent lines
+	    // (since `REGEX_NEWLINE` captures its match).
+	    // Processed fragments are accessed by calling `shiftNextLine`.
+	    var remainingLines = aGeneratedCode.split(REGEX_NEWLINE);
+	    var remainingLinesIndex = 0;
+	    var shiftNextLine = function() {
+	      var lineContents = getNextLine();
+	      // The last line of a file might not have a newline.
+	      var newLine = getNextLine() || "";
+	      return lineContents + newLine;
+	
+	      function getNextLine() {
+	        return remainingLinesIndex < remainingLines.length ?
+	            remainingLines[remainingLinesIndex++] : undefined;
+	      }
+	    };
+	
+	    // We need to remember the position of "remainingLines"
+	    var lastGeneratedLine = 1, lastGeneratedColumn = 0;
+	
+	    // The generate SourceNodes we need a code range.
+	    // To extract it current and last mapping is used.
+	    // Here we store the last mapping.
+	    var lastMapping = null;
+	
+	    aSourceMapConsumer.eachMapping(function (mapping) {
+	      if (lastMapping !== null) {
+	        // We add the code from "lastMapping" to "mapping":
+	        // First check 

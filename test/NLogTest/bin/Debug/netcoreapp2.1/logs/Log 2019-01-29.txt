@@ -1,0 +1,14 @@
+2019-01-29 14:38:44.6289 NLogTest.LogHelper.Info Info: #Hello World!  Program.Main => LogHelper.Info
+2019-01-29 14:40:24.0842 NLogTest.Program.Main Info: Hello World!  Program.Main
+2019-01-29 14:44:46.5570 NLogTest.Program.Main Info: Hello World!  Program.Main
+2019-01-29 14:46:16.5721 NLogTest.Program.Main Info: Hello World!  Program.Main
+2019-01-29 14:48:52.5257 NLogTest.Program.Main Info: Hello World!  Program.Main
+2019-01-29 15:12:23.1304 NLogTest.Program.Main Info: Hello World!  Program.Main
+2019-01-29 15:13:29.1969 NLogTest.Program.Main Info: Hello World!  Program.Main
+2019-01-29 15:29:51.1660 NLogTest.Program.Main Info: Hello World /  Program.Main
+2019-01-29 15:30:39.2881 NLogTest.Program.Main Info: Hello World /  Program.Main
+2019-01-29 15:32:55.3059 NLogTest.Program.Main Info: Hello World /  Program.Main
+2019-01-29 16:34:08.8233 NLogTest.Program.Main Info: Hello World /  Program.Main
+2019-01-29 16:35:01.5752 NLogTest.Program.Main Info: Hello World /  Program.Main
+2019-01-29 16:55:51.0511 Utility.Logs.LogAdapter.Log Info: Hello World  Program.Main => LogAdapter.Info => LogAdapter.Log
+2019-01-29 17:07:29.5652 Utility.Logs.LogAdapter.Log Info: Hello World  Program.Main => LogAdapter.Info => LogAdapter.Log

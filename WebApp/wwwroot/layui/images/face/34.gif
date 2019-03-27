@@ -1,0 +1,95 @@
+rseMappings(aStr, aSourceRoot) {
+	    this.__generatedMappings = [];
+	    this.__originalMappings = [];
+	    for (var i = 0; i < this._sections.length; i++) {
+	      var section = this._sections[i];
+	      var sectionMappings = section.consumer._generatedMappings;
+	      for (var j = 0; j < sectionMappings.length; j++) {
+	        var mapping = sectionMappings[j];
+	
+	        var source = section.consumer._sources.at(mapping.source);
+	        if (section.consumer.sourceRoot !== null) {
+	          source = util.join(section.consumer.sourceRoot, source);
+	        }
+	        this._sources.add(source);
+	        source = this._sources.indexOf(source);
+	
+	        var name = section.consumer._names.at(mapping.name);
+	        this._names.add(name);
+	        name = this._names.indexOf(name);
+	
+	        // The mappings coming from the consumer for the section have
+	        // generated positions relative to the start of the section, so we
+	        // need to offset them to be relative to the start of the concatenated
+	        // generated file.
+	        var adjustedMapping = {
+	          source: source,
+	          generatedLine: mapping.generatedLine +
+	            (section.generatedOffset.generatedLine - 1),
+	          generatedColumn: mapping.generatedColumn +
+	            (section.generatedOffset.generatedLine === mapping.generatedLine
+	            ? section.generatedOffset.generatedColumn - 1
+	            : 0),
+	          originalLine: mapping.originalLine,
+	          originalColumn: mapping.originalColumn,
+	          name: name
+	        };
+	
+	        this.__generatedMappings.push(adjustedMapping);
+	        if (typeof adjustedMapping.originalLine === 'number') {
+	          this.__originalMappings.push(adjustedMapping);
+	        }
+	      }
+	    }
+	
+	    quickSort(this.__generatedMappings, util.compareByGeneratedPositionsDeflated);
+	    quickSort(this.__originalMappings, util.compareByOriginalPositions);
+	  };
+	
+	exports.IndexedSourceMapConsumer = IndexedSourceMapConsumer;
+
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports) {
+
+	/* -*- Mode: js; js-indent-level: 2; -*- */
+	/*
+	 * Copyright 2011 Mozilla Foundation and contributors
+	 * Licensed under the New BSD license. See LICENSE or:
+	 * http://opensource.org/licenses/BSD-3-Clause
+	 */
+	
+	exports.GREATEST_LOWER_BOUND = 1;
+	exports.LEAST_UPPER_BOUND = 2;
+	
+	/**
+	 * Recursive implementation of binary search.
+	 *
+	 * @param aLow Indices here and lower do not contain the needle.
+	 * @param aHigh Indices here and higher do not contain the needle.
+	 * @param aNeedle The element being searched for.
+	 * @param aHaystack The non-empty array being searched.
+	 * @param aCompare Function which takes two elements and returns -1, 0, or 1.
+	 * @param aBias Either 'binarySearch.GREATEST_LOWER_BOUND' or
+	 *     'binarySearch.LEAST_UPPER_BOUND'. Specifies whether to return the
+	 *     closest element that is smaller than or greater than the one we are
+	 *     searching for, respectively, if the exact element cannot be found.
+	 */
+	function recursiveSearch(aLow, aHigh, aNeedle, aHaystack, aCompare, aBias) {
+	  // This function terminates when one of the following is true:
+	  //
+	  //   1. We find the exact element we are looking for.
+	  //
+	  //   2. We did not find the exact element, but we can return the index of
+	  //      the next-closest element.
+	  //
+	  //   3. We did not find the exact element, and there is no next-closest
+	  //      element than the one we are searching for, so we return -1.
+	  var mid = Math.floor((aHigh - aLow) / 2) + aLow;
+	  var cmp = aCompare(aNeedle, aHaystack[mid], true);
+	  if (cmp === 0) {
+	    // Found the element we are looking for.
+	    return mid;
+	  }
+	  else if (cmp > 0

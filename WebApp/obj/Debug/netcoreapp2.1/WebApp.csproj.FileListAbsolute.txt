@@ -1,0 +1,28 @@
+ enterFunction(node) {
+            const isBlock = node.body.type === "BlockStatement",
+                useStrictDirectives = isBlock
+                    ? getUseStrictDirectives(node.body.body) : [];
+
+            if (mode === "function") {
+                enterFunctionInFunctionMode(node, useStrictDirectives);
+            } else if (useStrictDirectives.length > 0) {
+                if (isSimpleParameterList(node.params)) {
+                    reportAll(useStrictDirectives, messages[mode], shouldFix(mode));
+                } else {
+                    context.report({ node: useStrictDirectives[0], message: messages.nonSimpleParameterList });
+                    reportAllExceptFirst(useStrictDirectives, messages.multiple, true);
+                }
+            }
+        }
+
+        const rule = {
+            Program(node) {
+                const useStrictDirectives = getUseStrictDirectives(node.body);
+
+                if (node.sourceType === "module") {
+                    mode = "module";
+                }
+
+                if (mode === "global") {
+                    if (node.body.length > 0 && useStrictDirectives.length === 0) {
+                        context.report

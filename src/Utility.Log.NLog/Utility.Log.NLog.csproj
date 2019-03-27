@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Utility.Logs</AssemblyName>
+    <RootNamespace>Utility.Logs</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="ILogAdapter.cs" />
+    <Compile Remove="LogAdapter.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Extensions\ExceptionExtensions.cs~RF8cf8a36.TMP" />
+    <None Remove="LogService.cs~RF8d1eba6.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\Users\lvjl\.nuget\packages\nlog.config\4.5.11\contentFiles\any\any\NLog.config" Link="NLog.config">
+      <Private>True</Private>
+      <NuGetPackageVersion>4.5.11</NuGetPackageVersion>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <NuGetItemType>None</NuGetItemType>
+      <TargetPath>NLog.config</TargetPath>
+      <NuGetPackageId>NLog.Config</NuGetPackageId>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NLog" Version="4.5.11" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Utility\Utility.csproj" />
+  </ItemGroup>
+
+</Project>

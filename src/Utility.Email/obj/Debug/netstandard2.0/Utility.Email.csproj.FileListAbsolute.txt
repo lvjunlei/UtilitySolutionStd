@@ -1,0 +1,12 @@
+D:\1234\src\Utility.Email\bin\Debug\netstandard2.0\Utility.Email.deps.json
+D:\1234\src\Utility.Email\bin\Debug\netstandard2.0\Utility.Email.dll
+D:\1234\src\Utility.Email\bin\Debug\netstandard2.0\Utility.Email.pdb
+D:\1234\src\Utility.Email\bin\Debug\netstandard2.0\Utility.dll
+D:\1234\src\Utility.Email\bin\Debug\netstandard2.0\Utility.pdb
+D:\1234\src\Utility.Email\obj\Debug\netstandard2.0\Utility.Email.csprojAssemblyReference.cache
+D:\1234\src\Utility.Email\obj\Debug\netstandard2.0\Utility.Email.csproj.CoreCompileInputs.cache
+D:\1234\src\Utility.Email\obj\Debug\netstandard2.0\Utility.Email.AssemblyInfoInputs.cache
+D:\1234\src\Utility.Email\obj\Debug\netstandard2.0\Utility.Email.AssemblyInfo.cs
+D:\1234\src\Utility.Email\obj\Debug\netstandard2.0\Utility.Email.csproj.CopyComplete
+D:\1234\src\Utility.Email\obj\Debug\netstandard2.0\Utility.Email.dll
+D:\1234\src\Utility.Email\obj\Debug\netstandard2.0\Utility.Email.pdb

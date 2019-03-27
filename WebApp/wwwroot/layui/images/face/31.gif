@@ -1,0 +1,47 @@
+oot != null
+	        && (url = util.urlParse(this.sourceRoot))) {
+	      // XXX: file:// URIs and absolute paths lead to unexpected behavior for
+	      // many users. We can help them out when they expect file:// URIs to
+	      // behave like it would if they were running a local HTTP server. See
+	      // https://bugzilla.mozilla.org/show_bug.cgi?id=885597.
+	      var fileUriAbsPath = aSource.replace(/^file:\/\//, "");
+	      if (url.scheme == "file"
+	          && this._sources.has(fileUriAbsPath)) {
+	        return this.sourcesContent[this._sources.indexOf(fileUriAbsPath)]
+	      }
+	
+	      if ((!url.path || url.path == "/")
+	          && this._sources.has("/" + aSource)) {
+	        return this.sourcesContent[this._sources.indexOf("/" + aSource)];
+	      }
+	    }
+	
+	    // This function is used recursively from
+	    // IndexedSourceMapConsumer.prototype.sourceContentFor. In that case, we
+	    // don't want to throw if we can't find the source - we just want to
+	    // return null, so we provide a flag to exit gracefully.
+	    if (nullOnMissing) {
+	      return null;
+	    }
+	    else {
+	      throw new Error('"' + aSource + '" is not in the SourceMap.');
+	    }
+	  };
+	
+	/**
+	 * Returns the generated line and column information for the original source,
+	 * line, and column positions provided. The only argument is an object with
+	 * the following properties:
+	 *
+	 *   - source: The filename of the original source.
+	 *   - line: The line number in the original source.
+	 *   - column: The column number in the original source.
+	 *   - bias: Either 'SourceMapConsumer.GREATEST_LOWER_BOUND' or
+	 *     'SourceMapConsumer.LEAST_UPPER_BOUND'. Specifies whether to return the
+	 *     closest element that is smaller than or greater than the one we are
+	 *     searching for, respectively, if the exact element cannot be found.
+	 *     Defaults to 'SourceMapConsumer.GREATEST_LOWER_BOUND'.
+	 *
+	 * and an object is returned with the following properties:
+	 *
+	 *   - line: The line numb

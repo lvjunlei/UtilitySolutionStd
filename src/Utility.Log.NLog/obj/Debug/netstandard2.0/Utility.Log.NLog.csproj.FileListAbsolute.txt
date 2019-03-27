@@ -1,0 +1,13 @@
+D:\1234\src\Utility.Log.NLog\bin\Debug\netstandard2.0\NLog.config
+D:\1234\src\Utility.Log.NLog\bin\Debug\netstandard2.0\Utility.Logs.deps.json
+D:\1234\src\Utility.Log.NLog\bin\Debug\netstandard2.0\Utility.Logs.dll
+D:\1234\src\Utility.Log.NLog\bin\Debug\netstandard2.0\Utility.Logs.pdb
+D:\1234\src\Utility.Log.NLog\bin\Debug\netstandard2.0\Utility.dll
+D:\1234\src\Utility.Log.NLog\bin\Debug\netstandard2.0\Utility.pdb
+D:\1234\src\Utility.Log.NLog\obj\Debug\netstandard2.0\Utility.Log.NLog.csprojAssemblyReference.cache
+D:\1234\src\Utility.Log.NLog\obj\Debug\netstandard2.0\Utility.Log.NLog.csproj.CoreCompileInputs.cache
+D:\1234\src\Utility.Log.NLog\obj\Debug\netstandard2.0\Utility.Log.NLog.AssemblyInfoInputs.cache
+D:\1234\src\Utility.Log.NLog\obj\Debug\netstandard2.0\Utility.Log.NLog.AssemblyInfo.cs
+D:\1234\src\Utility.Log.NLog\obj\Debug\netstandard2.0\Utility.Log.NLog.csproj.CopyComplete
+D:\1234\src\Utility.Log.NLog\obj\Debug\netstandard2.0\Utility.Logs.dll
+D:\1234\src\Utility.Log.NLog\obj\Debug\netstandard2.0\Utility.Logs.pdb

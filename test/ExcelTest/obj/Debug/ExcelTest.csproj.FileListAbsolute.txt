@@ -1,0 +1,10 @@
+F:\Work\GitHub\FileSolution\ExcelTest\bin\Debug\ExcelTest.exe.config
+F:\Work\GitHub\FileSolution\ExcelTest\bin\Debug\ExcelTest.exe
+F:\Work\GitHub\FileSolution\ExcelTest\bin\Debug\ExcelTest.pdb
+F:\Work\GitHub\FileSolution\ExcelTest\bin\Debug\EPPlus.dll
+F:\Work\GitHub\FileSolution\ExcelTest\bin\Debug\EPPlus.xml
+F:\Work\GitHub\FileSolution\ExcelTest\obj\Debug\ExcelTest.csprojAssemblyReference.cache
+F:\Work\GitHub\FileSolution\ExcelTest\obj\Debug\ExcelTest.csproj.CoreCompileInputs.cache
+F:\Work\GitHub\FileSolution\ExcelTest\obj\Debug\ExcelTest.csproj.CopyComplete
+F:\Work\GitHub\FileSolution\ExcelTest\obj\Debug\ExcelTest.exe
+F:\Work\GitHub\FileSolution\ExcelTest\obj\Debug\ExcelTest.pdb

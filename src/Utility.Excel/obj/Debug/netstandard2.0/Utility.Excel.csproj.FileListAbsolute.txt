@@ -1,0 +1,9 @@
+D:\1234\src\Utility.Excel\bin\Debug\netstandard2.0\Utility.Excel.deps.json
+D:\1234\src\Utility.Excel\bin\Debug\netstandard2.0\Utility.Excel.dll
+D:\1234\src\Utility.Excel\bin\Debug\netstandard2.0\Utility.Excel.pdb
+D:\1234\src\Utility.Excel\obj\Debug\netstandard2.0\Utility.Excel.csprojAssemblyReference.cache
+D:\1234\src\Utility.Excel\obj\Debug\netstandard2.0\Utility.Excel.csproj.CoreCompileInputs.cache
+D:\1234\src\Utility.Excel\obj\Debug\netstandard2.0\Utility.Excel.AssemblyInfoInputs.cache
+D:\1234\src\Utility.Excel\obj\Debug\netstandard2.0\Utility.Excel.AssemblyInfo.cs
+D:\1234\src\Utility.Excel\obj\Debug\netstandard2.0\Utility.Excel.dll
+D:\1234\src\Utility.Excel\obj\Debug\netstandard2.0\Utility.Excel.pdb

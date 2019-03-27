@@ -1,0 +1,9 @@
+D:\1234\src\Utility.AutoMapper\bin\Debug\netstandard2.0\Utility.AutoMapper.deps.json
+D:\1234\src\Utility.AutoMapper\bin\Debug\netstandard2.0\Utility.AutoMapper.dll
+D:\1234\src\Utility.AutoMapper\bin\Debug\netstandard2.0\Utility.AutoMapper.pdb
+D:\1234\src\Utility.AutoMapper\obj\Debug\netstandard2.0\Utility.AutoMapper.csprojAssemblyReference.cache
+D:\1234\src\Utility.AutoMapper\obj\Debug\netstandard2.0\Utility.AutoMapper.csproj.CoreCompileInputs.cache
+D:\1234\src\Utility.AutoMapper\obj\Debug\netstandard2.0\Utility.AutoMapper.AssemblyInfoInputs.cache
+D:\1234\src\Utility.AutoMapper\obj\Debug\netstandard2.0\Utility.AutoMapper.AssemblyInfo.cs
+D:\1234\src\Utility.AutoMapper\obj\Debug\netstandard2.0\Utility.AutoMapper.dll
+D:\1234\src\Utility.AutoMapper\obj\Debug\netstandard2.0\Utility.AutoMapper.pdb

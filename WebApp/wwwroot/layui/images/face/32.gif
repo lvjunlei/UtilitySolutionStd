@@ -1,0 +1,108 @@
+ted with.
+	 *   - sections: A list of section definitions.
+	 *
+	 * Each value under the "sections" field has two fields:
+	 *   - offset: The offset into the original specified at which this section
+	 *       begins to apply, defined as an object with a "line" and "column"
+	 *       field.
+	 *   - map: A source map definition. This source map could also be indexed,
+	 *       but doesn't have to be.
+	 *
+	 * Instead of the "map" field, it's also possible to have a "url" field
+	 * specifying a URL to retrieve a source map from, but that's currently
+	 * unsupported.
+	 *
+	 * Here's an example source map, taken from the source map spec[0], but
+	 * modified to omit a section which uses the "url" field.
+	 *
+	 *  {
+	 *    version : 3,
+	 *    file: "app.js",
+	 *    sections: [{
+	 *      offset: {line:100, column:10},
+	 *      map: {
+	 *        version : 3,
+	 *        file: "section.js",
+	 *        sources: ["foo.js", "bar.js"],
+	 *        names: ["src", "maps", "are", "fun"],
+	 *        mappings: "AAAA,E;;ABCDE;"
+	 *      }
+	 *    }],
+	 *  }
+	 *
+	 * [0]: https://docs.google.com/document/d/1U1RGAehQwRypUTovF1KRlpiOFze0b-_2gc6fAH0KY0k/edit#heading=h.535es3xeprgt
+	 */
+	function IndexedSourceMapConsumer(aSourceMap) {
+	  var sourceMap = aSourceMap;
+	  if (typeof aSourceMap === 'string') {
+	    sourceMap = JSON.parse(aSourceMap.replace(/^\)\]\}'/, ''));
+	  }
+	
+	  var version = util.getArg(sourceMap, 'version');
+	  var sections = util.getArg(sourceMap, 'sections');
+	
+	  if (version != this._version) {
+	    throw new Error('Unsupported version: ' + version);
+	  }
+	
+	  this._sources = new ArraySet();
+	  this._names = new ArraySet();
+	
+	  var lastOffset = {
+	    line: -1,
+	    column: 0
+	  };
+	  this._sections = sections.map(function (s) {
+	    if (s.url) {
+	      // The url field will require support for asynchronicity.
+	      // See https://github.com/mozilla/source-map/issues/16
+	      throw new Error('Support for url field in sections not implemented.');
+	    }
+	    var offset = util.getArg(s, 'offset');
+	    var offsetLine = util.getArg(offset, 'line');
+	    var offsetColumn = util.getArg(offset, 'column');
+	
+	    if (offsetLine < lastOffset.line ||
+	        (offsetLine === lastOffset.line && offsetColumn < lastOffset.column)) {
+	      throw new Error('Section offsets must be ordered and non-overlapping.');
+	    }
+	    lastOffset = offset;
+	
+	    return {
+	      generatedOffset: {
+	        // The offset fields are 0-based, but we use 1-based indices when
+	        // encoding/decoding from VLQ.
+	        generatedLine: offsetLine + 1,
+	        generatedColumn: offsetColumn + 1
+	      },
+	      consumer: new SourceMapConsumer(util.getArg(s, 'map'))
+	    }
+	  });
+	}
+	
+	IndexedSourceMapConsumer.prototype = Object.create(SourceMapConsumer.prototype);
+	IndexedSourceMapConsumer.prototype.constructor = SourceMapConsumer;
+	
+	/**
+	 * The version of the source mapping spec that we are consuming.
+	 */
+	IndexedSourceMapConsumer.prototype._version = 3;
+	
+	/**
+	 * The list of original sources.
+	 */
+	Object.defineProperty(IndexedSourceMapConsumer.prototype, 'sources', {
+	  get: function () {
+	    var sources = [];
+	    for (var i = 0; i < this._sections.length; i++) {
+	      for (var j = 0; j < this._sections[i].consumer.sources.length; j++) {
+	        sources.push(this._sections[i].consumer.sources[j]);
+	      }
+	    }
+	    return sources;
+	  }
+	});
+	
+	/**
+	 * Returns the original source, line, and column information for the generated
+	 * source's l

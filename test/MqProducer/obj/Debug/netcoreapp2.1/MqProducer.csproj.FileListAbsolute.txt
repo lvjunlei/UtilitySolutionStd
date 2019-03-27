@@ -1,0 +1,14 @@
+F:\Work\GitHub\FileSolution\MqProducer\bin\Debug\netcoreapp2.1\MqProducer.deps.json
+F:\Work\GitHub\FileSolution\MqProducer\bin\Debug\netcoreapp2.1\MqProducer.runtimeconfig.json
+F:\Work\GitHub\FileSolution\MqProducer\bin\Debug\netcoreapp2.1\MqProducer.runtimeconfig.dev.json
+F:\Work\GitHub\FileSolution\MqProducer\bin\Debug\netcoreapp2.1\MqProducer.dll
+F:\Work\GitHub\FileSolution\MqProducer\bin\Debug\netcoreapp2.1\MqProducer.pdb
+F:\Work\GitHub\FileSolution\MqProducer\bin\Debug\netcoreapp2.1\RabbitMQ.Client.dll
+F:\Work\GitHub\FileSolution\MqProducer\bin\Debug\netcoreapp2.1\RabbitMQ.Client.xml
+F:\Work\GitHub\FileSolution\MqProducer\obj\Debug\netcoreapp2.1\MqProducer.csprojAssemblyReference.cache
+F:\Work\GitHub\FileSolution\MqProducer\obj\Debug\netcoreapp2.1\MqProducer.csproj.CoreCompileInputs.cache
+F:\Work\GitHub\FileSolution\MqProducer\obj\Debug\netcoreapp2.1\MqProducer.AssemblyInfoInputs.cache
+F:\Work\GitHub\FileSolution\MqProducer\obj\Debug\netcoreapp2.1\MqProducer.AssemblyInfo.cs
+F:\Work\GitHub\FileSolution\MqProducer\obj\Debug\netcoreapp2.1\MqProducer.csproj.CopyComplete
+F:\Work\GitHub\FileSolution\MqProducer\obj\Debug\netcoreapp2.1\MqProducer.dll
+F:\Work\GitHub\FileSolution\MqProducer\obj\Debug\netcoreapp2.1\MqProducer.pdb

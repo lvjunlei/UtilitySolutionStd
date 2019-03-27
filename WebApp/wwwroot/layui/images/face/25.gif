@@ -1,0 +1,81 @@
+t || null;
+	    var order = aOrder || SourceMapConsumer.GENERATED_ORDER;
+	
+	    var mappings;
+	    switch (order) {
+	    case SourceMapConsumer.GENERATED_ORDER:
+	      mappings = this._generatedMappings;
+	      break;
+	    case SourceMapConsumer.ORIGINAL_ORDER:
+	      mappings = this._originalMappings;
+	      break;
+	    default:
+	      throw new Error("Unknown order of iteration.");
+	    }
+	
+	    var sourceRoot = this.sourceRoot;
+	    mappings.map(function (mapping) {
+	      var source = mapping.source === null ? null : this._sources.at(mapping.source);
+	      if (source != null && sourceRoot != null) {
+	        source = util.join(sourceRoot, source);
+	      }
+	      return {
+	        source: source,
+	        generatedLine: mapping.generatedLine,
+	        generatedColumn: mapping.generatedColumn,
+	        originalLine: mapping.originalLine,
+	        originalColumn: mapping.originalColumn,
+	        name: mapping.name === null ? null : this._names.at(mapping.name)
+	      };
+	    }, this).forEach(aCallback, context);
+	  };
+	
+	/**
+	 * Returns all generated line and column information for the original source,
+	 * line, and column provided. If no column is provided, returns all mappings
+	 * corresponding to a either the line we are searching for or the next
+	 * closest line that has any mappings. Otherwise, returns all mappings
+	 * corresponding to the given line and either the column we are searching for
+	 * or the next closest column that has any offsets.
+	 *
+	 * The only argument is an object with the following properties:
+	 *
+	 *   - source: The filename of the original source.
+	 *   - line: The line number in the original source.
+	 *   - column: Optional. the column number in the original source.
+	 *
+	 * and an array of objects is returned, each with the following properties:
+	 *
+	 *   - line: The line number in the generated source, or null.
+	 *   - column: The column number in the generated source, or null.
+	 */
+	SourceMapConsumer.prototype.allGeneratedPositionsFor =
+	  function SourceMapConsumer_allGeneratedPositionsFor(aArgs) {
+	    var line = util.getArg(aArgs, 'line');
+	
+	    // When there is no exact match, BasicSourceMapConsumer.prototype._findMapping
+	    // returns the index of the closest mapping less than the needle. By
+	    // setting needle.originalColumn to 0, we thus find the last mapping for
+	    // the given line, provided such a mapping exists.
+	    var needle = {
+	      source: util.getArg(aArgs, 'source'),
+	      originalLine: line,
+	      originalColumn: util.getArg(aArgs, 'column', 0)
+	    };
+	
+	    if (this.sourceRoot != null) {
+	      needle.source = util.relative(this.sourceRoot, needle.source);
+	    }
+	    if (!this._sources.has(needle.source)) {
+	      return [];
+	    }
+	    needle.source = this._sources.indexOf(needle.source);
+	
+	    var mappings = [];
+	
+	    var index = this._findMapping(needle,
+	                                  this._originalMappings,
+	                                  "originalLine",
+	                                  "originalColumn",
+	                                  util.compareByOriginalPositions,
+	                  
