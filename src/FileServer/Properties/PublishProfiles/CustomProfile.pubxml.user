@@ -13,5 +13,8 @@
     <File Include="Controllers/FilesController.cs">
       <publishTime>03/28/2019 08:49:40</publishTime>
     </File>
+    <File Include="NLog.config">
+      <publishTime>03/28/2019 10:18:28</publishTime>
+    </File>
   </ItemGroup>
 </Project>
