@@ -9,4 +9,9 @@
     <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAW7QiwyD/dku72sfD4GI5ZgAAAAACAAAAAAAQZgAAAAEAACAAAAB6RP1mT7OKWxl/5rZzyIUVlBIaqzIBSD5n6t0uOUsEZwAAAAAOgAAAAAIAACAAAADkMg5dgAzjuwr4zI17VHyeoLBocrVyNoPiBLAkYvXALCAAAABfjYNvZIEeGE+GwzCU1hLKBx1j8yajOC9QxPmf2vtQ/UAAAAB3dnC5zm+5gehtuwh5Qc8KphMhlzJz3zhYYaYfTK761Ah3docbnf5J+nbCys6sJ8FOxVdtVdn2QU/jrae3Z+ea</EncryptedPassword>
     <_PublishTargetUrl>D:\test\wwwroot</_PublishTargetUrl>
   </PropertyGroup>
+  <ItemGroup>
+    <File Include="Controllers/FilesController.cs">
+      <publishTime>03/28/2019 08:49:40</publishTime>
+    </File>
+  </ItemGroup>
 </Project>
