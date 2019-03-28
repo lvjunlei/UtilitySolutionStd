@@ -1,0 +1,56 @@
+[2019-03-28 10:40:11] | Request starting HTTP/1.1 GET http://localhost:56927/swagger/index.html  
+[2019-03-28 10:40:11] | Request starting HTTP/1.1 DEBUG http://localhost:56927/  0
+[2019-03-28 10:40:11] | Request finished in 221.8624ms 200 
+[2019-03-28 10:40:12] | Request finished in 889.8672ms 200 text/html
+[2019-03-28 10:40:12] | Request starting HTTP/1.1 GET http://localhost:56927/Scripts/swagger.js  
+[2019-03-28 10:40:12] | Request finished in 14.6628ms 404 
+[2019-03-28 10:40:13] | Request starting HTTP/1.1 GET http://localhost:56927/swagger/swagger-ui-bundle.js.map  
+[2019-03-28 10:40:13] | Sending file. Request path: '/swagger-ui-bundle.js.map'. Physical path: 'N/A'
+[2019-03-28 10:40:13] | Request finished in 133.8553ms 200 text/plain
+[2019-03-28 10:40:13] | Request starting HTTP/1.1 GET http://localhost:56927/swagger/v1/swagger.json  
+[2019-03-28 10:40:13] | Request starting HTTP/1.1 GET http://localhost:56927/swagger/swagger-ui-standalone-preset.js.map  
+[2019-03-28 10:40:13] | Sending file. Request path: '/swagger-ui-standalone-preset.js.map'. Physical path: 'N/A'
+[2019-03-28 10:40:13] | Request finished in 193.1908ms 200 text/plain
+[2019-03-28 10:40:13] | Request finished in 647.0475ms 200 application/json;charset=utf-8
+[2019-03-28 10:40:19] | Request starting HTTP/1.1 GET http://localhost:56927/Config/GetConfig  
+[2019-03-28 10:40:19] | Route matched with {action = "GetConfig", controller = "Config"}. Executing action FileServer.Controllers.ConfigController.GetConfig (FileServer)
+[2019-03-28 10:40:19] | Executing action method FileServer.Controllers.ConfigController.GetConfig (FileServer) - Validation state: Valid
+[2019-03-28 10:40:20] |  | 查询文件服务配置信息：ClientIP（::1）
+[2019-03-28 10:40:20] | Executed action method FileServer.Controllers.ConfigController.GetConfig (FileServer), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 408.5821ms.
+[2019-03-28 10:40:20] | Executing ObjectResult, writing value of type 'FileServer.SaveConfig'.
+[2019-03-28 10:40:20] | Executed action FileServer.Controllers.ConfigController.GetConfig (FileServer) in 679.0689ms
+[2019-03-28 10:40:20] | Request finished in 788.7703ms 200 application/json; charset=utf-8
+[2019-03-28 10:44:40] | Request starting HTTP/1.1 GET http://localhost:56927/swagger/index.html  
+[2019-03-28 10:44:40] | Request starting HTTP/1.1 DEBUG http://localhost:56927/  0
+[2019-03-28 10:44:40] | Request finished in 254.7494ms 200 
+[2019-03-28 10:44:41] | Request finished in 910.0126ms 200 text/html
+[2019-03-28 10:44:41] | Request starting HTTP/1.1 GET http://localhost:56927/Scripts/swagger.js  
+[2019-03-28 10:44:41] | Request finished in 31.5133ms 404 
+[2019-03-28 10:44:42] | Request starting HTTP/1.1 GET http://localhost:56927/swagger/swagger-ui-bundle.js.map  
+[2019-03-28 10:44:42] | Sending file. Request path: '/swagger-ui-bundle.js.map'. Physical path: 'N/A'
+[2019-03-28 10:44:42] | Request finished in 249.2042ms 200 text/plain
+[2019-03-28 10:44:42] | Request starting HTTP/1.1 GET http://localhost:56927/swagger/v1/swagger.json  
+[2019-03-28 10:44:42] | Request starting HTTP/1.1 GET http://localhost:56927/swagger/swagger-ui-standalone-preset.js.map  
+[2019-03-28 10:44:42] | Sending file. Request path: '/swagger-ui-standalone-preset.js.map'. Physical path: 'N/A'
+[2019-03-28 10:44:42] | Request finished in 149.6683ms 200 text/plain
+[2019-03-28 10:44:43] | Request finished in 685.3841ms 200 application/json;charset=utf-8
+[2019-03-28 10:44:51] | Request starting HTTP/1.1 GET http://localhost:56927/Config/GetConfig  
+[2019-03-28 10:44:52] | Route matched with {action = "GetConfig", controller = "Config"}. Executing action FileServer.Controllers.ConfigController.GetConfig (FileServer)
+[2019-03-28 10:44:52] | Executing action method FileServer.Controllers.ConfigController.GetConfig (FileServer) - Validation state: Valid
+[2019-03-28 10:44:52] | 查询文件服务配置信息：ClientIP（::1）
+[2019-03-28 10:44:52] | Executed action method FileServer.Controllers.ConfigController.GetConfig (FileServer), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 428.9484ms.
+[2019-03-28 10:44:52] | Executing ObjectResult, writing value of type 'FileServer.SaveConfig'.
+[2019-03-28 10:44:52] | Executed action FileServer.Controllers.ConfigController.GetConfig (FileServer) in 708.6166ms
+[2019-03-28 10:44:52] | Request finished in 812.8348ms 200 application/json; charset=utf-8
+[2019-03-28 10:44:54] | Request starting HTTP/1.1 GET http://localhost:56927/Config/GetConfig  
+[2019-03-28 10:44:54] | Route matched with {action = "GetConfig", controller = "Config"}. Executing action FileServer.Controllers.ConfigController.GetConfig (FileServer)
+[2019-03-28 10:44:54] | Executing action method FileServer.Controllers.ConfigController.GetConfig (FileServer) - Validation state: Valid
+[2019-03-28 10:44:54] | 查询文件服务配置信息：ClientIP（::1）
+[2019-03-28 10:44:54] | Executed action method FileServer.Controllers.ConfigController.GetConfig (FileServer), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 10.0193ms.
+[2019-03-28 10:44:54] | Executing ObjectResult, writing value of type 'FileServer.SaveConfig'.
+[2019-03-28 10:44:54] | Executed action FileServer.Controllers.ConfigController.GetConfig (FileServer) in 66.1864ms
+[2019-03-28 10:44:54] | Request finished in 96.6755ms 200 application/json; charset=utf-8
+[2019-03-28 10:45:32] | Request starting HTTP/1.1 DEBUG http://localhost:56927/  0
+[2019-03-28 10:45:32] | Request starting HTTP/1.1 GET http://localhost:56927/swagger/index.html  
+[2019-03-28 10:45:33] | Request finished in 231.4845ms 200 
+[2019-03-28 10:45:33] | Request finished in 763.6803ms 200 text/html

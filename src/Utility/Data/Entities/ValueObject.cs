@@ -14,85 +14,160 @@
 #endregion
 
 
+using System;
+using System.Collections.Generic;
+using System.Reflection;
+using Utility.Data.Entities;
+
 namespace Utility.Data
 {
     /// <summary>
     /// 值对象基类
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public abstract class ValueObject<T> where T : ValueObject<T>
+    public abstract class ValueObject : IValueObject
     {
         /// <summary>
-        /// 重写方法 相等运算
+        /// <para>
+        /// Determines whether the specified object is equal to
+        /// the current object.
+        /// </para>
+        /// <para>
+        /// Two value objects are considered equal if they are the same type
+        /// and have all properties equal.
+        /// </para>
         /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
+        /// <param name="obj">The object to compare with the current object.</param>
+        /// <returns>True if the objects are equal, false otherwise.</returns>
         public override bool Equals(object obj)
         {
-            var valueObject = obj as T;
-            return !ReferenceEquals(valueObject, null) && EqualsCore(valueObject);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="other"></param>
-        /// <returns></returns>
-        protected abstract bool EqualsCore(T other);
-
-        /// <summary>
-        /// 获取哈希
-        /// </summary>
-        /// <returns></returns>
-        public override int GetHashCode()
-        {
-            return GetHashCodeCore();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        protected abstract int GetHashCodeCore();
-
-        /// <summary>
-        /// 重写方法 实体比较 ==
-        /// </summary>
-        /// <param name="a"></param>
-        /// <param name="b"></param>
-        /// <returns></returns>
-        public static bool operator ==(ValueObject<T> a, ValueObject<T> b)
-        {
-            if (ReferenceEquals(a, null) && ReferenceEquals(b, null))
-            {
-                return true;
-            }
-
-            if (ReferenceEquals(a, null) || ReferenceEquals(b, null))
+            if (obj == null)
             {
                 return false;
             }
 
-            return a.Equals(b);
+            var other = obj as IValueObject;
+
+            return Equals(other);
         }
 
         /// <summary>
-        /// 重写方法 实体比较 !=
+        /// Serves as the default hash function.
         /// </summary>
-        /// <param name="a"></param>
-        /// <param name="b"></param>
-        /// <returns></returns>
-        public static bool operator !=(ValueObject<T> a, ValueObject<T> b)
+        /// <returns>The hash of the entity.</returns>
+        public override int GetHashCode()
         {
-            return !(a == b);
+            IEnumerable<PropertyInfo> properties = GetProperties();
+
+            int startValue = 17;
+            int multiplier = 59;
+
+            int hashCode = startValue;
+
+            foreach (PropertyInfo property in properties)
+            {
+                object value = property.GetValue(this);
+
+                if (value != null)
+                    hashCode = hashCode * multiplier + value.GetHashCode();
+            }
+
+            return hashCode;
         }
 
         /// <summary>
-        /// 克隆副本
+        /// <para>
+        /// Determines whether the specified object is equal to
+        /// the current object.
+        /// </para>
+        /// <para>
+        /// Two value objects are considered equal if they are the same type
+        /// and have all properties equal.
+        /// </para>
         /// </summary>
-        public virtual T Clone()
+        /// <param name="other">The object to compare with the current object.</param>
+        /// <returns>True if the objects are equal, false otherwise.</returns>
+        public virtual bool Equals(IValueObject other)
         {
-            return (T)MemberwiseClone();
+            if (other == null)
+            {
+                return false;
+            }
+
+            var t = GetType();
+            var otherType = other.GetType();
+
+            if (t != otherType)
+            {
+                return false;
+            }
+
+            var properties = GetProperties();
+
+            foreach (var property in properties)
+            {
+                var value1 = property.GetValue(other);
+                var value2 = property.GetValue(this);
+
+                if (value1 == null)
+                {
+                    if (value2 != null)
+                        return false;
+                }
+                else if (!value1.Equals(value2))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private IEnumerable<PropertyInfo> GetProperties()
+        {
+            Type t = GetType();
+
+            return t.GetProperties(BindingFlags.Instance | BindingFlags.Public);
+        }
+
+        /// <summary>
+        /// <para>
+        /// Determines whether the specified object is equal to
+        /// the current object.
+        /// </para>
+        /// <para>
+        /// Two value objects are considered equal if they are the same type
+        /// and have all properties equal.
+        /// </para>
+        /// </summary>
+        /// <param name="x">The first value object to compare.</param>
+        /// <param name="y">The second value object to compare.</param>
+        /// <returns>True if the objects are equal, false otherwise.</returns>
+        public static bool operator ==(ValueObject x, ValueObject y)
+        {
+            if (x is null)
+            {
+                return y is null;
+            }
+
+            return x.Equals(y);
+        }
+
+        /// <summary>
+        /// <para>
+        /// Determines whether the specified object is not equal to
+        /// the current object.
+        /// </para>
+        /// <para>
+        /// Two value objects are considered not equal if they are different types
+        /// or do not have all properties equal.
+        /// </para>
+        /// </summary>
+        /// <param name="x">The first value object to compare.</param>
+        /// <param name="y">The second value object to compare.</param>
+        /// <returns>True if the objects are equal, false otherwise.</returns>
+        public static bool operator !=(ValueObject x, ValueObject y)
+        {
+            return !(x == y);
         }
     }
 }

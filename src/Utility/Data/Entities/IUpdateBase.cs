@@ -19,7 +19,7 @@ namespace Utility.Data
     /// 要修改实体的基类
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
-    public interface IUpdateBase<TKey> : IEntityBase<TKey>
+    public interface IUpdateBase<TKey> : IEntity<TKey>
     {
     }
 }

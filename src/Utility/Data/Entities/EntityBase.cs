@@ -23,7 +23,7 @@ namespace Utility.Data
     /// 业务实体基类
     /// </summary>
     /// <typeparam name="TKey">实体主键</typeparam>
-    public class EntityBase<TKey> : IEntityBase<TKey>
+    public class EntityBase<TKey> : IEntity<TKey>
     {
         /// <summary>
         /// 实体ID
@@ -37,12 +37,12 @@ namespace Utility.Data
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            if (!(obj is IEntityBase<TKey>))
+            if (!(obj is IEntity<TKey>))
             {
                 return false;
             }
 
-            var entity = (IEntityBase<TKey>)obj;
+            var entity = (IEntity<TKey>)obj;
 
             return entity.Id.Equals(Id);
         }
@@ -52,7 +52,7 @@ namespace Utility.Data
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>
-        protected bool Equals(AuditEntityBase<TKey> other)
+        protected bool Equals(EntityBase<TKey> other)
         {
             return EqualityComparer<TKey>.Default.Equals(Id, other.Id);
         }
@@ -107,6 +107,20 @@ namespace Utility.Data
         public override string ToString()
         {
             return $"{GetType().Name} [Id={Id}]";
+        }
+
+        /// <summary>
+        /// 相等比较
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public bool Equals(IEntity<TKey> other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+            return EqualityComparer<TKey>.Default.Equals(Id, other.Id);
         }
     }
 

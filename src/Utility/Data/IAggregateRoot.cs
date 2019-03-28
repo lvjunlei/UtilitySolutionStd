@@ -18,7 +18,7 @@ using System;
 
 namespace Utility.Data
 {
-    public interface IAggregateRoot : IEntityBase<Guid>
+    public interface IAggregateRoot : IEntity<Guid>
     {
     }
 }
