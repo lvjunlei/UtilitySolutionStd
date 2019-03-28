@@ -35,7 +35,7 @@ namespace Utility.Logs
         /// <param name="msg">日志内容</param>
         public void Debug(string msg)
         {
-            Log.Debug(msg);
+            Log.Debug($" | {msg}");
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Utility.Logs
         /// <param name="ex">异常信息</param>
         public void Debug(string msg, Exception ex)
         {
-            Log.Debug(ex, msg);
+            Log.Debug(ex, $" | {msg}");
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace Utility.Logs
         /// <param name="msg">日志内容</param>
         public void Error(string msg)
         {
-            Log.Error(msg);
+            Log.Error($" | {msg}");
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace Utility.Logs
         /// <param name="ex">异常信息</param>
         public void Error(string msg, Exception ex)
         {
-            Log.Error(ex, msg);
+            Log.Error(ex, $" | {msg}");
         }
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace Utility.Logs
         /// <param name="msg">日志信息</param>
         public void Fatal(string msg)
         {
-            Log.Fatal(msg);
+            Log.Fatal($" | {msg}");
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace Utility.Logs
         /// <param name="ex">异常信息</param>
         public void Fatal(string msg, Exception ex)
         {
-            Log.Fatal(ex, msg);
+            Log.Fatal(ex, $" | {msg}");
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace Utility.Logs
         /// <param name="msg">日志信息</param>
         public void Info(string msg)
         {
-            Log.Info(msg);
+            Log.Info($" | {msg}");
         }
 
         /// <summary>
@@ -111,7 +111,7 @@ namespace Utility.Logs
         /// <param name="ex">异常信息</param>
         public void Info(string msg, Exception ex)
         {
-            Log.Info(ex, msg);
+            Log.Info(ex, $" | {msg}");
         }
 
         /// <summary>
@@ -120,7 +120,7 @@ namespace Utility.Logs
         /// <param name="msg">日志信息</param>
         public void Warn(string msg)
         {
-            Log.Warn(msg);
+            Log.Warn($" | {msg}");
         }
 
         /// <summary>
@@ -130,7 +130,7 @@ namespace Utility.Logs
         /// <param name="ex">异常信息</param>
         public void Warn(string msg, Exception ex)
         {
-            Log.Warn(ex, msg);
+            Log.Warn(ex, $" | {msg}");
         }
 
         /// <summary>

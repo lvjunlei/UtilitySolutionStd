@@ -173,3 +173,15 @@ src/FileServer/obj/Debug/netcoreapp2.1/TemporaryGeneratedFile_036C0B5B-1481-4323
 src/FileServer/obj/Debug/netcoreapp2.1/TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs
 src/FileServer/obj/Debug/netcoreapp2.1/TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs
 src/Utility/obj/Debug/netstandard2.0/Utility.csproj.CoreCompileInputs.cache
+src/FileServer/bin/Debug/netcoreapp2.1/logs/Log 2019-03-28.txt
+src/Utility.Log.NLog/bin/Debug/netstandard2.0/Utility.dll
+src/Utility.Log.NLog/bin/Debug/netstandard2.0/Utility.Logs.dll
+src/Utility.Log.NLog/bin/Debug/netstandard2.0/Utility.Logs.pdb
+src/Utility.Log.NLog/bin/Debug/netstandard2.0/Utility.pdb
+src/Utility.Log.NLog/obj/Debug/netstandard2.0/Utility.Log.NLog.csprojAssemblyReference.cache
+src/Utility.Log.NLog/obj/Debug/netstandard2.0/Utility.Logs.dll
+src/Utility.Log.NLog/obj/Debug/netstandard2.0/Utility.Logs.pdb
+src/Utility/bin/Debug/netstandard2.0/Utility.dll
+src/Utility/bin/Debug/netstandard2.0/Utility.pdb
+src/Utility/obj/Debug/netstandard2.0/Utility.dll
+src/Utility/obj/Debug/netstandard2.0/Utility.pdb

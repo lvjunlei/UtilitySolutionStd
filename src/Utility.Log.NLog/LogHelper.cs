@@ -18,7 +18,7 @@ namespace Utility.Logs
         /// <param name="msg">日志信息</param>
         public static void Error(string msg)
         {
-            Log.Error($" # {msg}");
+            Log.Error($" | {msg}");
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace Utility.Logs
         /// <param name="exp">异常信息</param>
         public static void Error(string msg, Exception exp)
         {
-            Log.Error(exp, $" # {msg}");
+            Log.Error(exp, $" | {msg}");
         }
 
         #endregion
@@ -50,7 +50,7 @@ namespace Utility.Logs
         /// <param name="msg">日志信息</param>
         public static void Debug(object msg)
         {
-            Log.Debug($" # {msg}");
+            Log.Debug($" | {msg}");
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace Utility.Logs
         /// <param name="exp">异常信息</param>
         public static void Debug(object msg, Exception exp)
         {
-            Log.Debug(exp, $" # {msg}");
+            Log.Debug(exp, $" | {msg}");
         }
 
         #endregion
@@ -73,7 +73,7 @@ namespace Utility.Logs
         /// <param name="msg">日志信息</param>
         public static void Info(string msg)
         {
-            Log.Info($" # {msg}");
+            Log.Info($" | {msg}");
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace Utility.Logs
         /// <param name="exp">异常信息</param>
         public static void Info(object msg, Exception exp)
         {
-            Log.Info(exp, $" # {msg}");
+            Log.Info(exp, $" | {msg}");
         }
 
         #endregion
@@ -96,7 +96,7 @@ namespace Utility.Logs
         /// <param name="msg">日志信息</param>
         public static void Warn(string msg)
         {
-            Log.Warn($" # {msg}");
+            Log.Warn($" | {msg}");
         }
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace Utility.Logs
         /// <param name="exp">异常信息</param>
         public static void Warn(string msg, Exception exp)
         {
-            Log.Warn(exp, $" # {msg}");
+            Log.Warn(exp, $" | {msg}");
         }
 
         #endregion
