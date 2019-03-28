@@ -26,7 +26,7 @@
     <None Include="C:\Users\lvjl\.nuget\packages\nlog.config\4.5.11\contentFiles\any\any\NLog.config" Link="NLog.config">
       <Private>True</Private>
       <NuGetPackageVersion>4.5.11</NuGetPackageVersion>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <NuGetItemType>None</NuGetItemType>
       <TargetPath>NLog.config</TargetPath>
       <NuGetPackageId>NLog.Config</NuGetPackageId>

@@ -1,0 +1,9 @@
+[2019-03-28 10:22:05] [FATAL] [Microsoft.AspNetCore.Hosting.Internal.HostingLoggerExtensions.ApplicationError]: Application startup exception
+[2019-03-28 10:22:06] [INFO] [Microsoft.AspNetCore.Hosting.Internal.HostingApplicationDiagnostics.LogRequestStarting]: Request starting HTTP/1.1 GET http://localhost:56927/swagger/index.html  
+[2019-03-28 10:22:06] [INFO] [Microsoft.AspNetCore.Hosting.Internal.HostingApplicationDiagnostics.LogRequestFinished]: Request finished in 62.3117ms 500 text/html; charset=utf-8
+[2019-03-28 10:23:05] [FATAL] [Microsoft.AspNetCore.Hosting.Internal.HostingLoggerExtensions.ApplicationError]: Application startup exception
+[2019-03-28 10:23:06] [INFO] [Microsoft.AspNetCore.Hosting.Internal.HostingApplicationDiagnostics.LogRequestStarting]: Request starting HTTP/1.1 GET http://localhost:56927/swagger/index.html  
+[2019-03-28 10:23:06] [INFO] [Microsoft.AspNetCore.Hosting.Internal.HostingApplicationDiagnostics.LogRequestFinished]: Request finished in 40.4541ms 500 text/html; charset=utf-8
+[2019-03-28 10:24:10] [FATAL] [Microsoft.AspNetCore.Hosting.Internal.HostingLoggerExtensions.ApplicationError]: Application startup exception
+[2019-03-28 10:24:10] [INFO] [Microsoft.AspNetCore.Hosting.Internal.HostingApplicationDiagnostics.LogRequestStarting]: Request starting HTTP/1.1 GET http://localhost:56927/swagger/index.html  
+[2019-03-28 10:24:10] [INFO] [Microsoft.AspNetCore.Hosting.Internal.HostingApplicationDiagnostics.LogRequestFinished]: Request finished in 49.0875ms 500 text/html; charset=utf-8
