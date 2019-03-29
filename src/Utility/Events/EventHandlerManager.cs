@@ -16,6 +16,8 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Utility.Events.Handlers;
 using Utility.Extensions;
 
@@ -24,21 +26,65 @@ namespace Utility.Events
     /// <summary>
     /// 事件处理服务
     /// </summary>
-    public class EventHandlerManager : IEventHandlerManager
+    public class EventHandlerManager : IEventHandlerManager, IDisposable
     {
+        #region 私有属性
+
+        /// <summary>
+        /// 事件字典集合
+        /// </summary>
         private readonly ConcurrentDictionary<Type, Dictionary<Type, object>> _handlers;
 
-        public EventHandlerManager()
+        /// <summary>
+        /// EventHandlerManager单例实例
+        /// </summary>
+        private static EventHandlerManager _instance;
+
+        /// <summary>
+        /// 实例锁
+        /// </summary>
+        private static readonly object InstanceLock = new object();
+
+        #endregion
+
+        #region 公共属性
+
+        /// <summary>
+        /// EventHandlerManager单例实例
+        /// </summary>
+        public static EventHandlerManager Instance
+        {
+            get
+            {
+                lock (InstanceLock)
+                {
+                    return _instance ?? (_instance = new EventHandlerManager());
+                }
+            }
+        }
+
+        #endregion
+
+        #region 构造函数
+
+        /// <summary>
+        /// 初始化 EventHandlerManager
+        /// </summary>
+        private EventHandlerManager()
         {
             _handlers = new ConcurrentDictionary<Type, Dictionary<Type, object>>();
         }
 
+        #endregion
+
+        #region GetHandlers
+
         /// <summary>
-        /// 获取事件处理器
+        /// 获取指定 事件类型 的事件处理器
         /// </summary>
         /// <typeparam name="TEvent">事件类型</typeparam>
-        /// <returns></returns>
-        public IEnumerable<IEventHandler<TEvent>> GetHandlers<TEvent>() where TEvent : IEvent
+        /// <returns>事件处理器集合</returns>
+        public List<IEventHandler<TEvent>> GetHandlers<TEvent>() where TEvent : IEvent
         {
             var key = typeof(TEvent);
             var vs = new List<IEventHandler<TEvent>>();
@@ -54,6 +100,21 @@ namespace Utility.Events
         }
 
         /// <summary>
+        /// 获取指定 事件类型 的事件处理器
+        /// 异步
+        /// </summary>
+        /// <typeparam name="TEvent">事件类型</typeparam>
+        /// <returns>事件处理器集合</returns>
+        public Task<List<IEventHandler<TEvent>>> GetHandlersAsync<TEvent>() where TEvent : IEvent
+        {
+            return Task.Run(() => GetHandlers<TEvent>());
+        }
+
+        #endregion
+
+        #region Register
+
+        /// <summary>
         /// 注册事件处理器
         /// </summary>
         /// <typeparam name="TEvent">事件类型</typeparam>
@@ -61,32 +122,83 @@ namespace Utility.Events
         /// <returns></returns>
         public void RegisterHandler<TEvent>(IEventHandler<TEvent> handler) where TEvent : IEvent
         {
-            var key = typeof(TEvent);
-            if (!_handlers.ContainsKey(key))
-            {
-                _handlers.TryAdd(key, new Dictionary<Type, object>());
-            }
-
-            _handlers[key].AddOrUpdate(handler.GetType(), handler);
+            CheckHandler(typeof(TEvent)).AddOrUpdate(handler.GetType(), handler);
         }
 
         /// <summary>
         /// 批量注册事件处理器
         /// </summary>
         /// <typeparam name="TEvent">事件类型</typeparam>
-        /// <param name="handler">事件处理器</param>
+        /// <param name="handlers">事件处理器</param>
         /// <returns></returns>
         public void RegisterHandlers<TEvent>(IEnumerable<IEventHandler<TEvent>> handlers) where TEvent : IEvent
         {
-            var key = typeof(TEvent);
+            var dic = CheckHandler(typeof(TEvent));
+            foreach (var handler in handlers)
+            {
+                dic.AddOrUpdate(handler.GetType(), handler);
+            }
+        }
+
+        /// <summary>
+        /// 注册 Action 事件处理器
+        /// </summary>
+        /// <typeparam name="TEvent">事件</typeparam>
+        /// <param name="handler">Action 处理器</param>
+        public void RegisterActionHandler<TEvent>(IActionEventHandler<TEvent> handler) where TEvent : IEvent
+        {
+            CheckHandler(typeof(TEvent)).AddOrUpdate(handler.GetType(), handler);
+        }
+
+        /// <summary>
+        /// CheckHandler
+        /// </summary>
+        /// <param name="key">事件类型</param>
+        private Dictionary<Type, object> CheckHandler(Type key)
+        {
             if (!_handlers.ContainsKey(key))
             {
                 _handlers.TryAdd(key, new Dictionary<Type, object>());
             }
-            foreach (var handler in handlers)
-            {
-                _handlers[key].AddOrUpdate(handler.GetType(), handler);
-            }
+
+            return _handlers[key];
         }
+
+        #endregion
+
+        #region Publish
+
+        /// <summary>
+        /// 发布事件
+        /// </summary>
+        /// <typeparam name="TEvent">事件类型</typeparam>
+        /// <param name="event">事件</param>
+        /// <returns></returns>
+        public Task PublishAsync<TEvent>(TEvent @event) where TEvent : IEvent
+        {
+            return Task.Run(() =>
+            {
+                var handlers = GetHandlers<TEvent>();
+                if (handlers == null || !handlers.Any())
+                {
+                    return;
+                }
+                foreach (var handler in handlers)
+                {
+                    handler?.HandleAsync(@event);
+                }
+            });
+        }
+
+        #endregion
+
+        #region IDisposable
+
+        public void Dispose()
+        {
+            _handlers.Clear();
+        }
+
+        #endregion
     }
 }

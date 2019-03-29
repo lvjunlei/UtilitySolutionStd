@@ -302,6 +302,8 @@ namespace Utility.EntityFramework
 
         #endregion
 
+        #region ChangeDatabase
+
         /// <summary>
         /// 改变数据库名称
         /// 要求数据库在同一台机器上
@@ -331,6 +333,8 @@ namespace Utility.EntityFramework
                 }
             }
         }
+
+        #endregion
 
         #region IDispose
 

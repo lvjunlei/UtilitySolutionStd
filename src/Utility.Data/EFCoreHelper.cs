@@ -3,18 +3,15 @@ using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using Microsoft.EntityFrameworkCore.Query;
 using Microsoft.EntityFrameworkCore.Query.Internal;
 using Microsoft.EntityFrameworkCore.Storage;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 
 namespace Utility.EntityFramework
 {
     /// <summary>
     /// EFCore帮助类
     /// </summary>
-    public static class EFCoreHelper
+    public static class EfCoreHelper
     {
         /// <summary>
         /// 获取上下文
@@ -24,15 +21,32 @@ namespace Utility.EntityFramework
         internal static DbContext GetDbContext(IQueryable query)
         {
             var bindingFlags = BindingFlags.NonPublic | BindingFlags.Instance;
-            var queryCompiler = typeof(EntityQueryProvider).GetField("_queryCompiler", bindingFlags).GetValue(query.Provider);
-            var queryContextFactory = queryCompiler.GetType().GetField("_queryContextFactory", bindingFlags).GetValue(queryCompiler);
+            var memberInfo = typeof(EntityQueryProvider).GetField("_queryCompiler", bindingFlags);
+            if (memberInfo != null)
+            {
+                var queryCompiler = memberInfo.GetValue(query.Provider);
+                var fieldInfo = queryCompiler.GetType().GetField("_queryContextFactory", bindingFlags);
+                if (fieldInfo != null)
+                {
+                    var queryContextFactory = fieldInfo.GetValue(queryCompiler);
 
-            var dependencies = typeof(RelationalQueryContextFactory).GetProperty("Dependencies", bindingFlags).GetValue(queryContextFactory);
-            var queryContextDependencies = typeof(DbContext).Assembly.GetType(typeof(QueryContextDependencies).FullName);
-            var stateManagerProperty = queryContextDependencies.GetProperty("StateManager", bindingFlags | BindingFlags.Public).GetValue(dependencies);
-            var stateManager = (IStateManager)stateManagerProperty;
+                    var propertyInfo = typeof(RelationalQueryContextFactory).GetProperty("Dependencies", bindingFlags);
+                    if (propertyInfo != null)
+                    {
+                        var dependencies = propertyInfo.GetValue(queryContextFactory);
+                        var queryContextDependencies = typeof(DbContext).Assembly.GetType(typeof(QueryContextDependencies).FullName);
+                        var property = queryContextDependencies.GetProperty("StateManager", bindingFlags | BindingFlags.Public);
+                        if (property != null)
+                        {
+                            var stateManagerProperty = property.GetValue(dependencies);
+                            var stateManager = (IStateManager)stateManagerProperty;
 
-            return stateManager.Context;
+                            return stateManager.Context;
+                        }
+                    }
+                }
+            }
+            return null;
         }
 
         /// <summary>
@@ -52,7 +66,7 @@ namespace Utility.EntityFramework
             var modelVisitor = (RelationalQueryModelVisitor)queryCompilationContext.CreateQueryModelVisitor();
 
             modelVisitor.CreateQueryExecutor<TEntity>(queryModel);
-            string sql = modelVisitor.Queries.First().ToString();
+            var sql = modelVisitor.Queries.First().ToString();
             return sql;
         }
 

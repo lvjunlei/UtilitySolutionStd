@@ -27,6 +27,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utility.RabbitMQ", "src\Uti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileServer", "src\FileServer\FileServer.csproj", "{ACBB5CE8-ECA3-4FDD-9EDA-A64A3897ABE3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utility.Eventbus.RabbitMQ", "Utility.Eventbus\Utility.Eventbus.RabbitMQ.csproj", "{69B9970E-0486-46B4-9962-038A01EB3DA1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObjectMapperTest", "Test\ObjectMapperTest\ObjectMapperTest.csproj", "{156E10C9-B060-469F-A13F-A5BB7E4969AA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +73,14 @@ Global
 		{ACBB5CE8-ECA3-4FDD-9EDA-A64A3897ABE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACBB5CE8-ECA3-4FDD-9EDA-A64A3897ABE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ACBB5CE8-ECA3-4FDD-9EDA-A64A3897ABE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69B9970E-0486-46B4-9962-038A01EB3DA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69B9970E-0486-46B4-9962-038A01EB3DA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69B9970E-0486-46B4-9962-038A01EB3DA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69B9970E-0486-46B4-9962-038A01EB3DA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{156E10C9-B060-469F-A13F-A5BB7E4969AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{156E10C9-B060-469F-A13F-A5BB7E4969AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{156E10C9-B060-469F-A13F-A5BB7E4969AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{156E10C9-B060-469F-A13F-A5BB7E4969AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -83,9 +95,11 @@ Global
 		{E260005A-3E72-4F4C-98FB-3E3DB797AFDE} = {DA6E240C-EC63-4A99-AD85-BB023FCF855B}
 		{0916AFE8-6B2C-40D0-85DA-D5E59C412C24} = {DA6E240C-EC63-4A99-AD85-BB023FCF855B}
 		{ACBB5CE8-ECA3-4FDD-9EDA-A64A3897ABE3} = {14806304-C714-44AF-A2CC-C248A7FFC8B8}
+		{69B9970E-0486-46B4-9962-038A01EB3DA1} = {DA6E240C-EC63-4A99-AD85-BB023FCF855B}
+		{156E10C9-B060-469F-A13F-A5BB7E4969AA} = {1957BBF9-77D3-47FB-9ECF-7F1D9BC5705A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		VisualSVNWorkingCopyRoot = .
 		SolutionGuid = {8B36720B-5E23-49BB-9B97-6D6509E75807}
+		VisualSVNWorkingCopyRoot = .
 	EndGlobalSection
 EndGlobal

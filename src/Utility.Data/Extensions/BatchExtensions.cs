@@ -38,7 +38,7 @@ namespace Utility.EntityFramework.Extensions
         /// <returns></returns>
         public static int RestValue<T>(this IQueryable<T> query, Expression<Func<T, bool>> updateValues) where T : class, new()
         {
-            var context = EFCoreHelper.GetDbContext(query);
+            var context = EfCoreHelper.GetDbContext(query);
             var (sql, sp) = GetSqlUpdate(query, updateValues);
             return context.Database.ExecuteSqlCommand(sql, sp);
         }
@@ -52,7 +52,7 @@ namespace Utility.EntityFramework.Extensions
         /// <returns></returns>
         public static async Task<int> RestValueAsync<T>(this IQueryable<T> query, Expression<Func<T, bool>> updateValues) where T : class, new()
         {
-            var context = EFCoreHelper.GetDbContext(query);
+            var context = EfCoreHelper.GetDbContext(query);
             var (sql, sp) = GetSqlUpdate(query, updateValues);
             return await context.Database.ExecuteSqlCommandAsync(sql, sp);
         }

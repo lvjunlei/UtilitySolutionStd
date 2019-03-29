@@ -19,13 +19,10 @@ using System.Threading.Tasks;
 namespace Utility.Events.Handlers
 {
     /// <summary>
-    /// 内存事件处理器
+    /// 泛型事件处理器
     /// </summary>
-    public interface IEventHandler
-    {
-    }
-
-    public interface IEventHandler<in TEvent> : IEventHandler where TEvent : IEvent
+    /// <typeparam name="TEvent"></typeparam>
+    public interface IEventHandler<in TEvent> where TEvent : IEvent
     {
         /// <summary>
         /// 处理事件

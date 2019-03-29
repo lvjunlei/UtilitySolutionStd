@@ -14,6 +14,7 @@
 #endregion
 
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Utility.Events.Handlers
 {
@@ -22,12 +23,26 @@ namespace Utility.Events.Handlers
     /// </summary>
     public interface IEventHandlerManager
     {
+        #region GetHandlers
+
         /// <summary>
-        /// 获取事件处理器列表
+        /// 获取指定 事件类型 的事件处理器
         /// </summary>
         /// <typeparam name="TEvent">事件类型</typeparam>
-        /// <returns>事件处理器列表</returns>
-        IEnumerable<IEventHandler<TEvent>> GetHandlers<TEvent>() where TEvent : IEvent;
+        /// <returns>事件处理器集合</returns>
+        List<IEventHandler<TEvent>> GetHandlers<TEvent>() where TEvent : IEvent;
+
+        /// <summary>
+        /// 获取指定 事件类型 的事件处理器
+        /// 异步
+        /// </summary>
+        /// <typeparam name="TEvent">事件类型</typeparam>
+        /// <returns>事件处理器集合</returns>
+        Task<List<IEventHandler<TEvent>>> GetHandlersAsync<TEvent>() where TEvent : IEvent;
+
+        #endregion
+
+        #region Register
 
         /// <summary>
         /// 注册事件处理器
@@ -41,8 +56,31 @@ namespace Utility.Events.Handlers
         /// 批量注册事件处理器
         /// </summary>
         /// <typeparam name="TEvent">事件类型</typeparam>
-        /// <param name="handler">事件处理器</param>
+        /// <param name="handlers">事件处理器</param>
         /// <returns></returns>
-        void RegisterHandlers<TEvent>(IEnumerable<IEventHandler<TEvent>> handlers) where TEvent : IEvent;
+        void RegisterHandlers<TEvent>(IEnumerable<IEventHandler<TEvent>> handlers)
+            where TEvent : IEvent;
+
+        /// <summary>
+        /// 注册 Action 事件处理器
+        /// </summary>
+        /// <typeparam name="TEvent">事件</typeparam>
+        /// <param name="handler">Action 处理器</param>
+        void RegisterActionHandler<TEvent>(IActionEventHandler<TEvent> handler)
+            where TEvent : IEvent;
+
+        #endregion
+
+        #region Publish
+
+        /// <summary>
+        /// 发布事件
+        /// </summary>
+        /// <typeparam name="TEvent">事件类型</typeparam>
+        /// <param name="event">事件</param>
+        /// <returns></returns>
+        Task PublishAsync<TEvent>(TEvent @event) where TEvent : IEvent;
+
+        #endregion
     }
 }
