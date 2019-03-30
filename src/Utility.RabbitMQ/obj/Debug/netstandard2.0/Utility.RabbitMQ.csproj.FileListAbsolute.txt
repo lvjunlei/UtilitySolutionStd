@@ -7,3 +7,12 @@ D:\1234\src\Utility.RabbitMQ\obj\Debug\netstandard2.0\Utility.RabbitMQ.AssemblyI
 D:\1234\src\Utility.RabbitMQ\obj\Debug\netstandard2.0\Utility.RabbitMQ.AssemblyInfo.cs
 D:\1234\src\Utility.RabbitMQ\obj\Debug\netstandard2.0\Utility.RabbitMQ.dll
 D:\1234\src\Utility.RabbitMQ\obj\Debug\netstandard2.0\Utility.RabbitMQ.pdb
+F:\Work\GitHub\UtilitySolutionStd\src\Utility.RabbitMQ\bin\Debug\netstandard2.0\Utility.RabbitMQ.deps.json
+F:\Work\GitHub\UtilitySolutionStd\src\Utility.RabbitMQ\bin\Debug\netstandard2.0\Utility.RabbitMQ.dll
+F:\Work\GitHub\UtilitySolutionStd\src\Utility.RabbitMQ\bin\Debug\netstandard2.0\Utility.RabbitMQ.pdb
+F:\Work\GitHub\UtilitySolutionStd\src\Utility.RabbitMQ\obj\Debug\netstandard2.0\Utility.RabbitMQ.csprojAssemblyReference.cache
+F:\Work\GitHub\UtilitySolutionStd\src\Utility.RabbitMQ\obj\Debug\netstandard2.0\Utility.RabbitMQ.csproj.CoreCompileInputs.cache
+F:\Work\GitHub\UtilitySolutionStd\src\Utility.RabbitMQ\obj\Debug\netstandard2.0\Utility.RabbitMQ.AssemblyInfoInputs.cache
+F:\Work\GitHub\UtilitySolutionStd\src\Utility.RabbitMQ\obj\Debug\netstandard2.0\Utility.RabbitMQ.AssemblyInfo.cs
+F:\Work\GitHub\UtilitySolutionStd\src\Utility.RabbitMQ\obj\Debug\netstandard2.0\Utility.RabbitMQ.dll
+F:\Work\GitHub\UtilitySolutionStd\src\Utility.RabbitMQ\obj\Debug\netstandard2.0\Utility.RabbitMQ.pdb

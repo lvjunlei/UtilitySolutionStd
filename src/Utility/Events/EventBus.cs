@@ -14,14 +14,13 @@
 #endregion
 
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 using Utility.Events.Handlers;
 
 namespace Utility.Events
 {
     /// <summary>
-    /// 基于内存的简单事件总线
+    /// 消息/事件总线
     /// </summary>
     public class EventBus : IEventBus
     {
@@ -47,18 +46,7 @@ namespace Utility.Events
         /// <returns></returns>
         public async Task PublishAsync<TEvent>(TEvent @event) where TEvent : IEvent
         {
-            var handlers = Manager.GetHandlers<TEvent>();
-            if (handlers == null || !handlers.Any())
-            {
-                return;
-            }
-            foreach (var handler in handlers)
-            {
-                if (handler != null)
-                {
-                    await handler.HandleAsync(@event);
-                }
-            }
+            await Manager.PublishAsync(@event);
         }
     }
 }

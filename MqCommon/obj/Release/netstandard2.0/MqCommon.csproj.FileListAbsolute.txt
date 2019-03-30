@@ -1,0 +1,12 @@
+F:\Work\GitHub\UtilitySolutionStd\MqCommon\bin\Release\netstandard2.0\MqCommon.deps.json
+F:\Work\GitHub\UtilitySolutionStd\MqCommon\bin\Release\netstandard2.0\MqCommon.dll
+F:\Work\GitHub\UtilitySolutionStd\MqCommon\bin\Release\netstandard2.0\MqCommon.pdb
+F:\Work\GitHub\UtilitySolutionStd\MqCommon\bin\Release\netstandard2.0\Utility.dll
+F:\Work\GitHub\UtilitySolutionStd\MqCommon\bin\Release\netstandard2.0\Utility.pdb
+F:\Work\GitHub\UtilitySolutionStd\MqCommon\obj\Release\netstandard2.0\MqCommon.csprojAssemblyReference.cache
+F:\Work\GitHub\UtilitySolutionStd\MqCommon\obj\Release\netstandard2.0\MqCommon.csproj.CoreCompileInputs.cache
+F:\Work\GitHub\UtilitySolutionStd\MqCommon\obj\Release\netstandard2.0\MqCommon.AssemblyInfoInputs.cache
+F:\Work\GitHub\UtilitySolutionStd\MqCommon\obj\Release\netstandard2.0\MqCommon.AssemblyInfo.cs
+F:\Work\GitHub\UtilitySolutionStd\MqCommon\obj\Release\netstandard2.0\MqCommon.csproj.CopyComplete
+F:\Work\GitHub\UtilitySolutionStd\MqCommon\obj\Release\netstandard2.0\MqCommon.dll
+F:\Work\GitHub\UtilitySolutionStd\MqCommon\obj\Release\netstandard2.0\MqCommon.pdb

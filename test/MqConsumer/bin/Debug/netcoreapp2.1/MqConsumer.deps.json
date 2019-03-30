@@ -8,7 +8,10 @@
     ".NETCoreApp,Version=v2.1": {
       "MqConsumer/1.0.0": {
         "dependencies": {
-          "RabbitMQ.Client": "5.1.0"
+          "MqCommon": "1.0.0",
+          "RabbitMQ.Client": "5.1.0",
+          "Utility": "1.0.0",
+          "Utility.RabbitMQ": "1.0.0"
         },
         "runtime": {
           "MqConsumer.dll": {}
@@ -650,6 +653,27 @@
         "dependencies": {
           "System.Runtime": "4.3.0"
         }
+      },
+      "MqCommon/1.0.0": {
+        "dependencies": {
+          "Utility": "1.0.0"
+        },
+        "runtime": {
+          "MqCommon.dll": {}
+        }
+      },
+      "Utility/1.0.0": {
+        "runtime": {
+          "Utility.dll": {}
+        }
+      },
+      "Utility.RabbitMQ/1.0.0": {
+        "dependencies": {
+          "RabbitMQ.Client": "5.1.0"
+        },
+        "runtime": {
+          "Utility.RabbitMQ.dll": {}
+        }
       }
     }
   },
@@ -1085,6 +1109,21 @@
       "sha512": "sha512-Z6YfyYTCg7lOZjJzBjONJTFKGN9/NIYKSxhU5GRd+DTwHSZyvWp1xuI5aR+dLg+ayyC5Xv57KiY4oJ0tMO89fQ==",
       "path": "system.threading.timer/4.3.0",
       "hashPath": "system.threading.timer.4.3.0.nupkg.sha512"
+    },
+    "MqCommon/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Utility/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Utility.RabbitMQ/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

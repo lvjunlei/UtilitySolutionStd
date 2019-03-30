@@ -50,7 +50,7 @@ namespace Utility.Events.Handlers
         /// <typeparam name="TEvent">事件类型</typeparam>
         /// <param name="handler">事件处理器</param>
         /// <returns></returns>
-        void RegisterHandler<TEvent>(IEventHandler<TEvent> handler) where TEvent : IEvent;
+        void Register<TEvent>(IEventHandler<TEvent> handler) where TEvent : class, IEvent;
 
         /// <summary>
         /// 批量注册事件处理器
@@ -58,16 +58,8 @@ namespace Utility.Events.Handlers
         /// <typeparam name="TEvent">事件类型</typeparam>
         /// <param name="handlers">事件处理器</param>
         /// <returns></returns>
-        void RegisterHandlers<TEvent>(IEnumerable<IEventHandler<TEvent>> handlers)
-            where TEvent : IEvent;
-
-        /// <summary>
-        /// 注册 Action 事件处理器
-        /// </summary>
-        /// <typeparam name="TEvent">事件</typeparam>
-        /// <param name="handler">Action 处理器</param>
-        void RegisterActionHandler<TEvent>(IActionEventHandler<TEvent> handler)
-            where TEvent : IEvent;
+        void Registers<TEvent>(IEnumerable<IEventHandler<TEvent>> handlers)
+            where TEvent : class, IEvent;
 
         #endregion
 

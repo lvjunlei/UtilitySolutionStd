@@ -120,9 +120,15 @@ namespace Utility.Events
         /// <typeparam name="TEvent">事件类型</typeparam>
         /// <param name="handler">事件处理器</param>
         /// <returns></returns>
-        public void RegisterHandler<TEvent>(IEventHandler<TEvent> handler) where TEvent : IEvent
+        public void Register<TEvent>(IEventHandler<TEvent> handler)
+            where TEvent : class, IEvent
         {
-            CheckHandler(typeof(TEvent)).AddOrUpdate(handler.GetType(), handler);
+            var key = typeof(TEvent);
+            if (!_handlers.ContainsKey(key))
+            {
+                _handlers.TryAdd(key, new Dictionary<Type, object>());
+            }
+            _handlers[key].AddOrUpdate(handler.GetType(), handler);
         }
 
         /// <summary>
@@ -131,37 +137,13 @@ namespace Utility.Events
         /// <typeparam name="TEvent">事件类型</typeparam>
         /// <param name="handlers">事件处理器</param>
         /// <returns></returns>
-        public void RegisterHandlers<TEvent>(IEnumerable<IEventHandler<TEvent>> handlers) where TEvent : IEvent
+        public void Registers<TEvent>(IEnumerable<IEventHandler<TEvent>> handlers)
+            where TEvent : class, IEvent
         {
-            var dic = CheckHandler(typeof(TEvent));
             foreach (var handler in handlers)
             {
-                dic.AddOrUpdate(handler.GetType(), handler);
+                Register(handler);
             }
-        }
-
-        /// <summary>
-        /// 注册 Action 事件处理器
-        /// </summary>
-        /// <typeparam name="TEvent">事件</typeparam>
-        /// <param name="handler">Action 处理器</param>
-        public void RegisterActionHandler<TEvent>(IActionEventHandler<TEvent> handler) where TEvent : IEvent
-        {
-            CheckHandler(typeof(TEvent)).AddOrUpdate(handler.GetType(), handler);
-        }
-
-        /// <summary>
-        /// CheckHandler
-        /// </summary>
-        /// <param name="key">事件类型</param>
-        private Dictionary<Type, object> CheckHandler(Type key)
-        {
-            if (!_handlers.ContainsKey(key))
-            {
-                _handlers.TryAdd(key, new Dictionary<Type, object>());
-            }
-
-            return _handlers[key];
         }
 
         #endregion

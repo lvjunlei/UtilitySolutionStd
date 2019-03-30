@@ -1,13 +1,42 @@
-﻿using RabbitMQ.Client;
+﻿using MqCommon;
+using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System;
 using System.Text;
+using Utility.Eventbus.RabbitMQ;
+using Utility.Events.Handlers;
 
 namespace MqConsumer
 {
     class Program
     {
         static void Main(string[] args)
+        {
+            var config = new MqConfig
+            {
+                UserName = "admin",
+                Password = "admin",
+                HostIp = "localhost",
+                Port = 5672,
+                Exchange = "Eventbus",
+                ExchangeType = "direct",
+                VirtualHost = "/"
+            };
+            var manager = new MessageHandlerManager(config);
+
+            manager.Register<TestEvent>(new ActionEventHandler<TestEvent>(TestActionHandler));
+            manager.Register<TestEvent>(new TestEventHandler());
+            manager.Register<TestEvent>(new TestMessageHandler());
+
+            Console.ReadLine();
+        }
+
+        static void TestActionHandler(TestEvent @event)
+        {
+            Console.WriteLine($"【TestActionHandler】{@event.EventTime:yyyy-MM-dd HH:mm:ss.fff} | {@event.Id} {@event.Message}");
+        }
+
+        static void StartConsumer()
         {
             //创建连接工厂
             var factory = new ConnectionFactory() { HostName = "localhost" };
