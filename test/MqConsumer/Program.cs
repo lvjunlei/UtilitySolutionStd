@@ -27,6 +27,11 @@ namespace MqConsumer
             manager.Register<TestEvent>(new ActionEventHandler<TestEvent>(TestActionHandler));
             manager.Register<TestEvent>(new TestEventHandler());
             manager.Register<TestEvent>(new TestMessageHandler());
+            manager.Register<TestEvent>(new MessageHandlerTest());
+
+            Console.ReadLine();
+
+            manager.Unregister<TestEvent>(typeof(TestMessageHandler));
 
             Console.ReadLine();
         }

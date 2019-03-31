@@ -29,6 +29,12 @@ namespace Utility.Extensions
         /// <summary>
         /// 尝试将键和值添加到字典中：如果不存在，才添加；存在，不添加也不抛导常
         /// </summary>
+        /// <typeparam name="TKey">Key类型</typeparam>
+        /// <typeparam name="TValue">Value类型</typeparam>
+        /// <param name="dict">字典对象</param>
+        /// <param name="key">key值</param>
+        /// <param name="value">value值</param>
+        /// <returns></returns>
         public static Dictionary<TKey, TValue> TryAdd<TKey, TValue>(this Dictionary<TKey, TValue> dict, TKey key, TValue value)
         {
             if (!dict.ContainsKey(key))
@@ -36,6 +42,23 @@ namespace Utility.Extensions
                 dict.Add(key, value);
             }
             return dict;
+        }
+
+        /// <summary>
+        /// 移除字典值
+        /// </summary>
+        /// <typeparam name="TKey">Key类型</typeparam>
+        /// <typeparam name="TValue">Value类型</typeparam>
+        /// <param name="dict">字典对象</param>
+        /// <param name="key">key值</param>
+        /// <returns></returns>
+        public static bool TryRemove<TKey, TValue>(this Dictionary<TKey, TValue> dict, TKey key)
+        {
+            if (!dict.ContainsKey(key))
+            {
+                return true;
+            }
+            return dict.Remove(key);
         }
 
         /// <summary>
@@ -86,7 +109,7 @@ namespace Utility.Extensions
         /// <typeparam name="TValue">字典值类型</typeparam>
         /// <param name="dict">字典</param>
         /// <returns></returns>
-        public static List<TValue> ToList<T,TKey, TValue>(this Dictionary<TKey, TValue> dict)
+        public static List<TValue> ToList<T, TKey, TValue>(this Dictionary<TKey, TValue> dict)
         {
             var vs = new List<TValue>();
             foreach (var value in dict.Values)

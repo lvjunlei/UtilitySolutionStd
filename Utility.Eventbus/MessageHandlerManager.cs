@@ -24,7 +24,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Utility.Events;
 using Utility.Events.Handlers;
-using Utility.Extensions;
 
 namespace Utility.Eventbus.RabbitMQ
 {
@@ -38,12 +37,12 @@ namespace Utility.Eventbus.RabbitMQ
         /// <summary>
         /// 事件字典集合
         /// </summary>
-        private readonly ConcurrentDictionary<string, Dictionary<Type, object>> _handlers;
+        private readonly ConcurrentDictionary<string, ConcurrentDictionary<Type, object>> _handlers;
 
         /// <summary>
         /// 队列消费者集合
         /// </summary>
-        private readonly ConcurrentDictionary<string, EventingBasicConsumer> _consumers;
+        private readonly ConcurrentDictionary<string, IConnection> _connections;
 
         /// <summary>
         /// 连接工厂
@@ -76,8 +75,8 @@ namespace Utility.Eventbus.RabbitMQ
                 Port = Config.Port,
                 VirtualHost = Config.VirtualHost
             };
-            _handlers = new ConcurrentDictionary<string, Dictionary<Type, object>>();
-            _consumers = new ConcurrentDictionary<string, EventingBasicConsumer>();
+            _handlers = new ConcurrentDictionary<string, ConcurrentDictionary<Type, object>>();
+            _connections = new ConcurrentDictionary<string, IConnection>();
         }
 
         #endregion
@@ -167,40 +166,44 @@ namespace Utility.Eventbus.RabbitMQ
             var key = typeof(TEvent).Name;
             if (!_handlers.ContainsKey(key))
             {
-                _handlers.TryAdd(key, new Dictionary<Type, object>());
+                _handlers.TryAdd(key, new ConcurrentDictionary<Type, object>());
             }
-            _handlers[key].AddOrUpdate(handler.GetType(), handler);
-            var h = handler as IMessageHandler<TEvent>;
-            if (h != null)// 如果是 IMessageHandler 类型的处理器则建立MQ队列
+            _handlers[key].TryAdd(handler.GetType(), handler);
+
+            var messageHandler = handler as IMessageHandler<TEvent>;
+            if (messageHandler != null)// 如果是 IMessageHandler 类型的处理器则建立MQ队列
             {
-                var connection = _connectionFactory.CreateConnection();
-                var channel = connection.CreateModel();
-                // 队列名称
-                var queueName = handler.GetType().Name;
-
-                // 声明交换机
-                channel.ExchangeDeclare(Config.Exchange, Config.ExchangeType, Config.Durable, Config.AutoDelete);
-
-                // 声明队列
-                var r = channel.QueueDeclare(queueName, h.Durable, h.Exclusive, h.AutoDelete);
-
-                // 绑定路由key
-                channel.QueueBind(queueName, Config.Exchange, typeof(TEvent).Name);
-
-                // 创建队列消费者
-                var consumer = new EventingBasicConsumer(channel);
-                consumer.Received += (model, ea) =>
+                if (!_connections.ContainsKey(key))
                 {
-                    var message = Encoding.UTF8.GetString(ea.Body);
-                    // 处理接收到的消息
-                    HandleEventAsync<TEvent>(message);
-                };
+                    var connection = _connectionFactory.CreateConnection();
+                    var channel = connection.CreateModel();
 
-                // 激活消费者
-                channel.BasicConsume(queueName, true, consumer);
+                    // 队列名称
+                    //var queueName = $"Messagebus_Queue_{key}";
 
-                // 把消费者入队管理
-                _consumers.TryAdd(handler.GetType().Name, consumer);
+                    // 声明交换机
+                    channel.ExchangeDeclare(Config.Exchange, Config.ExchangeType, Config.Durable, Config.AutoDelete);
+
+                    // 声明队列
+                    var queueName = channel.QueueDeclare("", messageHandler.Durable, messageHandler.Exclusive, messageHandler.AutoDelete).QueueName;
+
+                    // 绑定路由key
+                    channel.QueueBind(queueName, Config.Exchange, typeof(TEvent).Name);
+                    // 创建队列消费者
+                    var consumer = new EventingBasicConsumer(channel);
+                    consumer.Received += (model, ea) =>
+                    {
+                        var message = Encoding.UTF8.GetString(ea.Body);
+                        // 处理接收到的消息
+                        HandleEventAsync<TEvent>(message);
+                    };
+
+                    // 激活消费者
+                    channel.BasicConsume(queueName, true, consumer);
+
+                    // 把连接入队管理
+                    _connections.TryAdd(key, connection);
+                }
             }
         }
 
@@ -226,9 +229,76 @@ namespace Utility.Eventbus.RabbitMQ
                     {
                         handler.HandleAsync(@event);
                     }
-                    // handler.HandleAsync(@event);
                 }
             }
+        }
+
+        #endregion
+
+        #region Unregister
+
+        /// <summary>
+        /// 取消指定类型的事件处理器
+        /// </summary>
+        /// <typeparam name="TEvent">事件类型</typeparam>
+        /// <param name="handlerType">处理器类型</param>
+        public void Unregister<TEvent>(Type handlerType)
+            where TEvent : class, IEvent
+        {
+            var key = typeof(TEvent).Name;
+            if (_handlers.ContainsKey(key))
+            {
+                if (_handlers[key].ContainsKey(handlerType))
+                {
+                    var handler = _handlers[key][handlerType];
+                    if (handler is IMessageHandler<TEvent>)
+                    {
+                        _handlers[key].TryRemove(handlerType, out object _);
+                        if (_handlers[key].Count <= 0)
+                        {
+                            if (_connections.ContainsKey(key))
+                            {
+                                if (_connections.TryRemove(key, out IConnection connection))
+                                {
+                                    connection?.Close();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 取消指定 事件类型 的所有事件处理器
+        /// </summary>
+        /// <typeparam name="TEvent">事件类型</typeparam>
+        public void Unregister<TEvent>()
+            where TEvent : class, IEvent
+        {
+            var key = typeof(TEvent).Name;
+            if (_handlers.ContainsKey(key))
+            {
+                foreach (var handler in _handlers[key].Values)
+                {
+                    Unregister<TEvent>(handler.GetType());
+                }
+            }
+        }
+
+        /// <summary>
+        /// 取消指定的事件处理器
+        /// </summary>
+        /// <typeparam name="TEvent">事件类型</typeparam>
+        /// <param name="handler">处理器</param>
+        public void Unregister<TEvent>(IEventHandler<TEvent> handler)
+            where TEvent : class, IEvent
+        {
+            if (handler == null)
+            {
+                throw new ArgumentNullException(nameof(handler));
+            }
+            Unregister<TEvent>(handler.GetType());
         }
 
         #endregion
@@ -300,9 +370,18 @@ namespace Utility.Eventbus.RabbitMQ
 
         #region IDisposable
 
+        /// <summary>
+        /// 释放资源
+        /// 关闭所有 RabbitMQ连接
+        /// </summary>
         public void Dispose()
         {
             _handlers.Clear();
+            foreach (var connection in _connections.Values)
+            {
+                connection?.Close();
+            }
+            _connections.Clear();
         }
 
         #endregion

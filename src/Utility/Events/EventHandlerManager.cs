@@ -33,7 +33,7 @@ namespace Utility.Events
         /// <summary>
         /// 事件字典集合
         /// </summary>
-        private readonly ConcurrentDictionary<Type, Dictionary<Type, object>> _handlers;
+        private readonly ConcurrentDictionary<string, Dictionary<Type, object>> _handlers;
 
         /// <summary>
         /// EventHandlerManager单例实例
@@ -72,7 +72,7 @@ namespace Utility.Events
         /// </summary>
         private EventHandlerManager()
         {
-            _handlers = new ConcurrentDictionary<Type, Dictionary<Type, object>>();
+            _handlers = new ConcurrentDictionary<string, Dictionary<Type, object>>();
         }
 
         #endregion
@@ -86,7 +86,7 @@ namespace Utility.Events
         /// <returns>事件处理器集合</returns>
         public List<IEventHandler<TEvent>> GetHandlers<TEvent>() where TEvent : IEvent
         {
-            var key = typeof(TEvent);
+            var key = typeof(TEvent).Name;
             var vs = new List<IEventHandler<TEvent>>();
             if (_handlers.ContainsKey(key))
             {
@@ -123,7 +123,7 @@ namespace Utility.Events
         public void Register<TEvent>(IEventHandler<TEvent> handler)
             where TEvent : class, IEvent
         {
-            var key = typeof(TEvent);
+            var key = typeof(TEvent).Name;
             if (!_handlers.ContainsKey(key))
             {
                 _handlers.TryAdd(key, new Dictionary<Type, object>());
@@ -144,6 +144,56 @@ namespace Utility.Events
             {
                 Register(handler);
             }
+        }
+
+        #endregion
+
+        #region Unregister
+
+        /// <summary>
+        /// 取消指定类型的事件处理器
+        /// </summary>
+        /// <typeparam name="TEvent">事件类型</typeparam>
+        /// <param name="handlerType">处理器类型</param>
+        public void Unregister<TEvent>(Type handlerType)
+            where TEvent : class, IEvent
+        {
+            var key = typeof(TEvent).Name;
+            if (_handlers.ContainsKey(key))
+            {
+                if (_handlers[key].ContainsKey(handlerType))
+                {
+                    _handlers[key].TryRemove(handlerType);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 取消指定 事件类型 的所有事件处理器
+        /// </summary>
+        /// <typeparam name="TEvent">事件类型</typeparam>
+        public void Unregister<TEvent>()
+            where TEvent : class, IEvent
+        {
+            var key = typeof(TEvent).Name;
+            if (_handlers.ContainsKey(key))
+            {
+                foreach (var handler in _handlers[key].Values)
+                {
+                    Unregister<TEvent>(handler.GetType());
+                }
+            }
+        }
+
+        /// <summary>
+        /// 取消指定的事件处理器
+        /// </summary>
+        /// <typeparam name="TEvent">事件类型</typeparam>
+        /// <param name="handler">处理器</param>
+        public void Unregister<TEvent>(IEventHandler<TEvent> handler)
+            where TEvent : class, IEvent
+        {
+            Unregister<TEvent>(handler.GetType());
         }
 
         #endregion

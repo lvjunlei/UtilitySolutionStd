@@ -13,6 +13,7 @@
 ************************************************************/
 #endregion
 
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -59,6 +60,31 @@ namespace Utility.Events.Handlers
         /// <param name="handlers">事件处理器</param>
         /// <returns></returns>
         void Registers<TEvent>(IEnumerable<IEventHandler<TEvent>> handlers)
+            where TEvent : class, IEvent;
+
+        #endregion
+
+        #region Unregister
+
+        /// <summary>
+        /// 取消指定类型的事件处理器
+        /// </summary>
+        /// <typeparam name="TEvent">事件类型</typeparam>
+        /// <param name="handlerType">处理器类型</param>
+        void Unregister<TEvent>(Type handlerType) where TEvent : class, IEvent;
+
+        /// <summary>
+        /// 取消指定 事件类型 的所有事件处理器
+        /// </summary>
+        /// <typeparam name="TEvent">事件类型</typeparam>
+        void Unregister<TEvent>() where TEvent : class, IEvent;
+
+        /// <summary>
+        /// 取消指定的事件处理器
+        /// </summary>
+        /// <typeparam name="TEvent">事件类型</typeparam>
+        /// <param name="handler">处理器</param>
+        void Unregister<TEvent>(IEventHandler<TEvent> handler)
             where TEvent : class, IEvent;
 
         #endregion
