@@ -73,7 +73,8 @@ namespace Utility.Eventbus.RabbitMQ
                 Password = Config.Password,
                 HostName = Config.HostIp,
                 Port = Config.Port,
-                VirtualHost = Config.VirtualHost
+                VirtualHost = Config.VirtualHost,
+                AutomaticRecoveryEnabled = true
             };
             _handlers = new ConcurrentDictionary<string, ConcurrentDictionary<Type, object>>();
             _connections = new ConcurrentDictionary<string, IConnection>();
@@ -170,22 +171,22 @@ namespace Utility.Eventbus.RabbitMQ
             }
             _handlers[key].TryAdd(handler.GetType(), handler);
 
-            var messageHandler = handler as IMessageHandler<TEvent>;
-            if (messageHandler != null)// 如果是 IMessageHandler 类型的处理器则建立MQ队列
+            // 如果是 IMessageHandler 类型的处理器则建立MQ队列
+            if (handler is IMessageHandler<TEvent>)
             {
                 if (!_connections.ContainsKey(key))
                 {
+                    // 创建连接
                     var connection = _connectionFactory.CreateConnection();
-                    var channel = connection.CreateModel();
 
-                    // 队列名称
-                    //var queueName = $"Messagebus_Queue_{key}";
+                    // 创建会话
+                    var channel = connection.CreateModel();
 
                     // 声明交换机
                     channel.ExchangeDeclare(Config.Exchange, Config.ExchangeType, Config.Durable, Config.AutoDelete);
 
                     // 声明队列
-                    var queueName = channel.QueueDeclare("", messageHandler.Durable, messageHandler.Exclusive, messageHandler.AutoDelete).QueueName;
+                    var queueName = channel.QueueDeclare().QueueName;
 
                     // 绑定路由key
                     channel.QueueBind(queueName, Config.Exchange, typeof(TEvent).Name);
@@ -220,10 +221,6 @@ namespace Utility.Eventbus.RabbitMQ
             {
                 foreach (var handler in handlers)
                 {
-                    if (handler == null)
-                    {
-                        continue;
-                    }
                     // 消息只发送给 IMessageHandler<TEvent> 类型的处理器
                     if (handler is IMessageHandler<TEvent>)
                     {
