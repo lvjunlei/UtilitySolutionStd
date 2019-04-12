@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2036
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28729.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 - Utilities", "02 - Utilities", "{DA6E240C-EC63-4A99-AD85-BB023FCF855B}"
 EndProject
@@ -35,7 +35,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MqConsumer", "test\MqConsum
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MqProducer", "test\MqProducer\MqProducer.csproj", "{F2F2B1C0-015C-4467-B635-5DC997FF908C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MqCommon", "MqCommon\MqCommon.csproj", "{F0ED8EA9-044A-4E49-87A1-32495F9C07B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MqCommon", "MqCommon\MqCommon.csproj", "{F0ED8EA9-044A-4E49-87A1-32495F9C07B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageTest", "Test\ImageTest\ImageTest.csproj", "{3E653DB2-F923-4D57-998A-A6F0E54BA143}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,6 +101,10 @@ Global
 		{F0ED8EA9-044A-4E49-87A1-32495F9C07B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F0ED8EA9-044A-4E49-87A1-32495F9C07B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F0ED8EA9-044A-4E49-87A1-32495F9C07B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E653DB2-F923-4D57-998A-A6F0E54BA143}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E653DB2-F923-4D57-998A-A6F0E54BA143}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E653DB2-F923-4D57-998A-A6F0E54BA143}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E653DB2-F923-4D57-998A-A6F0E54BA143}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -118,9 +124,10 @@ Global
 		{7AC41014-53F5-4317-B4D9-65CAAA58F83E} = {1957BBF9-77D3-47FB-9ECF-7F1D9BC5705A}
 		{F2F2B1C0-015C-4467-B635-5DC997FF908C} = {1957BBF9-77D3-47FB-9ECF-7F1D9BC5705A}
 		{F0ED8EA9-044A-4E49-87A1-32495F9C07B1} = {1957BBF9-77D3-47FB-9ECF-7F1D9BC5705A}
+		{3E653DB2-F923-4D57-998A-A6F0E54BA143} = {1957BBF9-77D3-47FB-9ECF-7F1D9BC5705A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		VisualSVNWorkingCopyRoot = .
 		SolutionGuid = {8B36720B-5E23-49BB-9B97-6D6509E75807}
+		VisualSVNWorkingCopyRoot = .
 	EndGlobalSection
 EndGlobal

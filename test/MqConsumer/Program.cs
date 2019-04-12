@@ -12,26 +12,8 @@ namespace MqConsumer
     {
         static void Main(string[] args)
         {
-            var config = new MqConfig
-            {
-                UserName = "admin",
-                Password = "admin",
-                HostIp = "localhost",
-                Port = 5672,
-                Exchange = "Eventbus",
-                ExchangeType = "direct",
-                VirtualHost = "/"
-            };
-            var manager = new MessageHandlerManager(config);
-
-            manager.Register<TestEvent>(new ActionEventHandler<TestEvent>(TestActionHandler));
-            manager.Register<TestEvent>(new TestEventHandler());
-            manager.Register<TestEvent>(new TestMessageHandler());
-            manager.Register<TestEvent>(new MessageHandlerTest());
-
-            Console.ReadLine();
-
-            manager.Unregister<TestEvent>(typeof(TestMessageHandler));
+            TestEventbus();
+            //StartConsumer();
 
             Console.ReadLine();
         }
@@ -65,6 +47,7 @@ namespace MqConsumer
                         //把消息队列和交换机绑定
                         channel.QueueBind(exchange: "FanoutDemo", queue: queueName, routingKey: key);
                     }
+                    //channel.QueueBind(exchange: "FanoutDemo", queue: queueName, routingKey: key);
 
 
                     //创建消费者
@@ -83,6 +66,30 @@ namespace MqConsumer
                     Console.ReadLine();
                 }
             }
+        }
+
+        static void TestEventbus()
+        {
+            var config = new MqConfig
+            {
+                UserName = "admin",
+                Password = "admin",
+                HostIp = "localhost",
+                Port = 5672,
+                Exchange = "Eventbus",
+                ExchangeType = "direct",
+                VirtualHost = "/"
+            };
+            var manager = new MessageHandlerManager(config);
+
+            manager.Register<TestEvent>(new ActionEventHandler<TestEvent>(TestActionHandler));
+            manager.Register<TestEvent>(new TestEventHandler());
+            manager.Register<TestEvent>(new TestMessageHandler());
+            manager.Register<TestEvent>(new MessageHandlerTest());
+
+            Console.ReadLine();
+
+            manager.Unregister<TestEvent>(typeof(TestMessageHandler));
         }
     }
 }

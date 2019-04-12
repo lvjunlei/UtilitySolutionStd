@@ -1,0 +1,340 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FileServer</name>
+    </assembly>
+    <members>
+        <member name="T:FileServer.Controllers.ConfigController">
+            <summary>
+            文件服务配置
+            </summary>
+        </member>
+        <member name="M:FileServer.Controllers.ConfigController.GetConfig">
+            <summary>
+            获取文件服务配置信息
+            </summary>
+            <returns>文件服务配置信息</returns>
+        </member>
+        <member name="M:FileServer.Controllers.ConfigController.UpdateFileSavePath(System.String)">
+            <summary>
+            更新文件存储路径
+            </summary>
+            <param name="fileSavePath">新的文件存储路径</param>
+            <returns></returns>
+        </member>
+        <member name="M:FileServer.Controllers.ConfigController.UpdateFileVisitUrl(System.String)">
+            <summary>
+            更新文件访问路径
+            </summary>
+            <param name="fileVisitUrl">新的文件访问路径</param>
+            <returns></returns>
+        </member>
+        <member name="T:FileServer.Controllers.FilesController">
+            <summary>
+            文件管理服务API
+            </summary>
+        </member>
+        <member name="M:FileServer.Controllers.FilesController.Upload(Microsoft.AspNetCore.Http.IFormFile,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            上传文件（以表单形式上传）
+            </summary>
+            <param name="fromFile">文件信息</param>
+            <param name="filePath">
+            指定的文件存储路径
+            (为空时则使用默认目录)
+            </param>
+            <param name="canCover">能否覆盖已存在文件</param>
+            <param name="isAutoRename">是否自动重命名</param>
+            <returns>文件上传结果</returns>
+        </member>
+        <member name="M:FileServer.Controllers.FilesController.Uploads(System.Collections.Generic.ICollection{Microsoft.AspNetCore.Http.IFormFile},System.String,System.Boolean,System.Boolean)">
+            <summary>
+            上传文件信息
+            </summary>
+            <param name="files">文件信息</param>
+            <param name="filePath">
+            指定的文件存储路径
+            (为空时则使用默认目录)
+            </param>
+            <param name="canCover">能否覆盖已存在文件</param>
+            <param name="isAutoRename">是否自动重命名</param>
+            <returns>文件上传结果</returns>
+        </member>
+        <member name="M:FileServer.Controllers.FilesController.Download(System.String,System.String)">
+            <summary>
+            下载文件
+            </summary>
+            <param name="fileName">文件名称</param>
+            <param name="filePath">
+            指定下载文件的路径
+            (为空时则使用默认目录)
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:FileServer.Controllers.FilesController.Delete(System.String,System.String)">
+            <summary>
+            删除指定文件
+            </summary>
+            <param name="fileName">文件名称</param>
+            <param name="filePath">
+            指定删除文件的路径
+            (为空时则使用默认目录)
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:FileServer.Controllers.FilesController.Deletes(System.String[])">
+            <summary>
+            批量删除指定文件
+            </summary>
+            <param name="files">文件名称集合</param>
+            <returns></returns>
+        </member>
+        <member name="T:FileServer.Extensions.HttpContextExtension">
+            <summary>
+            HttpContextExtension
+            </summary>
+        </member>
+        <member name="M:FileServer.Extensions.HttpContextExtension.GetClientIp(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            GetClientIp
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="T:FileServer.FileServerConfig">
+            <summary>
+            服务配置信息
+            </summary>
+        </member>
+        <member name="P:FileServer.FileServerConfig.FileSavePath">
+            <summary>
+            文件存储路径
+            </summary>
+        </member>
+        <member name="P:FileServer.FileServerConfig.FileVisitUrl">
+            <summary>
+            可访问的相对路径
+            </summary>
+        </member>
+        <member name="M:FileServer.FileServerConfig.#cctor">
+            <summary>
+            初始化配置文件
+            </summary>
+        </member>
+        <member name="M:FileServer.FileServerConfig.GetConfig">
+            <summary>
+            获取配置信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FileServer.FileServerConfig.SetFileSavePath(System.String)">
+            <summary>
+            设置文件存储路径
+            </summary>
+            <param name="fileSavePath">新的存储路径</param>
+        </member>
+        <member name="M:FileServer.FileServerConfig.SetFileVisitUrl(System.String)">
+            <summary>
+            设置文件访问路径
+            </summary>
+            <param name="fileVisitUrl">新的访问路径</param>
+        </member>
+        <member name="T:FileServer.SaveConfig">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FileServer.SaveConfig.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FileServer.SaveConfig.Name">
+            <summary>
+            配置文件名称
+            </summary>
+        </member>
+        <member name="P:FileServer.SaveConfig.FileSavePath">
+            <summary>
+            文件存储路径
+            </summary>
+        </member>
+        <member name="P:FileServer.SaveConfig.FileVisitUrl">
+            <summary>
+            可访问的相对路径
+            </summary>
+        </member>
+        <member name="T:FileServer.Filters.SwaggerFileUploadFilter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:FileServer.Filters.SwaggerFileUploadFilter.Apply(Swashbuckle.AspNetCore.Swagger.Operation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
+            <summary>
+            
+            </summary>
+            <param name="operation"></param>
+            <param name="context"></param>
+        </member>
+        <member name="T:FileServer.Models.DownloadFileModel">
+            <summary>
+            下载文件信息
+            </summary>
+        </member>
+        <member name="P:FileServer.Models.DownloadFileModel.FileName">
+            <summary>
+            文件名称
+            </summary>
+        </member>
+        <member name="P:FileServer.Models.DownloadFileModel.FileSize">
+            <summary>
+            文件大小
+            </summary>
+        </member>
+        <member name="P:FileServer.Models.DownloadFileModel.FileData">
+            <summary>
+            文件数据
+            </summary>
+        </member>
+        <member name="P:FileServer.Models.DownloadFileModel.SendTime">
+            <summary>
+            发送文件时间
+            </summary>
+        </member>
+        <member name="M:FileServer.Models.DownloadFileModel.#ctor(System.String,System.Int64,System.Byte[])">
+            <summary>
+            下载文件信息初始化
+            </summary>
+            <param name="fileName">文件名称</param>
+            <param name="fileSize">文件大小</param>
+            <param name="fileData">文件数据</param>
+        </member>
+        <member name="T:FileServer.Models.FileUploadResult">
+            <summary>
+            文件上传结果信息
+            </summary>
+        </member>
+        <member name="P:FileServer.Models.FileUploadResult.OriginalName">
+            <summary>
+            文件原始名称
+            </summary>
+        </member>
+        <member name="P:FileServer.Models.FileUploadResult.FileName">
+            <summary>
+            文件名称
+            </summary>
+        </member>
+        <member name="P:FileServer.Models.FileUploadResult.VisitUrl">
+            <summary>
+            可访问的文件路径
+            </summary>
+        </member>
+        <member name="P:FileServer.Models.FileUploadResult.Message">
+            <summary>
+            消息
+            </summary>
+        </member>
+        <member name="P:FileServer.Models.FileUploadResult.FileSize">
+            <summary>
+            文件大小
+            </summary>
+        </member>
+        <member name="P:FileServer.Models.FileUploadResult.SaveTime">
+            <summary>
+            文件保存时间
+            </summary>
+        </member>
+        <member name="M:FileServer.Models.FileUploadResult.#ctor(System.String,System.String,System.Int64)">
+            <summary>
+            初始化文件上传结果信息
+            </summary>
+            <param name="fileName">文件名称</param>
+            <param name="originalName">文件原始名称</param>
+            <param name="fileSize">文件大小</param>
+        </member>
+        <member name="T:FileServer.Models.UploadFileModel">
+            <summary>
+            上传文件休息
+            </summary>
+        </member>
+        <member name="P:FileServer.Models.UploadFileModel.FileName">
+            <summary>
+            文件名称
+            </summary>
+        </member>
+        <member name="P:FileServer.Models.UploadFileModel.IsAutoRename">
+            <summary>
+            是否需要重新命名保存（防止文件重名）
+            </summary>
+        </member>
+        <member name="P:FileServer.Models.UploadFileModel.CanCover">
+            <summary>
+            当文件重名时可否覆盖
+            </summary>
+        </member>
+        <member name="P:FileServer.Models.UploadFileModel.SavePath">
+            <summary>
+            文件存储路径（相对）
+            </summary>
+        </member>
+        <member name="P:FileServer.Models.UploadFileModel.FileData">
+            <summary>
+            文件数据
+            </summary>
+        </member>
+        <member name="M:FileServer.Models.UploadFileModel.GetFileSize">
+            <summary>
+            获取文件大小
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FileServer.Program">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:FileServer.Program.Main(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:FileServer.Program.CreateWebHostBuilder(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="T:FileServer.Startup">
+            <summary>
+            Startup
+            </summary>
+        </member>
+        <member name="M:FileServer.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="P:FileServer.Startup.Configuration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:FileServer.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:FileServer.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment,Microsoft.Extensions.Logging.ILoggerFactory)">
+            <summary>
+            
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+            <param name="loggerFactory"></param>
+        </member>
+    </members>
+</doc>

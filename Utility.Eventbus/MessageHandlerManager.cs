@@ -225,6 +225,7 @@ namespace Utility.Eventbus.RabbitMQ
                     if (handler is IMessageHandler<TEvent>)
                     {
                         handler.HandleAsync(@event);
+                        // ((IMessageHandler<TEvent>)Activator.CreateInstance(handler.GetType())).HandleAsync(@event);
                     }
                 }
             }

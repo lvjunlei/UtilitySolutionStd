@@ -42,6 +42,7 @@ namespace ObjectMapperTest
             Console.WriteLine($"映射 {stus.Count} 条数据，用时：{stw.ElapsedMilliseconds}");
             Console.ReadLine();
         }
+
     }
 
 

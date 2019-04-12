@@ -38,13 +38,23 @@ namespace Utility.EntityFramework
         }
 
         /// <summary>
-        /// 
+        /// 获取指定类型的事例
         /// </summary>
         /// <typeparam name="TService"></typeparam>
         /// <returns></returns>
         public TService Resolve<TService>()
         {
             return _serviceProvider.GetService<TService>();
+        }
+
+        /// <summary>
+        /// 获取指定类型的事例
+        /// </summary>
+        /// <param name="serviceType">服务类型</param>
+        /// <returns>服务示例</returns>
+        public object Resolve(Type serviceType)
+        {
+            return _serviceProvider.GetService(serviceType);
         }
 
         /// <summary>

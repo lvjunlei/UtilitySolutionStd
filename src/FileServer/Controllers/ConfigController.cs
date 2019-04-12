@@ -31,7 +31,8 @@ namespace FileServer.Controllers
             }
             catch (Exception ex)
             {
-                LogHelper.Error($"查询文件服务配置信息发生了异常：{ex.Message}", ex);
+                LogHelper.Error($"查询文件服务配置信息发生了异常：{ex.Message}");
+                LogHelper.Error(ex);
                 return BadRequest(ex.Message);
             }
         }

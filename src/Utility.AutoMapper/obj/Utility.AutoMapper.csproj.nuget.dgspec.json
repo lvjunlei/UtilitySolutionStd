@@ -1,0 +1,64 @@
+{
+  "format": 1,
+  "restore": {
+    "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\Utility.AutoMapper\\Utility.AutoMapper.csproj": {}
+  },
+  "projects": {
+    "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\Utility.AutoMapper\\Utility.AutoMapper.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\Utility.AutoMapper\\Utility.AutoMapper.csproj",
+        "projectName": "Utility.AutoMapper",
+        "projectPath": "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\Utility.AutoMapper\\Utility.AutoMapper.csproj",
+        "packagesPath": "C:\\Users\\lvjl\\.nuget\\packages\\",
+        "outputPath": "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\Utility.AutoMapper\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\lvjl\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}

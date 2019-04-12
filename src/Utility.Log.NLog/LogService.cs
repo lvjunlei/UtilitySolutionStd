@@ -29,6 +29,8 @@ namespace Utility.Logs
 
         #endregion
 
+        #region Debug
+
         /// <summary>
         /// 记录 Debug 日志
         /// </summary>
@@ -47,6 +49,10 @@ namespace Utility.Logs
         {
             Log.Debug(ex, msg);
         }
+
+        #endregion
+
+        #region Error
 
         /// <summary>
         /// 记录 Error 日志
@@ -76,6 +82,10 @@ namespace Utility.Logs
             Log.Error(ex, msg);
         }
 
+        #endregion
+
+        #region Fatal
+
         /// <summary>
         /// 记录 Fatal 日志
         /// </summary>
@@ -94,6 +104,10 @@ namespace Utility.Logs
         {
             Log.Fatal(ex, msg);
         }
+
+        #endregion
+
+        #region Info
 
         /// <summary>
         /// 记录 Info 日志
@@ -114,6 +128,10 @@ namespace Utility.Logs
             Log.Info(ex, msg);
         }
 
+        #endregion
+
+        #region Warn
+
         /// <summary>
         /// 记录 Warn 日志
         /// </summary>
@@ -133,6 +151,10 @@ namespace Utility.Logs
             Log.Warn(ex, msg);
         }
 
+        #endregion
+
+        #region WriteDb
+
         /// <summary>
         /// 把日志信息写入数据库
         /// </summary>
@@ -141,5 +163,7 @@ namespace Utility.Logs
         {
             throw new NotImplementedException();
         }
+
+        #endregion
     }
 }

@@ -12,34 +12,15 @@ namespace MqProducer
     {
         static void Main(string[] args)
         {
+            TestEventbus();
+            //StartProducer();
 
-            var config = new MqConfig
-            {
-                UserName = "admin",
-                Password = "admin",
-                HostIp = "localhost",
-                Port = 5672,
-                Exchange = "Eventbus",
-                ExchangeType = "direct",
-                VirtualHost = "/"
-            };
-            var manager = new MessageHandlerManager(config);
-
-            Console.WriteLine("请输入要发送的消息……");
-            var msg = Console.ReadLine();
-            while (msg != "exit")
-            {
-                var e = new TestEvent { Message = msg };
-                manager.PublishAsync(e);
-                Console.WriteLine($"{e.EventTime:yyyy-MM-dd HH:mm:ss.fff} 发送消息 | {e.Id} {e.Message}");
-                Console.WriteLine("请输入要发送的消息……");
-                msg = Console.ReadLine();
-            }
             Console.ReadLine();
         }
 
         static void StartProducer()
-        {//创建连接工厂
+        {
+            //创建连接工厂
             var factory = new ConnectionFactory() { HostName = "localhost" };
 
             //创建连接
@@ -72,6 +53,7 @@ namespace MqProducer
                         var bp = new BasicProperties();
                         bp.CorrelationId = Guid.NewGuid().ToString();
                         bp.ReplyTo = "hello";
+                        //bp.Expiration
 
                         //给交换机发送消息
                         chancel.BasicPublish(exchange: "FanoutDemo", routingKey: routingKey, basicProperties: bp, body: body);
@@ -82,6 +64,32 @@ namespace MqProducer
                 }
             }
 
+        }
+
+        static void TestEventbus()
+        {
+            var config = new MqConfig
+            {
+                UserName = "admin",
+                Password = "admin",
+                HostIp = "localhost",
+                Port = 5672,
+                Exchange = "Eventbus",
+                ExchangeType = "direct",
+                VirtualHost = "/"
+            };
+            var manager = new MessageHandlerManager(config);
+
+            Console.WriteLine("请输入要发送的消息……");
+            var msg = Console.ReadLine();
+            while (msg != "exit")
+            {
+                var e = new TestEvent { Message = msg };
+                manager.PublishAsync(e);
+                Console.WriteLine($"{e.EventTime:yyyy-MM-dd HH:mm:ss.fff} 发送消息 | {e.Id} {e.Message}");
+                Console.WriteLine("请输入要发送的消息……");
+                msg = Console.ReadLine();
+            }
         }
     }
 }
