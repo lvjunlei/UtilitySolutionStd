@@ -196,14 +196,14 @@
     "Mapster/3.3.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-UnDBonvLhibD3ckgjqHCAIn7iSClA+ts1yo5U/+wJYdy9vdjrvLXYdxZYz+Ko+kFBomEXUMX/2/74zp1ptulEg==",
+      "sha512": "sha512-5qRcEocz86pC3cU3FQSSmbsebdqSbWBsWEnYkxgMxUw8TGc+72bpW4nWLNFZtu6XsfmsiQUGNNGXRAiec7LJ1g==",
       "path": "mapster/3.3.2",
       "hashPath": "mapster.3.3.2.nupkg.sha512"
     },
     "Microsoft.CSharp/4.5.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-fcyI3xN2vZV2FTGmxxMjV2LmQykV4PknROKrXrBG4lrTFJqlJJx5d1bOwTTJ/Y9XzpWBHGYsTSBnA0q3bWgGjg==",
+      "sha512": "sha512-kaj6Wb4qoMuH3HySFJhxwQfe8R/sJsNJnANrvv8WdFPMoNbKY5htfNscv+LHCu5ipz+49m2e+WQXpLXr9XYemQ==",
       "path": "microsoft.csharp/4.5.0",
       "hashPath": "microsoft.csharp.4.5.0.nupkg.sha512"
     },
@@ -315,7 +315,7 @@
     "System.Reflection.TypeExtensions/4.5.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-oRC4IBj4y7gcY9UXxTcIvBLhRJuntL6CfPWazTmtY4dXoXpRS6pI2Y+tu07+p2bUn5abyd5wf5LvpnyrDZdTsQ==",
+      "sha512": "sha512-fO8GMEkgoKioJ7cglZbhcnBgkCWWn9poS3G2jevS+fuwW9xJXMx7/1kr7dkwOJfo0pWqxLFWVcxlOr+WeK5ipA==",
       "path": "system.reflection.typeextensions/4.5.1",
       "hashPath": "system.reflection.typeextensions.4.5.1.nupkg.sha512"
     },

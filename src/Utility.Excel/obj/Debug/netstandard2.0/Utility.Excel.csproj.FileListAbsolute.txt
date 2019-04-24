@@ -7,3 +7,12 @@ D:\1234\src\Utility.Excel\obj\Debug\netstandard2.0\Utility.Excel.AssemblyInfoInp
 D:\1234\src\Utility.Excel\obj\Debug\netstandard2.0\Utility.Excel.AssemblyInfo.cs
 D:\1234\src\Utility.Excel\obj\Debug\netstandard2.0\Utility.Excel.dll
 D:\1234\src\Utility.Excel\obj\Debug\netstandard2.0\Utility.Excel.pdb
+F:\Work\GitHub\UtilitySolutionStd\src\Utility.Excel\bin\Debug\netstandard2.0\Utility.Excel.deps.json
+F:\Work\GitHub\UtilitySolutionStd\src\Utility.Excel\bin\Debug\netstandard2.0\Utility.Excel.dll
+F:\Work\GitHub\UtilitySolutionStd\src\Utility.Excel\bin\Debug\netstandard2.0\Utility.Excel.pdb
+F:\Work\GitHub\UtilitySolutionStd\src\Utility.Excel\obj\Debug\netstandard2.0\Utility.Excel.csprojAssemblyReference.cache
+F:\Work\GitHub\UtilitySolutionStd\src\Utility.Excel\obj\Debug\netstandard2.0\Utility.Excel.csproj.CoreCompileInputs.cache
+F:\Work\GitHub\UtilitySolutionStd\src\Utility.Excel\obj\Debug\netstandard2.0\Utility.Excel.AssemblyInfoInputs.cache
+F:\Work\GitHub\UtilitySolutionStd\src\Utility.Excel\obj\Debug\netstandard2.0\Utility.Excel.AssemblyInfo.cs
+F:\Work\GitHub\UtilitySolutionStd\src\Utility.Excel\obj\Debug\netstandard2.0\Utility.Excel.dll
+F:\Work\GitHub\UtilitySolutionStd\src\Utility.Excel\obj\Debug\netstandard2.0\Utility.Excel.pdb
