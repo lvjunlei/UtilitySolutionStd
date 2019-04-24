@@ -1,0 +1,30 @@
+[2019-04-12 17:09:13] | Request starting HTTP/1.1 DEBUG http://localhost:56927/  0
+[2019-04-12 17:09:13] | Request starting HTTP/1.1 GET http://localhost:56927/swagger  
+[2019-04-12 17:09:15] | Request finished in 1080.6119ms 200 
+[2019-04-12 17:09:17] | Request finished in 3411.53ms 301 
+[2019-04-12 17:09:17] | Request starting HTTP/1.1 GET http://localhost:56927/swagger/index.html  
+[2019-04-12 17:09:18] | Request finished in 898.2066ms 200 text/html
+[2019-04-12 17:09:18] | Request starting HTTP/1.1 GET http://localhost:56927/Scripts/swagger.js  
+[2019-04-12 17:09:18] | Request starting HTTP/1.1 GET http://localhost:56927/swagger/swagger-ui.css  
+[2019-04-12 17:09:18] | Request starting HTTP/1.1 GET http://localhost:56927/swagger/swagger-ui-bundle.js  
+[2019-04-12 17:09:18] | Request finished in 57.9843ms 404 
+[2019-04-12 17:09:18] | Request starting HTTP/1.1 GET http://localhost:56927/swagger/swagger-ui-standalone-preset.js  
+[2019-04-12 17:09:18] | Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+[2019-04-12 17:09:18] | Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+[2019-04-12 17:09:18] | Request finished in 379.0982ms 200 application/javascript
+[2019-04-12 17:09:18] | Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+[2019-04-12 17:09:19] | Request finished in 521.8967ms 200 text/css
+[2019-04-12 17:09:19] | Request finished in 641.2164ms 200 application/javascript
+[2019-04-12 17:09:20] | Request starting HTTP/1.1 GET http://localhost:56927/swagger/v1/swagger.json  
+[2019-04-12 17:09:20] | Request starting HTTP/1.1 GET http://localhost:56927/swagger/favicon-32x32.png  
+[2019-04-12 17:09:20] | Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+[2019-04-12 17:09:20] | Request finished in 84.5734ms 200 image/png
+[2019-04-12 17:09:21] | Request finished in 691.9558ms 200 application/json;charset=utf-8
+[2019-04-12 17:09:35] | Request starting HTTP/1.1 POST http://localhost:56927/Files/Upload?canCover=false&isAutoRename=false multipart/form-data; boundary=----WebKitFormBoundarykRYTj6PCIJLbI9Vv 247731
+[2019-04-12 17:09:35] | Policy execution successful.
+[2019-04-12 17:09:35] | Route matched with {action = "Upload", controller = "Files"}. Executing action FileServer.Controllers.FilesController.Upload (FileServer)
+[2019-04-12 17:09:36] | Executing action method FileServer.Controllers.FilesController.Upload (FileServer) with arguments (Microsoft.AspNetCore.Http.Internal.FormFile, , False, False) - Validation state: Valid
+[2019-04-12 17:09:37] | Executed action method FileServer.Controllers.FilesController.Upload (FileServer), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 968.3222ms.
+[2019-04-12 17:09:37] | Executing ObjectResult, writing value of type 'FileServer.Models.FileUploadResult'.
+[2019-04-12 17:09:37] | Executed action FileServer.Controllers.FilesController.Upload (FileServer) in 2035.6974ms
+[2019-04-12 17:09:37] | Request finished in 2786.1013ms 200 application/json; charset=utf-8

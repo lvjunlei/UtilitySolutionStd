@@ -29,7 +29,7 @@ namespace Utility.Security
         /// <returns>已加密数据</returns>
         public string Encrypt(string data)
         {
-            return data.EncodeBase64String();
+            return data.EncryptBase64();
         }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace Utility.Security
         /// <returns>原始数据</returns>
         public string Decrypt(string data)
         {
-            return data.DecodeBase64String();
+            return data.DecryptBase64();
         }
     }
 }
