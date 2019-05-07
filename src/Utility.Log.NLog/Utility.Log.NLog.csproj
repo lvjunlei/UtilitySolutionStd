@@ -14,17 +14,13 @@
   <ItemGroup>
     <None Remove="Extensions\ExceptionExtensions.cs~RF8cf8a36.TMP" />
     <None Remove="LogService.cs~RF8d1eba6.TMP" />
+    <None Remove="NLog.config" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="C:\Users\lvjl\.nuget\packages\nlog.config\4.5.11\contentFiles\any\any\NLog.config" Link="NLog.config">
-      <Private>True</Private>
-      <NuGetPackageVersion>4.5.11</NuGetPackageVersion>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <NuGetItemType>None</NuGetItemType>
-      <TargetPath>NLog.config</TargetPath>
-      <NuGetPackageId>NLog.Config</NuGetPackageId>
-    </None>
+    <Content Include="NLog.config">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

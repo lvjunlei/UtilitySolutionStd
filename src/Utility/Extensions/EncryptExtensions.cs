@@ -25,7 +25,7 @@ namespace Utility.Extensions
     public static class EncryptExtensions
     {
         /// <summary>
-        /// 
+        /// AES默认加解密密钥
         /// </summary>
         private static byte[] Keys = { 0x41, 0x72, 0x65, 0x79, 0x6F, 0x75, 0x6D, 0x79, 0x53, 0x6E, 0x6F, 0x77, 0x6D, 0x61, 0x6E, 0x3F };
 

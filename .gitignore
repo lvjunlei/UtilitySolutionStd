@@ -222,3 +222,5 @@ src/Utility.RabbitMQ/obj/Debug/netstandard2.0/project.razor.json
 /.vs/UtilitySolutionStd/v16/Server/sqlite3/storage.ide-wal
 /.vs/UtilitySolutionStd/config/applicationhost.config
 /.vs/UtilitySolutionStd/v16/.suo
+/ConsoleApp1/bin/Debug/netcoreapp2.2
+/ConsoleApp1/obj

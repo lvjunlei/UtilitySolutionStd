@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Utility.Logs;
 
 namespace FileServer.Controllers
 {
@@ -76,10 +77,11 @@ namespace FileServer.Controllers
                 var visitUrl = savePath.Remove(0, FileServerConfig.FileSavePath.Length);
                 if (!string.IsNullOrEmpty(FileServerConfig.FileVisitUrl))
                 {
-                    visitUrl = Path.Combine(FileServerConfig.FileVisitUrl, visitUrl);
+                    visitUrl = FileServerConfig.FileVisitUrl + visitUrl;
                 }
                 result.VisitUrl = visitUrl;
-
+                LogHelper.Info($"visitUrl:{visitUrl}");
+                LogHelper.Info($"FileVisitUrl:{FileServerConfig.FileVisitUrl}");
                 return await Task.Run(() =>
                 {
                     using (var fs = new FileStream(savePath, FileMode.Create))
@@ -126,7 +128,7 @@ namespace FileServer.Controllers
 
             return Ok(new { count = files.Count, size, filePath });
         }
-        
+
         #endregion
 
         #region Download
