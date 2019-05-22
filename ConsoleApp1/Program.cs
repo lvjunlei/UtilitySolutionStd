@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using Utility.Extensions;
 
 namespace ConsoleApp1
@@ -10,8 +11,8 @@ namespace ConsoleApp1
             Console.WriteLine("Hello".ToPlural());
             Console.WriteLine("lvjunlei".ToPlural());
             Console.WriteLine("Happy".ToPlural());
-            Console.WriteLine("Areu".ToPlural());
-
+            Console.WriteLine("people".ToPlural());
+            Console.WriteLine(new Pluralizer().Pluralize("Aircraft"));
             Console.ReadLine();
         }
     }

@@ -28,6 +28,8 @@ namespace Utility.Locks
 
         #endregion 公共属性
 
+
+
         /// <summary>
         /// 初始化LockResult
         /// </summary>

@@ -17,6 +17,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
@@ -32,6 +33,17 @@ namespace Utility.EntityFramework
     /// <typeparam name="TKey">实体主键类型</typeparam>
     public class Repository<TEntity, TKey> : IRepository<TEntity, TKey> where TEntity : EntityBase<TKey>
     {
+        /// <summary>
+        /// 当前数据库连接字符串
+        /// </summary>
+        public DbConnection Connection
+        {
+            get
+            {
+                return _dbContext.Database.GetDbConnection();
+            }
+        }
+
         #region _reaDbContext
 
         /// <summary>

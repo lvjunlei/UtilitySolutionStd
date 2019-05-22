@@ -15,6 +15,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
@@ -29,6 +30,11 @@ namespace Utility.Data
     /// <typeparam name="TKey">数据实体主键</typeparam>
     public interface IRepository<TEntity, TKey> where TEntity : EntityBase<TKey>
     {
+        /// <summary>
+        /// 数据库连接对象
+        /// </summary>
+        DbConnection Connection { get; }
+
         /// <summary>
         /// 实体集合
         /// </summary>

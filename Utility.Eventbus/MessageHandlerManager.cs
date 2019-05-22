@@ -1,17 +1,19 @@
 ﻿#region MessageHandlerManager 文件信息
+
 /***********************************************************
-**文 件 名：MessageHandlerManager 
-**命名空间：Utility.Eventbus.RabbitMQ 
-**内     容： 
-**功     能： 
-**文件关系： 
+**文 件 名：MessageHandlerManager
+**命名空间：Utility.Eventbus.RabbitMQ
+**内     容：
+**功     能：
+**文件关系：
 **作     者：LvJunlei
-**创建日期：2019-03-29 21:54:57 
-**版 本 号：V1.0.0.0 
-**修改日志： 
-**版权说明： 
+**创建日期：2019-03-29 21:54:57
+**版 本 号：V1.0.0.0
+**修改日志：
+**版权说明：
 ************************************************************/
-#endregion
+
+#endregion MessageHandlerManager 文件信息
 
 using Newtonsoft.Json;
 using RabbitMQ.Client;
@@ -48,7 +50,8 @@ namespace Utility.Eventbus.RabbitMQ
         /// 连接工厂
         /// </summary>
         private readonly IConnectionFactory _connectionFactory;
-        #endregion
+
+        #endregion 私有属性
 
         #region 公共属性
 
@@ -57,7 +60,7 @@ namespace Utility.Eventbus.RabbitMQ
         /// </summary>
         public MqConfig Config { get; }
 
-        #endregion
+        #endregion 公共属性
 
         #region 构造函数
 
@@ -80,7 +83,7 @@ namespace Utility.Eventbus.RabbitMQ
             _connections = new ConcurrentDictionary<string, IConnection>();
         }
 
-        #endregion
+        #endregion 构造函数
 
         #region GetHandlers
 
@@ -137,7 +140,7 @@ namespace Utility.Eventbus.RabbitMQ
             return Task.Run(() => GetHandlers<TEvent>());
         }
 
-        #endregion
+        #endregion GetHandlers
 
         #region Register
 
@@ -231,7 +234,7 @@ namespace Utility.Eventbus.RabbitMQ
             }
         }
 
-        #endregion
+        #endregion Register
 
         #region Unregister
 
@@ -299,7 +302,7 @@ namespace Utility.Eventbus.RabbitMQ
             Unregister<TEvent>(handler.GetType());
         }
 
-        #endregion
+        #endregion Unregister
 
         #region Publish
 
@@ -328,13 +331,13 @@ namespace Utility.Eventbus.RabbitMQ
                     }
                 }
 
-                #endregion
+                #endregion 发送内存事件
 
                 #region 发送消息到 RabbitMQ 消息
 
                 await Send(@event);
 
-                #endregion
+                #endregion 发送消息到 RabbitMQ 消息
             });
         }
 
@@ -364,7 +367,7 @@ namespace Utility.Eventbus.RabbitMQ
             });
         }
 
-        #endregion
+        #endregion Publish
 
         #region IDisposable
 
@@ -382,6 +385,6 @@ namespace Utility.Eventbus.RabbitMQ
             _connections.Clear();
         }
 
-        #endregion
+        #endregion IDisposable
     }
 }
