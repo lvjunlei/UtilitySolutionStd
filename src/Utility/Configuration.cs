@@ -58,6 +58,12 @@ namespace Utility
         #region 数据库策略
 
         /// <summary>
+        /// 数据库类型
+        /// 默认为 SQLServer 数据库
+        /// </summary>
+        public static DatabaseType DatabaseType { get; set; } = DatabaseType.SQLServer;
+
+        /// <summary>
         /// 是否使用主-从（读-写）数据库模式
         /// 默认false，不使用
         /// </summary>

@@ -71,7 +71,7 @@ namespace Utility.Data.BulkExtensions
         public static int BulkInsert<TEntity, TKey>(this IRepository<TEntity, TKey> repository, IEnumerable<TEntity> entities, DbTransaction transaction = null)
             where TEntity : EntityBase<TKey>
         {
-            var sql = CreateInsertSql(typeof(TEntity));
+            var sql = SqlGenerateFactory.CreateInsertSql(typeof(TEntity));
             return repository.Connection.Execute(sql, entities, transaction);
         }
 
@@ -87,7 +87,7 @@ namespace Utility.Data.BulkExtensions
         public static Task<int> BulkInsertAsync<TEntity, TKey>(this IRepository<TEntity, TKey> repository, IEnumerable<TEntity> entities, DbTransaction transaction = null)
             where TEntity : EntityBase<TKey>
         {
-            var sql = CreateInsertSql(typeof(TEntity));
+            var sql = SqlGenerateFactory.CreateInsertSql(typeof(TEntity));
             return repository.Connection.ExecuteAsync(sql, entities, transaction);
         }
 
@@ -108,7 +108,7 @@ namespace Utility.Data.BulkExtensions
         public static int BulkUpdate<TEntity, TKey>(this IRepository<TEntity, TKey> repository, IEnumerable<TEntity> entities, DbTransaction transaction = null)
             where TEntity : EntityBase<TKey>
         {
-            var sql = CreateUpdateSql(typeof(TEntity));
+            var sql = SqlGenerateFactory.CreateUpdateSql(typeof(TEntity));
             return repository.Connection.Execute(sql, entities, transaction);
         }
 
@@ -125,7 +125,7 @@ namespace Utility.Data.BulkExtensions
         public static Task<int> BulkUpdateAsync<TEntity, TKey>(this IRepository<TEntity, TKey> repository, IEnumerable<TEntity> entities, DbTransaction transaction = null)
             where TEntity : EntityBase<TKey>
         {
-            var sql = CreateUpdateSql(typeof(TEntity));
+            var sql = SqlGenerateFactory.CreateUpdateSql(typeof(TEntity));
             return repository.Connection.ExecuteAsync(sql, entities, transaction);
         }
 
@@ -152,7 +152,7 @@ namespace Utility.Data.BulkExtensions
             {
                 throw new ArgumentNullException($"对象 {type} 没有Id属性");
             }
-            var sql = CreateDeleteSql(type);
+            var sql = SqlGenerateFactory.CreateDeleteSql(type);
 
             var conn = repository.Connection;
             var command = conn.CreateCommand();
@@ -197,7 +197,7 @@ namespace Utility.Data.BulkExtensions
                 {
                     throw new ArgumentNullException($"对象 {type} 没有Id属性");
                 }
-                var sql = CreateDeleteSql(type);
+                var sql = SqlGenerateFactory.CreateDeleteSql(type);
 
                 var conn = repository.Connection;
                 var command = conn.CreateCommand();
@@ -304,150 +304,6 @@ namespace Utility.Data.BulkExtensions
                 return count;
             });
         }
-
-        #endregion
-
-        #region Generate SQL 
-
-        /// <summary>
-        /// 生成 Insert SQL语句
-        /// </summary>
-        /// <param name="type">对象类型</param>
-        /// <returns></returns>
-        public static string CreateInsertSql(Type type)
-        {
-            var sb1 = new StringBuilder();
-            var sb2 = new StringBuilder();
-            var properties = type.GetProperties();
-            foreach (var property in properties)
-            {
-                sb1.Append($", \"{property.Name}\"");
-                sb2.Append($", :{property.Name}");
-            }
-
-            return $"INSERT INTO \"{type.Name.ToPlural()}\"({sb1.ToString().TrimStart(',')}) VALUES({sb2.ToString().TrimStart(',')})";
-        }
-
-        /// <summary>
-        /// 生成 Update SQL语句
-        /// </summary>
-        /// <param name="type">对象</param>
-        /// <returns></returns>
-        public static string CreateUpdateSql(Type type)
-        {
-            var properties = type.GetProperties();
-            if (!properties.Any(u => u.Name == "Id"))
-            {
-                throw new ArgumentNullException($"对象 {type} 没有Id属性");
-            }
-            var sb1 = new StringBuilder();
-            foreach (var property in properties)
-            {
-                sb1.Append($", \"{property.Name}\"=:{property.Name}");
-            }
-
-            return $"UPDATE \"{type.Name.ToPlural()}\" SET {sb1.ToString().TrimStart(',')} WHERE \"Id\"=:Id ";
-        }
-
-        /// <summary>
-        /// 生成 Delete SQL语句
-        /// </summary>
-        /// <param name="type">对象</param>
-        /// <returns></returns>
-        public static string CreateDeleteSql(Type type)
-        {
-            var properties = type.GetProperties();
-            if (!properties.Any(u => u.Name == "Id"))
-            {
-                throw new ArgumentNullException($"对象 {type.GetType()} 没有Id属性");
-            }
-            return $"DELETE \"{type.Name.ToPlural()}\" WHERE \"Id\"=:Id ";
-        }
-
-        #endregion
-
-        #region OracleDbType
-
-        /// <summary>
-        /// 获取 Oracle 数据类型
-        /// </summary>
-        /// <param name="t"></param>
-        /// <returns></returns>
-        //private static OracleDbType GetOracleDbType(Type t)
-        //{
-        //    switch (Type.GetTypeCode(t))
-        //    {
-        //        case TypeCode.DBNull:
-        //            return OracleDbType.NVarchar2;
-
-        //        case TypeCode.Boolean:
-        //            return OracleDbType.Boolean;
-
-        //        case TypeCode.Char:
-        //            return OracleDbType.Char;
-
-        //        case TypeCode.SByte:
-        //            return OracleDbType.Byte;
-
-        //        case TypeCode.Byte:
-        //            return OracleDbType.Byte;
-
-        //        case TypeCode.Int16:
-        //            return OracleDbType.Int16;
-
-        //        case TypeCode.UInt16:
-        //            return OracleDbType.Int16;
-
-        //        case TypeCode.Int32:
-        //            return OracleDbType.Int32;
-
-        //        case TypeCode.UInt32:
-        //            return OracleDbType.Int32;
-
-        //        case TypeCode.Int64:
-        //            return OracleDbType.Int64;
-
-        //        case TypeCode.UInt64:
-        //            return OracleDbType.Int64;
-
-        //        case TypeCode.Single:
-        //            return OracleDbType.Single;
-
-        //        case TypeCode.Double:
-        //            return OracleDbType.Double;
-
-        //        case TypeCode.Decimal:
-        //            return OracleDbType.Decimal;
-
-        //        case TypeCode.DateTime:
-        //            return OracleDbType.Date;
-
-        //        case TypeCode.String:
-        //            return OracleDbType.NVarchar2;
-
-        //        default:
-        //            {
-        //                if (t == typeof(Guid))
-        //                {
-        //                    return OracleDbType.Raw;
-        //                }
-        //                if (t == typeof(float))
-        //                {
-        //                    return OracleDbType.BinaryFloat;
-        //                }
-        //                if (t == typeof(DateTime?))
-        //                {
-        //                    return OracleDbType.Date;
-        //                }
-        //                if (t == typeof(int?))
-        //                {
-        //                    return OracleDbType.Int32;
-        //                }
-
-        //                return OracleDbType.NChar;
-        //            }
-        //    }
-        //}
 
         #endregion
     }
