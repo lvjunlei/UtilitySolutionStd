@@ -1,4 +1,3 @@
-F:\Work\GitHub\UtilitySolutionStd\src\FileServer\bin\Release\netcoreapp2.1\NLog.config
 F:\Work\GitHub\UtilitySolutionStd\src\FileServer\bin\Release\netcoreapp2.1\FileServer.deps.json
 F:\Work\GitHub\UtilitySolutionStd\src\FileServer\bin\Release\netcoreapp2.1\FileServer.runtimeconfig.json
 F:\Work\GitHub\UtilitySolutionStd\src\FileServer\bin\Release\netcoreapp2.1\FileServer.runtimeconfig.dev.json

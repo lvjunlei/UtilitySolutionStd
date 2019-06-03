@@ -15,7 +15,6 @@
 
 #endregion ApplicationBuilderExtensions 文件信息
 
-using Microsoft.AspNetCore.Builder;
 
 namespace Utility.EntityFramework.Extensions
 {

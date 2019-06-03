@@ -358,13 +358,32 @@ namespace Utility.Eventbus.RabbitMQ
                         var message = JsonConvert.SerializeObject(@event);
                         var body = Encoding.UTF8.GetBytes(message);
 
-                        channel.BasicPublish(Config.Exchange,
-                            @event.GetType().Name,
-                            null,
-                            body);
+                        try
+                        {
+                            channel.BasicAcks += Channel_BasicAcks;
+                            // 发送消息
+                            channel.BasicPublish(Config.Exchange,
+                                @event.GetType().Name,
+                                null,
+                                body);
+                        }
+                        catch (Exception ex)
+                        {
+                            throw ex;
+                        }
                     }
                 }
             });
+        }
+
+        /// <summary>
+        /// 消息发送确认
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Channel_BasicAcks(object sender, BasicAckEventArgs e)
+        {
+            // throw new NotImplementedException();
         }
 
         #endregion Publish

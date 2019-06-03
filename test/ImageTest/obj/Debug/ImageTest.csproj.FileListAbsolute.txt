@@ -1,0 +1,7 @@
+F:\Work\GitHub\UtilitySolutionStd\Test\ImageTest\bin\Debug\ImageTest.exe.config
+F:\Work\GitHub\UtilitySolutionStd\Test\ImageTest\bin\Debug\ImageTest.exe
+F:\Work\GitHub\UtilitySolutionStd\Test\ImageTest\bin\Debug\ImageTest.pdb
+F:\Work\GitHub\UtilitySolutionStd\Test\ImageTest\obj\Debug\ImageTest.csprojAssemblyReference.cache
+F:\Work\GitHub\UtilitySolutionStd\Test\ImageTest\obj\Debug\ImageTest.csproj.CoreCompileInputs.cache
+F:\Work\GitHub\UtilitySolutionStd\Test\ImageTest\obj\Debug\ImageTest.exe
+F:\Work\GitHub\UtilitySolutionStd\Test\ImageTest\obj\Debug\ImageTest.pdb

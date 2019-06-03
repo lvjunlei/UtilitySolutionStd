@@ -1,0 +1,27 @@
+[2019-05-28 11:08:25] | Request starting HTTP/1.1 GET http://localhost:56927/swagger  
+[2019-05-28 11:08:25] | Request starting HTTP/1.1 DEBUG http://localhost:56927/  0
+[2019-05-28 11:08:26] | Request finished in 952.1526ms 200 
+[2019-05-28 11:08:27] | Request finished in 2044.618ms 301 
+[2019-05-28 11:08:27] | Request starting HTTP/1.1 GET http://localhost:56927/swagger/index.html  
+[2019-05-28 11:08:28] | Request finished in 627.1084ms 200 text/html
+[2019-05-28 11:08:28] | Request starting HTTP/1.1 GET http://localhost:56927/Scripts/swagger.js  
+[2019-05-28 11:08:28] | Request finished in 55.4963ms 404 
+[2019-05-28 11:08:29] | Request starting HTTP/1.1 GET http://localhost:56927/swagger/v1/swagger.json  
+[2019-05-28 11:08:30] | Request finished in 650.4138ms 200 application/json;charset=utf-8
+[2019-05-28 11:10:55] | Request starting HTTP/1.1 GET http://localhost:56927/swagger/index.html  
+[2019-05-28 11:10:55] | Request finished in 34.7501ms 200 text/html
+[2019-05-28 11:10:55] | Request starting HTTP/1.1 GET http://localhost:56927/Scripts/swagger.js  
+[2019-05-28 11:10:55] | Request finished in 20.0375ms 404 
+[2019-05-28 11:10:56] | Request starting HTTP/1.1 GET http://localhost:56927/swagger/v1/swagger.json  
+[2019-05-28 11:10:56] | Request finished in 68.1338ms 200 application/json;charset=utf-8
+[2019-05-28 11:10:56] | Request starting HTTP/1.1 GET http://localhost:56927/swagger/favicon-32x32.png  
+[2019-05-28 11:10:56] | Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+[2019-05-28 11:10:56] | Request finished in 200.4736ms 200 image/png
+[2019-05-28 11:16:52] | Request starting HTTP/1.1 GET http://localhost:56927/swagger/index.html  
+[2019-05-28 11:16:52] | Request starting HTTP/1.1 DEBUG http://localhost:56927/  0
+[2019-05-28 11:16:53] | Request finished in 569.1741ms 200 
+[2019-05-28 11:16:54] | Request finished in 2135.9998ms 200 text/html
+[2019-05-28 11:16:54] | Request starting HTTP/1.1 GET http://localhost:56927/Scripts/swagger.js  
+[2019-05-28 11:16:55] | Request finished in 82.6072ms 404 
+[2019-05-28 11:16:55] | Request starting HTTP/1.1 GET http://localhost:56927/swagger/v1/swagger.json  
+[2019-05-28 11:16:56] | Request finished in 502.0856ms 200 application/json;charset=utf-8

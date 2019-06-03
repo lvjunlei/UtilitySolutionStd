@@ -1,0 +1,54 @@
+[2019-05-27 17:00:21] | Request starting HTTP/1.1 GET http://localhost:56927/swagger  
+[2019-05-27 17:00:21] | Request starting HTTP/1.1 DEBUG http://localhost:56927/  0
+[2019-05-27 17:00:21] | Request starting HTTP/1.1 GET http://localhost:56927/swagger/index.html  
+[2019-05-27 17:00:22] | Request finished in 1153.2677ms 200 
+[2019-05-27 17:00:24] | Request finished in 2842.1314ms 301 
+[2019-05-27 17:00:25] | Request finished in 4105.6552ms 200 text/html
+[2019-05-27 17:00:26] | Request starting HTTP/1.1 GET http://localhost:56927/swagger/index.html  
+[2019-05-27 17:00:26] | Request finished in 218.5148ms 200 text/html
+[2019-05-27 17:00:27] | Request starting HTTP/1.1 GET http://localhost:56927/swagger/swagger-ui.css  
+[2019-05-27 17:00:27] | Request starting HTTP/1.1 GET http://localhost:56927/Scripts/swagger.js  
+[2019-05-27 17:00:27] | Request starting HTTP/1.1 GET http://localhost:56927/swagger/swagger-ui-bundle.js  
+[2019-05-27 17:00:27] | Request starting HTTP/1.1 GET http://localhost:56927/swagger/swagger-ui-standalone-preset.js  
+[2019-05-27 17:00:27] | Request finished in 340.8851ms 404 
+[2019-05-27 17:00:28] | Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+[2019-05-27 17:00:28] | Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+[2019-05-27 17:00:28] | Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+[2019-05-27 17:00:28] | Request finished in 1660.1882ms 200 application/javascript
+[2019-05-27 17:00:28] | Request finished in 1769.8488ms 200 application/javascript
+[2019-05-27 17:00:28] | Request finished in 1885.8741ms 200 text/css
+[2019-05-27 17:00:31] | Request starting HTTP/1.1 GET http://localhost:56927/swagger/v1/swagger.json  
+[2019-05-27 17:00:31] | Request starting HTTP/1.1 GET http://localhost:56927/swagger/favicon-32x32.png  
+[2019-05-27 17:00:31] | Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+[2019-05-27 17:00:31] | Request finished in 247.4454ms 200 image/png
+[2019-05-27 17:00:32] | Request finished in 793.2361ms 200 application/json;charset=utf-8
+[2019-05-27 17:00:34] | Request starting HTTP/1.1 GET http://localhost:56927/Scripts/swagger.js  
+[2019-05-27 17:00:34] | Request finished in 13.0854ms 404 
+[2019-05-27 17:00:39] | Request starting HTTP/1.1 GET http://localhost:56927/swagger/v1/swagger.json  
+[2019-05-27 17:00:39] | Request finished in 16.1507ms 200 application/json;charset=utf-8
+[2019-05-27 17:02:38] | Request starting HTTP/1.1 GET http://localhost:56927/Config/GetConfig  
+[2019-05-27 17:02:38] | Route matched with {action = "GetConfig", controller = "Config"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetConfig() on controller FileServer.Controllers.ConfigController (FileServer).
+[2019-05-27 17:02:38] | Executing action method FileServer.Controllers.ConfigController.GetConfig (FileServer) - Validation state: Valid
+[2019-05-27 17:02:39] | 查询文件服务配置信息：ClientIP（::1）
+[2019-05-27 17:02:39] | Executed action method FileServer.Controllers.ConfigController.GetConfig (FileServer), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 1121.8248ms.
+[2019-05-27 17:02:39] | Executing ObjectResult, writing value of type 'FileServer.SaveConfig'.
+[2019-05-27 17:02:39] | Executed action FileServer.Controllers.ConfigController.GetConfig (FileServer) in 1273.3903ms
+[2019-05-27 17:02:39] | Request finished in 1497.271ms 200 application/json; charset=utf-8
+[2019-05-27 17:02:58] | Request starting HTTP/1.1 POST http://localhost:56927/Files/Upload?canCover=false&isAutoRename=false multipart/form-data; boundary=----WebKitFormBoundaryRGBUKzv6ITZj6Dus 339947
+[2019-05-27 17:02:58] | Policy execution successful.
+[2019-05-27 17:02:58] | Route matched with {action = "Upload", controller = "Files"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Upload(Microsoft.AspNetCore.Http.IFormFile, System.String, Boolean, Boolean) on controller FileServer.Controllers.FilesController (FileServer).
+[2019-05-27 17:02:58] | Executing action method FileServer.Controllers.FilesController.Upload (FileServer) - Validation state: Valid
+[2019-05-27 17:02:58] | visitUrl:File123.jpg
+[2019-05-27 17:02:58] | FileVisitUrl:File
+[2019-05-27 17:02:58] | Executed action method FileServer.Controllers.FilesController.Upload (FileServer), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 55.4357ms.
+[2019-05-27 17:02:58] | Executing ObjectResult, writing value of type 'FileServer.Models.FileUploadResult'.
+[2019-05-27 17:02:59] | Executed action FileServer.Controllers.FilesController.Upload (FileServer) in 721.9163ms
+[2019-05-27 17:02:59] | Request finished in 1092.6522ms 200 application/json; charset=utf-8
+[2019-05-27 17:03:37] | Request starting HTTP/1.1 DELETE http://localhost:56927/Files/Delete?fileName=123.jpg  
+[2019-05-27 17:03:37] | Policy execution successful.
+[2019-05-27 17:03:37] | Route matched with {action = "Delete", controller = "Files"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Delete(System.String, System.String) on controller FileServer.Controllers.FilesController (FileServer).
+[2019-05-27 17:03:37] | Executing action method FileServer.Controllers.FilesController.Delete (FileServer) - Validation state: Valid
+[2019-05-27 17:03:37] | Executed action method FileServer.Controllers.FilesController.Delete (FileServer), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 5.7347ms.
+[2019-05-27 17:03:37] | Executing ObjectResult, writing value of type 'System.String'.
+[2019-05-27 17:03:37] | Executed action FileServer.Controllers.FilesController.Delete (FileServer) in 109.5617ms
+[2019-05-27 17:03:37] | Request finished in 228.751ms 200 application/json; charset=utf-8

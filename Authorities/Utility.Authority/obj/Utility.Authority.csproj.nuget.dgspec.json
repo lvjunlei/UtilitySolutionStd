@@ -1,0 +1,128 @@
+{
+  "format": 1,
+  "restore": {
+    "F:\\Work\\GitHub\\UtilitySolutionStd\\Authorities\\Utility.Authority\\Utility.Authority.csproj": {}
+  },
+  "projects": {
+    "F:\\Work\\GitHub\\UtilitySolutionStd\\Authorities\\Utility.Authority\\Utility.Authority.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "F:\\Work\\GitHub\\UtilitySolutionStd\\Authorities\\Utility.Authority\\Utility.Authority.csproj",
+        "projectName": "Utility.Authority",
+        "projectPath": "F:\\Work\\GitHub\\UtilitySolutionStd\\Authorities\\Utility.Authority\\Utility.Authority.csproj",
+        "packagesPath": "C:\\Users\\lvjl\\.nuget\\packages\\",
+        "outputPath": "F:\\Work\\GitHub\\UtilitySolutionStd\\Authorities\\Utility.Authority\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\lvjl\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {
+              "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\Utility\\Utility.csproj": {
+                "projectPath": "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\Utility\\Utility.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\Utility\\Utility.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\Utility\\Utility.csproj",
+        "projectName": "Utility",
+        "projectPath": "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\Utility\\Utility.csproj",
+        "packagesPath": "C:\\Users\\lvjl\\.nuget\\packages\\",
+        "outputPath": "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\Utility\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\lvjl\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "Microsoft.CSharp": {
+              "target": "Package",
+              "version": "[4.5.0, )"
+            },
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            },
+            "System.Reflection.Emit": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            },
+            "System.Reflection.Emit.Lightweight": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}

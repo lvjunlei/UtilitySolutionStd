@@ -128,7 +128,7 @@ namespace Utility.Data.BulkExtensions
                 throw new ArgumentNullException($"对象 {type} 没有Id属性");
             }
             var sb1 = new StringBuilder();
-            foreach (var property in properties)
+            foreach (var property in properties.Where(u => u.Name != "Id"))
             {
                 sb1.Append($", {property.Name}=@{property.Name}");
             }
@@ -149,7 +149,7 @@ namespace Utility.Data.BulkExtensions
                 throw new ArgumentNullException($"对象 {type} 没有Id属性");
             }
             var sb1 = new StringBuilder();
-            foreach (var property in properties)
+            foreach (var property in properties.Where(u => u.Name != "Id"))
             {
                 sb1.Append($", \"{property.Name}\"=:{property.Name}");
             }
@@ -170,7 +170,7 @@ namespace Utility.Data.BulkExtensions
                 throw new ArgumentNullException($"对象 {type} 没有Id属性");
             }
             var sb1 = new StringBuilder();
-            foreach (var property in properties)
+            foreach (var property in properties.Where(u => u.Name != "Id"))
             {
                 sb1.Append($", {property.Name}='${property.Name}'");
             }

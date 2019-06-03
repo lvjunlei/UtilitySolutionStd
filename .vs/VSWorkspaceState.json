@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\Utility",
+    "\\src\\Utility\\Data",
+    "\\src\\Utility\\Data\\BulkExtensions"
+  ],
+  "SelectedNode": "\\src\\Utility\\Data\\BulkExtensions\\SqlGenerateFactory.cs",
+  "PreviewInSolutionExplorer": false
+}

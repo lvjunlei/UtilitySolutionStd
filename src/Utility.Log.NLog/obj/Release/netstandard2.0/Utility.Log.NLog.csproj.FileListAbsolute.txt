@@ -1,4 +1,3 @@
-F:\Work\GitHub\UtilitySolutionStd\src\Utility.Log.NLog\bin\Release\netstandard2.0\NLog.config
 F:\Work\GitHub\UtilitySolutionStd\src\Utility.Log.NLog\bin\Release\netstandard2.0\Utility.Logs.deps.json
 F:\Work\GitHub\UtilitySolutionStd\src\Utility.Log.NLog\bin\Release\netstandard2.0\Utility.Logs.dll
 F:\Work\GitHub\UtilitySolutionStd\src\Utility.Log.NLog\bin\Release\netstandard2.0\Utility.Logs.pdb
