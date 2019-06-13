@@ -65,6 +65,178 @@ namespace Utility.Extensions
             return str ?? string.Empty;
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public static bool IsIn(this string str, params string[] data)
+        {
+            return data.Any(u => u == str);
+        }
+
+        /// <summary>
+        /// 移除后缀
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="postFixes"></param>
+        /// <returns></returns>
+        public static string TrimPostFix(this string str, params string[] postFixes)
+        {
+            if (str.IsNullOrEmpty() || postFixes.IsNullOrEmpty())
+            {
+                return str;
+            }
+
+            foreach (var postFix in postFixes)
+            {
+                if (str.EndsWith(postFix))
+                {
+                    return str.Left(str.Length - postFix.Length);
+                }
+            }
+
+            return str;
+        }
+
+        /// <summary>
+        /// 移除前缀
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="preFixes"></param>
+        /// <returns></returns>
+        public static string TrimPreFix(this string str, params string[] preFixes)
+        {
+            if (str.IsNullOrEmpty() || preFixes.IsNullOrEmpty())
+            {
+                return str;
+            }
+
+            foreach (var preFix in preFixes)
+            {
+                if (str.StartsWith(preFix))
+                {
+                    return str.Right(str.Length - preFix.Length);
+                }
+            }
+
+            return str;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="len"></param>
+        /// <returns></returns>
+        public static string Left(this string str, int len)
+        {
+            if (str == null)
+            {
+                throw new ArgumentNullException("str");
+            }
+
+            if (str.Length < len)
+            {
+                throw new ArgumentException("len argument can not be bigger than given string's length!");
+            }
+
+            return str.Substring(0, len);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="len"></param>
+        /// <returns></returns>
+        public static string Right(this string str, int len)
+        {
+            if (str == null)
+            {
+                throw new ArgumentNullException(nameof(str));
+            }
+
+            if (str.Length < len)
+            {
+                throw new ArgumentException("len argument can not be bigger than given string's length!");
+            }
+
+            return str.Substring(str.Length - len, len);
+        }
+
+        /// <summary>
+        /// 首字母转换为 CamelCase
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static string ToCamelCaseFirstWord(this string str)
+        {
+            if (str.IsNullOrEmpty())
+            {
+                return str;
+            }
+            var res = Regex.Split(str, @"(?=\p{Lu}\p{Ll})|(?<=\p{Ll})(?=\p{Lu})");
+
+            if (res.Length < 1)
+            {
+                return str;
+            }
+            else
+            {
+                return res[0];
+            }
+        }
+
+        /// <summary>
+        /// 首字母转换为 PascalCaseFirstWord
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static string ToPascalCaseFirstWord(this string str)
+        {
+            if (str.IsNullOrEmpty())
+            {
+                return str;
+            }
+
+
+            var res = Regex.Split(str, @"(?=\p{Lu}\p{Ll})|(?<=\p{Ll})(?=\p{Lu})");
+
+            if (res.Length < 2)
+            {
+                return str;
+            }
+            else
+            {
+                return res[1];
+            }
+        }
+
+        /// <summary>
+        /// 字符串首字母转换为大写或者小写
+        /// </summary>
+        /// <param name="str">字符串</param>
+        /// <returns></returns>
+        public static string ToPascalOrCamelCaseFirstWord(this string str)
+        {
+            if (str.IsNullOrEmpty())
+            {
+                return str;
+            }
+
+            if (str[0] >= 65 && str[0] <= 90)
+            {
+                return ToPascalCaseFirstWord(str);
+            }
+            else
+            {
+                return ToCamelCaseFirstWord(str);
+            }
+        }
+
         #endregion
 
         #region Format

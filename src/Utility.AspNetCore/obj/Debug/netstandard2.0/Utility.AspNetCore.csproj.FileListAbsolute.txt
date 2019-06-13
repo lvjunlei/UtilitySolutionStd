@@ -10,9 +10,7 @@ F:\Work\GitHub\UtilitySolutionStd\src\Utility.AspNetCore\bin\Debug\netstandard2.
 F:\Work\GitHub\UtilitySolutionStd\src\Utility.AspNetCore\bin\Debug\netstandard2.0\Utility.pdb
 F:\Work\GitHub\UtilitySolutionStd\src\Utility.AspNetCore\obj\Debug\netstandard2.0\Utility.AspNetCore.csprojAssemblyReference.cache
 F:\Work\GitHub\UtilitySolutionStd\src\Utility.AspNetCore\obj\Debug\netstandard2.0\Utility.AspNetCore.csproj.CopyComplete
-F:\Work\GitHub\UtilitySolutionStd\src\Utility.AspNetCore\bin\Debug\netstandard2.0\Microsoft.Extensions.Options.dll
 F:\Work\GitHub\UtilitySolutionStd\src\Utility.AspNetCore\bin\Debug\netstandard2.0\System.IdentityModel.Tokens.Jwt.dll
-F:\Work\GitHub\UtilitySolutionStd\src\Utility.AspNetCore\bin\Debug\netstandard2.0\Microsoft.Extensions.Options.xml
 F:\Work\GitHub\UtilitySolutionStd\src\Utility.AspNetCore\bin\Debug\netstandard2.0\System.IdentityModel.Tokens.Jwt.xml
-F:\Work\GitHub\UtilitySolutionStd\src\Utility.AspNetCore\bin\Debug\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
-F:\Work\GitHub\UtilitySolutionStd\src\Utility.AspNetCore\bin\Debug\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.xml
+F:\Work\GitHub\UtilitySolutionStd\src\Utility.AspNetCore\bin\Debug\netstandard2.0\Microsoft.AspNetCore.Mvc.Core.dll
+F:\Work\GitHub\UtilitySolutionStd\src\Utility.AspNetCore\bin\Debug\netstandard2.0\Microsoft.AspNetCore.Mvc.Core.xml

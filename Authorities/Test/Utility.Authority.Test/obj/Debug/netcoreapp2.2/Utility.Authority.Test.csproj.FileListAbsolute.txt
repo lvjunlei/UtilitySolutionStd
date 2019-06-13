@@ -21,3 +21,6 @@ F:\Work\GitHub\UtilitySolutionStd\Authorities\Test\Utility.Authority.Test\obj\De
 F:\Work\GitHub\UtilitySolutionStd\Authorities\Test\Utility.Authority.Test\obj\Debug\netcoreapp2.2\Utility.Authority.Test.pdb
 F:\Work\GitHub\UtilitySolutionStd\Authorities\Test\Utility.Authority.Test\bin\Debug\netcoreapp2.2\Utility.Authority.Infrastructure.dll
 F:\Work\GitHub\UtilitySolutionStd\Authorities\Test\Utility.Authority.Test\bin\Debug\netcoreapp2.2\Utility.Authority.Infrastructure.pdb
+F:\Work\GitHub\UtilitySolutionStd\Authorities\Test\Utility.Authority.Test\bin\Debug\netcoreapp2.2\Utility.Authority.Test.xml
+F:\Work\GitHub\UtilitySolutionStd\Authorities\Test\Utility.Authority.Test\bin\Debug\netcoreapp2.2\Utility.AspNetCore.dll
+F:\Work\GitHub\UtilitySolutionStd\Authorities\Test\Utility.Authority.Test\bin\Debug\netcoreapp2.2\Utility.AspNetCore.pdb

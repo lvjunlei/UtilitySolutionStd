@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Utility.Authority.Test</name>
+    </assembly>
+    <members>
+        <member name="T:Utility.Authority.Test.AppServices.TestAppService">
+            <summary>
+            TestAppService
+            动态 WebAPI 接口测试
+            </summary>
+        </member>
+        <member name="M:Utility.Authority.Test.AppServices.TestAppService.GetName">
+            <summary>
+            动态 API 接口
+            获取NAME
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Utility.Authority.Test.AppServices.ITestAppService">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Utility.Authority.Test.AppServices.ITestAppService.GetName">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Utility.Authority.Test.Controllers.ValuesController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Utility.Authority.Test.Controllers.ValuesController.Get">
+            <summary>
+            获取数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Utility.Authority.Test.Controllers.ValuesController.Get(System.Int32)">
+            <summary>
+            根据ID获取数据
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Utility.Authority.Test.Controllers.ValuesController.Post(System.String)">
+            <summary>
+            POST
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Utility.Authority.Test.Controllers.ValuesController.Put(System.Int32,System.String)">
+            <summary>
+            PUT
+            </summary>
+            <param name="id"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Utility.Authority.Test.Controllers.ValuesController.Delete(System.Int32)">
+            <summary>
+            DELETE
+            </summary>
+            <param name="id"></param>
+        </member>
+    </members>
+</doc>

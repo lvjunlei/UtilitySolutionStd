@@ -1,0 +1,6 @@
+F:\Work\GitHub\UtilitySolutionStd\src\Utility.Wpf\obj\Debug\Utility.Wpf.csprojAssemblyReference.cache
+F:\Work\GitHub\UtilitySolutionStd\src\Utility.Wpf\obj\Debug\GeneratedInternalTypeHelper.g.cs
+F:\Work\GitHub\UtilitySolutionStd\src\Utility.Wpf\obj\Debug\Utility.Wpf_MarkupCompile.cache
+F:\Work\GitHub\UtilitySolutionStd\src\Utility.Wpf\obj\Debug\Utility.Wpf_MarkupCompile.lref
+F:\Work\GitHub\UtilitySolutionStd\src\Utility.Wpf\obj\Debug\Utility.Wpf.dll
+F:\Work\GitHub\UtilitySolutionStd\src\Utility.Wpf\obj\Debug\Utility.Wpf.pdb
