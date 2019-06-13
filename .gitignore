@@ -1,5 +1,6 @@
 .vs/
 *.ide-shm
+packages/
 src/Utility/bin/
 src/Utility/obj/
 src/FileServer/bin/
