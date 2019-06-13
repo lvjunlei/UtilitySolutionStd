@@ -1,0 +1,97 @@
+{
+  "format": 1,
+  "restore": {
+    "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\Authorities\\Test\\Utility.Authority.Test\\Utility.Authority.Test.csproj": {}
+  },
+  "projects": {
+    "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\Authorities\\Test\\Utility.Authority.Test\\Utility.Authority.Test.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\Authorities\\Test\\Utility.Authority.Test\\Utility.Authority.Test.csproj",
+        "projectName": "Utility.Authority.Test",
+        "projectPath": "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\Authorities\\Test\\Utility.Authority.Test\\Utility.Authority.Test.csproj",
+        "packagesPath": "C:\\Users\\lvjl\\.nuget\\packages\\",
+        "outputPath": "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\Authorities\\Test\\Utility.Authority.Test\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\lvjl\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {
+              "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\src\\Utility.AspNetCore\\Utility.AspNetCore.csproj": {
+                "projectPath": "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\src\\Utility.AspNetCore\\Utility.AspNetCore.csproj"
+              },
+              "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\src\\Utility.Data\\Utility.EntityFramework.csproj": {
+                "projectPath": "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\src\\Utility.Data\\Utility.EntityFramework.csproj"
+              },
+              "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\src\\Utility\\Utility.csproj": {
+                "projectPath": "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\src\\Utility\\Utility.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.AspNetCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "Microsoft.AspNetCore.Razor.Design": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "MySql.Data.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.16, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[4.0.1, )"
+            },
+            "Swashbuckle.AspNetCore.Filters": {
+              "target": "Package",
+              "version": "[4.5.5, )"
+            },
+            "Swashbuckle.AspNetCore.Swagger": {
+              "target": "Package",
+              "version": "[4.0.1, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}
