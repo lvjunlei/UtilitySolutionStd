@@ -19,9 +19,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\Utility.AspNetCore\Utility.AspNetCore.csproj" />
-    <ProjectReference Include="..\..\..\src\Utility.Data\Utility.EntityFramework.csproj" />
-    <ProjectReference Include="..\..\..\src\Utility\Utility.csproj" />
+    <ProjectReference Include="..\..\..\Utility.AspNetCore\Utility.AspNetCore.csproj" />
+    <ProjectReference Include="..\..\..\Utility.Data\Utility.EntityFramework.csproj" />
+    <ProjectReference Include="..\..\..\Utility\Utility.csproj" />
+    <ProjectReference Include="..\..\Utility.Authority.Infrastructure\Utility.Authority.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Work\\GitHub\\UtilitySolutionStd\\Authorities\\Utility.Authority.Infrastructure\\Utility.Authority.Infrastructure.csproj": {}
+    "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\Authorities\\Utility.Authority.Infrastructure\\Utility.Authority.Infrastructure.csproj": {}
   },
   "projects": {
-    "F:\\Work\\GitHub\\UtilitySolutionStd\\Authorities\\Utility.Authority.Infrastructure\\Utility.Authority.Infrastructure.csproj": {
+    "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\Authorities\\Utility.Authority.Infrastructure\\Utility.Authority.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Work\\GitHub\\UtilitySolutionStd\\Authorities\\Utility.Authority.Infrastructure\\Utility.Authority.Infrastructure.csproj",
+        "projectUniqueName": "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\Authorities\\Utility.Authority.Infrastructure\\Utility.Authority.Infrastructure.csproj",
         "projectName": "Utility.Authority.Infrastructure",
-        "projectPath": "F:\\Work\\GitHub\\UtilitySolutionStd\\Authorities\\Utility.Authority.Infrastructure\\Utility.Authority.Infrastructure.csproj",
+        "projectPath": "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\Authorities\\Utility.Authority.Infrastructure\\Utility.Authority.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\lvjl\\.nuget\\packages\\",
-        "outputPath": "F:\\Work\\GitHub\\UtilitySolutionStd\\Authorities\\Utility.Authority.Infrastructure\\obj\\",
+        "outputPath": "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\Authorities\\Utility.Authority.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -30,8 +30,8 @@
         "frameworks": {
           "netstandard2.0": {
             "projectReferences": {
-              "F:\\Work\\GitHub\\UtilitySolutionStd\\Authorities\\Utility.Authority\\Utility.Authority.csproj": {
-                "projectPath": "F:\\Work\\GitHub\\UtilitySolutionStd\\Authorities\\Utility.Authority\\Utility.Authority.csproj"
+              "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\Authorities\\Utility.Authority\\Utility.Authority.csproj": {
+                "projectPath": "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\Authorities\\Utility.Authority\\Utility.Authority.csproj"
               },
               "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\Utility.Data\\Utility.EntityFramework.csproj": {
                 "projectPath": "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\Utility.Data\\Utility.EntityFramework.csproj"
@@ -74,14 +74,14 @@
         }
       }
     },
-    "F:\\Work\\GitHub\\UtilitySolutionStd\\Authorities\\Utility.Authority\\Utility.Authority.csproj": {
+    "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\Authorities\\Utility.Authority\\Utility.Authority.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Work\\GitHub\\UtilitySolutionStd\\Authorities\\Utility.Authority\\Utility.Authority.csproj",
+        "projectUniqueName": "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\Authorities\\Utility.Authority\\Utility.Authority.csproj",
         "projectName": "Utility.Authority",
-        "projectPath": "F:\\Work\\GitHub\\UtilitySolutionStd\\Authorities\\Utility.Authority\\Utility.Authority.csproj",
+        "projectPath": "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\Authorities\\Utility.Authority\\Utility.Authority.csproj",
         "packagesPath": "C:\\Users\\lvjl\\.nuget\\packages\\",
-        "outputPath": "F:\\Work\\GitHub\\UtilitySolutionStd\\Authorities\\Utility.Authority\\obj\\",
+        "outputPath": "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\Authorities\\Utility.Authority\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

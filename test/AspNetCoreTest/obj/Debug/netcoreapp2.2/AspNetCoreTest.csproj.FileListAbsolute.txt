@@ -17,3 +17,4 @@ F:\Work\GitHub\UtilitySolutionStd\Test\AspNetCoreTest\obj\Debug\netcoreapp2.2\As
 F:\Work\GitHub\UtilitySolutionStd\Test\AspNetCoreTest\bin\Debug\netcoreapp2.2\AspNetCoreTest.pdb
 F:\Work\GitHub\UtilitySolutionStd\Test\AspNetCoreTest\obj\Debug\netcoreapp2.2\AspNetCoreTest.dll
 F:\Work\GitHub\UtilitySolutionStd\Test\AspNetCoreTest\obj\Debug\netcoreapp2.2\AspNetCoreTest.pdb
+F:\Work\GitHub\UtilitySolutionStd\Test\AspNetCoreTest\bin\Debug\netcoreapp2.2\AspNetCoreTest.xml

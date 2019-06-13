@@ -3443,8 +3443,8 @@
     },
     "Utility/1.0.0": {
       "type": "project",
-      "path": "../../src/Utility/Utility.csproj",
-      "msbuildProject": "../../src/Utility/Utility.csproj"
+      "path": "../../Utility/Utility.csproj",
+      "msbuildProject": "../../Utility/Utility.csproj"
     },
     "Utility.Authority/1.0.0": {
       "type": "project",
@@ -3453,8 +3453,8 @@
     },
     "Utility.EntityFramework/1.0.0": {
       "type": "project",
-      "path": "../../src/Utility.Data/Utility.EntityFramework.csproj",
-      "msbuildProject": "../../src/Utility.Data/Utility.EntityFramework.csproj"
+      "path": "../../Utility.Data/Utility.EntityFramework.csproj",
+      "msbuildProject": "../../Utility.Data/Utility.EntityFramework.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -3474,11 +3474,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Work\\GitHub\\UtilitySolutionStd\\Authorities\\Utility.Authority.Infrastructure\\Utility.Authority.Infrastructure.csproj",
+      "projectUniqueName": "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\Authorities\\Utility.Authority.Infrastructure\\Utility.Authority.Infrastructure.csproj",
       "projectName": "Utility.Authority.Infrastructure",
-      "projectPath": "F:\\Work\\GitHub\\UtilitySolutionStd\\Authorities\\Utility.Authority.Infrastructure\\Utility.Authority.Infrastructure.csproj",
+      "projectPath": "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\Authorities\\Utility.Authority.Infrastructure\\Utility.Authority.Infrastructure.csproj",
       "packagesPath": "C:\\Users\\lvjl\\.nuget\\packages\\",
-      "outputPath": "F:\\Work\\GitHub\\UtilitySolutionStd\\Authorities\\Utility.Authority.Infrastructure\\obj\\",
+      "outputPath": "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\Authorities\\Utility.Authority.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -3497,8 +3497,8 @@
       "frameworks": {
         "netstandard2.0": {
           "projectReferences": {
-            "F:\\Work\\GitHub\\UtilitySolutionStd\\Authorities\\Utility.Authority\\Utility.Authority.csproj": {
-              "projectPath": "F:\\Work\\GitHub\\UtilitySolutionStd\\Authorities\\Utility.Authority\\Utility.Authority.csproj"
+            "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\Authorities\\Utility.Authority\\Utility.Authority.csproj": {
+              "projectPath": "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\Authorities\\Utility.Authority\\Utility.Authority.csproj"
             },
             "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\Utility.Data\\Utility.EntityFramework.csproj": {
               "projectPath": "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\Utility.Data\\Utility.EntityFramework.csproj"

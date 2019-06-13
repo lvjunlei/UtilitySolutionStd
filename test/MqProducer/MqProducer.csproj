@@ -6,8 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\MqCommon\MqCommon.csproj" />
     <ProjectReference Include="..\..\src\Utility\Utility.csproj" />
+    <ProjectReference Include="..\MqCommon\MqCommon.csproj" />
   </ItemGroup>
 
   <ItemGroup>

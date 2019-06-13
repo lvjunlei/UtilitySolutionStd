@@ -1464,8 +1464,8 @@
     },
     "MqCommon/1.0.0": {
       "type": "project",
-      "path": "../../MqCommon/MqCommon.csproj",
-      "msbuildProject": "../../MqCommon/MqCommon.csproj"
+      "path": "../MqCommon/MqCommon.csproj",
+      "msbuildProject": "../MqCommon/MqCommon.csproj"
     },
     "Utility/1.0.0": {
       "type": "project",
@@ -1510,11 +1510,11 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "F:\\Work\\GitHub\\UtilitySolutionStd\\MqCommon\\MqCommon.csproj": {
-              "projectPath": "F:\\Work\\GitHub\\UtilitySolutionStd\\MqCommon\\MqCommon.csproj"
-            },
             "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\Utility\\Utility.csproj": {
               "projectPath": "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\Utility\\Utility.csproj"
+            },
+            "F:\\Work\\GitHub\\UtilitySolutionStd\\test\\MqCommon\\MqCommon.csproj": {
+              "projectPath": "F:\\Work\\GitHub\\UtilitySolutionStd\\test\\MqCommon\\MqCommon.csproj"
             }
           }
         }

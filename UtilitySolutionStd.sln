@@ -43,6 +43,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MqCommon", "test\MqCommon\M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utility.Authority.Test", "src\Authorities\Test\Utility.Authority.Test\Utility.Authority.Test.csproj", "{160848D6-2EDB-40C3-97C3-9B2669AA69DE}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utility.Authority", "src\Authorities\Utility.Authority\Utility.Authority.csproj", "{FAF8925A-5563-4534-BEDF-BB9D1D57B723}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utility.Authority.Infrastructure", "src\Authorities\Utility.Authority.Infrastructure\Utility.Authority.Infrastructure.csproj", "{532E9B89-DCBD-4ABF-9099-010C3088AF21}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -117,6 +121,14 @@ Global
 		{160848D6-2EDB-40C3-97C3-9B2669AA69DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{160848D6-2EDB-40C3-97C3-9B2669AA69DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{160848D6-2EDB-40C3-97C3-9B2669AA69DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAF8925A-5563-4534-BEDF-BB9D1D57B723}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAF8925A-5563-4534-BEDF-BB9D1D57B723}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAF8925A-5563-4534-BEDF-BB9D1D57B723}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAF8925A-5563-4534-BEDF-BB9D1D57B723}.Release|Any CPU.Build.0 = Release|Any CPU
+		{532E9B89-DCBD-4ABF-9099-010C3088AF21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{532E9B89-DCBD-4ABF-9099-010C3088AF21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{532E9B89-DCBD-4ABF-9099-010C3088AF21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{532E9B89-DCBD-4ABF-9099-010C3088AF21}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -139,9 +151,11 @@ Global
 		{9D47D4AB-2483-45CA-8C0A-264674D1E089} = {DA6E240C-EC63-4A99-AD85-BB023FCF855B}
 		{F929D2A9-0B37-4B99-BE77-07F39B7D729D} = {1957BBF9-77D3-47FB-9ECF-7F1D9BC5705A}
 		{160848D6-2EDB-40C3-97C3-9B2669AA69DE} = {1957BBF9-77D3-47FB-9ECF-7F1D9BC5705A}
+		{FAF8925A-5563-4534-BEDF-BB9D1D57B723} = {DA6E240C-EC63-4A99-AD85-BB023FCF855B}
+		{532E9B89-DCBD-4ABF-9099-010C3088AF21} = {DA6E240C-EC63-4A99-AD85-BB023FCF855B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {8B36720B-5E23-49BB-9B97-6D6509E75807}
 		VisualSVNWorkingCopyRoot = .
+		SolutionGuid = {8B36720B-5E23-49BB-9B97-6D6509E75807}
 	EndGlobalSection
 EndGlobal

@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AspNetCoreTest</name>
+    </assembly>
+    <members>
+        <member name="T:AspNetCoreTest.Const">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:AspNetCoreTest.Const.SecurityKey">
+            <summary>
+            这里为了演示，写死一个密钥。实际生产环境可以从配置文件读取,这个是用网上工具随便生成的一个密钥
+            </summary>
+        </member>
+        <member name="M:AspNetCoreTest.Controllers.AuthController.Login(AspNetCoreTest.Models.User)">
+            <summary>
+            
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AspNetCoreTest.Controllers.ValuesController.Get">
+            <summary>
+             GET api/values
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AspNetCoreTest.Controllers.ValuesController.Get(System.Int32)">
+            <summary>
+            GET api/values/5
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AspNetCoreTest.Controllers.ValuesController.Post(System.String)">
+            <summary>
+            POST api/values
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:AspNetCoreTest.Controllers.ValuesController.Put(System.Int32,System.String)">
+            <summary>
+            PUT api/values/5
+            </summary>
+            <param name="id"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:AspNetCoreTest.Controllers.ValuesController.Delete(System.Int32)">
+            <summary>
+            DELETE api/values/5
+            </summary>
+            <param name="id"></param>
+        </member>
+    </members>
+</doc>

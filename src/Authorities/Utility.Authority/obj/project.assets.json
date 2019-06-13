@@ -968,8 +968,8 @@
     },
     "Utility/1.0.0": {
       "type": "project",
-      "path": "../../src/Utility/Utility.csproj",
-      "msbuildProject": "../../src/Utility/Utility.csproj"
+      "path": "../../Utility/Utility.csproj",
+      "msbuildProject": "../../Utility/Utility.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -985,11 +985,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Work\\GitHub\\UtilitySolutionStd\\Authorities\\Utility.Authority\\Utility.Authority.csproj",
+      "projectUniqueName": "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\Authorities\\Utility.Authority\\Utility.Authority.csproj",
       "projectName": "Utility.Authority",
-      "projectPath": "F:\\Work\\GitHub\\UtilitySolutionStd\\Authorities\\Utility.Authority\\Utility.Authority.csproj",
+      "projectPath": "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\Authorities\\Utility.Authority\\Utility.Authority.csproj",
       "packagesPath": "C:\\Users\\lvjl\\.nuget\\packages\\",
-      "outputPath": "F:\\Work\\GitHub\\UtilitySolutionStd\\Authorities\\Utility.Authority\\obj\\",
+      "outputPath": "F:\\Work\\GitHub\\UtilitySolutionStd\\src\\Authorities\\Utility.Authority\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

@@ -33,7 +33,6 @@
           "Swashbuckle.AspNetCore.Swagger": "4.0.1",
           "Utility": "1.0.0",
           "Utility.AspNetCore": "1.0.0",
-          "Utility.Authority": "1.0.0",
           "Utility.Authority.Infrastructure": "1.0.0",
           "Utility.EntityFramework": "1.0.0"
         },
