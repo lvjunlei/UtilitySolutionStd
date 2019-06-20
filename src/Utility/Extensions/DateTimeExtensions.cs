@@ -31,5 +31,15 @@ namespace Utility.Extensions
         {
             return dt1970.AddMilliseconds(timeStamp);
         }
+
+        /// <summary>
+        /// 是否大于当前时间
+        /// </summary>
+        /// <param name="dt">当前时间</param>
+        /// <returns></returns>
+        public static bool IsGreatThanNow(this DateTime dt)
+        {
+            return dt.ToUniversalTime() > DateTime.Now.ToUniversalTime();
+        }
     }
 }

@@ -25,7 +25,7 @@ using System.Threading.Tasks;
 namespace Utility.EntityFramework.Extensions
 {
     /// <summary>
-    /// 
+    /// BatchExtensions
     /// </summary>
     public static class BatchExtensions
     {

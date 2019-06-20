@@ -231,7 +231,7 @@ namespace Utility.EntityFramework
             {
                 IsCommitted = false;
                 CleanChanges(Db);
-                _dbTransaction.Rollback();
+                _dbTransaction?.Rollback();
                 if (Configuration.Container != null)
                 {
                     if (Configuration.Container.IsRegistered<ILogService>())

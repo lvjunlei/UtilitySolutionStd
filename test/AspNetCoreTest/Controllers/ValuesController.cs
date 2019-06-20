@@ -8,9 +8,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCoreTest.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
+    /// <summary>
+    /// 
+    /// </summary>
     [Authorize]
+    [ApiController]
+    [Route("api/[controller]")]
     public class ValuesController : ControllerBase
     {
         /// <summary>
