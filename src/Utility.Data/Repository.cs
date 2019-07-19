@@ -97,28 +97,6 @@ namespace Utility.EntityFramework
 
         #endregion
 
-        #region 事务操作
-
-        /// <summary>
-        /// 提交事务
-        /// </summary>
-        /// <returns>影响的行数</returns>
-        public int Commit()
-        {
-            return _dbContext.SaveChanges();
-        }
-
-        /// <summary>
-        /// 异步 提交事务
-        /// </summary>
-        /// <returns>影响的行数</returns>
-        public async Task<int> CommitAsync()
-        {
-            return await _dbContext.SaveChangesAsync();
-        }
-
-        #endregion
-
         #region Delete
 
         /// <summary>

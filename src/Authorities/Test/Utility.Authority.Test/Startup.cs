@@ -1,4 +1,6 @@
 ﻿using System.IO;
+using System.Linq;
+using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -8,22 +10,38 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.PlatformAbstractions;
 using Swashbuckle.AspNetCore.Filters;
 using Swashbuckle.AspNetCore.Swagger;
+using Utility.Authority.Domain.Users;
 using Utility.Authority.Infrastructure;
+using Utility.Commands;
 using Utility.Data;
+using Utility.EntityFramework;
 using Utility.Extensions;
 
 namespace Utility.Authority.Test
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Startup
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="configuration"></param>
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
             var connectionString = Configuration["ConnectionStrings:Default"];
@@ -31,6 +49,25 @@ namespace Utility.Authority.Test
             {
                 o.UseMySQL(connectionString);
             });
+            //services.AddScoped<IUnitOfWork, UnitOfWork>();
+            //services.AddScoped<IUnitOfWork<MySqlDbContext>, UnitOfWork<MySqlDbContext>>();
+
+            services.AddScoped<IUnitOfWork>(u => new UnitOfWork(u.GetService<IDbContext>()));
+            services.AddSingleton<ICommandHandlerFactory, CommandHandlerFactory>();
+            services.AddSingleton<ICommandBus, CommandBus>();
+            //services.AddScoped<ICommandHandler<AddUserCommand>, UserCommandHandler>();
+
+            services.Scan(scan => scan
+                .FromAssemblies(typeof(UserCommandHandler).GetTypeInfo().Assembly)
+                    .AddClasses(classes => classes.Where(x =>
+                    {
+                        var allInterfaces = x.GetInterfaces();
+                        return allInterfaces.Any(y => y.GetTypeInfo().IsGenericType && y.GetTypeInfo().GetGenericTypeDefinition() == typeof(ICommandHandler<>));
+                    }))
+                    .AsSelf()
+                    .WithTransientLifetime()
+            );
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddDynamicWebApi();
@@ -80,7 +117,11 @@ namespace Utility.Authority.Test
             #endregion
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="env"></param>
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())

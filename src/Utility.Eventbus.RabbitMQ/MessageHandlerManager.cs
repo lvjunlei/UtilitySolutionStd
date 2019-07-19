@@ -97,16 +97,16 @@ namespace Utility.Eventbus.RabbitMQ
             {
                 return new List<IEventHandler<IEvent>>();
             }
-            var vs = new List<IEventHandler<IEvent>>();
+            var handlers = new List<IEventHandler<IEvent>>();
             if (_handlers.ContainsKey(eventName))
             {
                 foreach (var value in _handlers[eventName].Values)
                 {
-                    vs.Add((IEventHandler<IEvent>)value);
+                    handlers.Add((IEventHandler<IEvent>)value);
                 }
             }
 
-            return vs;
+            return handlers;
         }
 
         /// <summary>
@@ -117,16 +117,16 @@ namespace Utility.Eventbus.RabbitMQ
         public List<IEventHandler<TEvent>> GetHandlers<TEvent>() where TEvent : IEvent
         {
             var key = typeof(TEvent).Name;
-            var vs = new List<IEventHandler<TEvent>>();
+            var handers = new List<IEventHandler<TEvent>>();
             if (_handlers.ContainsKey(key))
             {
                 foreach (var value in _handlers[key].Values)
                 {
-                    vs.Add((IEventHandler<TEvent>)value);
+                    handers.Add((IEventHandler<TEvent>)value);
                 }
             }
 
-            return vs;
+            return handers;
         }
 
         /// <summary>
@@ -189,7 +189,9 @@ namespace Utility.Eventbus.RabbitMQ
                     channel.ExchangeDeclare(Config.Exchange, Config.ExchangeType, Config.Durable, Config.AutoDelete);
 
                     // 声明队列
-                    var queueName = channel.QueueDeclare().QueueName;
+                    // var queueName = channel.QueueDeclare().QueueName;
+                    var queueName = $"{Config.Exchange}.{typeof(TEvent).Name}";
+                    channel.QueueDeclare(queueName, Config.Durable, Config.Exclusive, Config.AutoDelete);
 
                     // 绑定路由key
                     channel.QueueBind(queueName, Config.Exchange, typeof(TEvent).Name);
@@ -314,6 +316,17 @@ namespace Utility.Eventbus.RabbitMQ
         /// <returns></returns>
         public Task PublishAsync<TEvent>(TEvent @event) where TEvent : IEvent
         {
+            return (@event is IMessage) ? SendMessage(@event) : SendEvent(@event);
+        }
+
+        /// <summary>
+        /// 发布内存事件
+        /// </summary>
+        /// <typeparam name="TEvent">事件类型</typeparam>
+        /// <param name="event">事件消息</param>
+        /// <returns></returns>
+        private Task SendEvent<TEvent>(TEvent @event) where TEvent : IEvent
+        {
             return Task.Run(async () =>
             {
                 #region 发送内存事件
@@ -331,13 +344,7 @@ namespace Utility.Eventbus.RabbitMQ
                     }
                 }
 
-                #endregion 发送内存事件
-
-                #region 发送消息到 RabbitMQ 消息
-
-                await Send(@event);
-
-                #endregion 发送消息到 RabbitMQ 消息
+                #endregion 
             });
         }
 
@@ -345,7 +352,7 @@ namespace Utility.Eventbus.RabbitMQ
         /// 发送 MQ 消息
         /// </summary>
         /// <param name="event">事件</param>
-        private Task Send(IEvent @event)
+        private Task SendMessage<TMessage>(TMessage @event) where TMessage : IEvent
         {
             return Task.Run(() =>
             {
@@ -353,37 +360,43 @@ namespace Utility.Eventbus.RabbitMQ
                 {
                     using (var channel = connection.CreateModel())
                     {
-                        channel.ExchangeDeclare(Config.Exchange, Config.ExchangeType);
+                        // 声明交换机
+                        channel.ExchangeDeclare(Config.Exchange, Config.ExchangeType, Config.Durable, Config.AutoDelete);
 
+                        var eventName = @event.GetType().Name;
+                        // 队列名称
+                        var queueName = $"{Config.Exchange}.{eventName}";
+                        // 声明队列
+                        channel.QueueDeclare(queueName, Config.Durable, Config.Exclusive, Config.AutoDelete);
+
+                        // 绑定路由key
+                        channel.QueueBind(queueName, Config.Exchange, eventName);
+
+                        // kai qi xiao xique ren 
+                        channel.ConfirmSelect();
+                        // 序列化消息
                         var message = JsonConvert.SerializeObject(@event);
                         var body = Encoding.UTF8.GetBytes(message);
 
-                        try
+                        // 消息属性
+                        var properties = channel.CreateBasicProperties();
+                        properties.Persistent = true;
+                        properties.MessageId = Guid.NewGuid().ToString("N");
+                        properties.Timestamp = new AmqpTimestamp(DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
+                        properties.Headers = new Dictionary<string, object> { { "declare", "QdCares Eventbus" } };
+
+                        // 发送消息
+                        channel.BasicPublish(Config.Exchange,
+                            @event.GetType().Name,
+                            properties,
+                            body);
+                        if (!channel.WaitForConfirms())
                         {
-                            channel.BasicAcks += Channel_BasicAcks;
-                            // 发送消息
-                            channel.BasicPublish(Config.Exchange,
-                                @event.GetType().Name,
-                                null,
-                                body);
-                        }
-                        catch (Exception ex)
-                        {
-                            throw ex;
+                            throw new Exception($"消息未能发送到 MQ 服务器！");
                         }
                     }
                 }
             });
-        }
-
-        /// <summary>
-        /// 消息发送确认
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Channel_BasicAcks(object sender, BasicAckEventArgs e)
-        {
-            // throw new NotImplementedException();
         }
 
         #endregion Publish

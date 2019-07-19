@@ -1,7 +1,13 @@
-﻿using Mapster;
+﻿using Eventbus.Common;
+using Mapster;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Utility.Eventbus.RabbitMQ;
+using Utility.Events.Handlers;
 
 namespace ObjectMapperTest
 {
@@ -9,43 +15,52 @@ namespace ObjectMapperTest
     {
         static void Main(string[] args)
         {
-            var stus = new List<Student>();
-            for (var i = 0; i < 100000; i++)
+            var mqconfig = new MqConfig
             {
-                stus.Add(new Student
-                {
-                    Name = $"Test {i}",
-                    Age = 19,
-                    EntryTime = new DateTime(2018, 9, 1),
-                    Address = new Address
-                    {
-                        Code = "600100",
-                        Telphone = "18552557749"
-                    }
-                });
-            }
-            //var stu = new Student
-            //{
-            //    Name = "Test",
-            //    Age = 19,
-            //    EntryTime = new DateTime(2018, 9, 1),
-            //    Address = new Address
-            //    {
-            //        Code = "600100",
-            //        Telphone = "18552557749"
-            //    }
-            //};
-            var stw = new Stopwatch();
-            stw.Start();
-            var dto = stus.Adapt<List<StudentDto>>();
-            stw.Stop();
-            Console.WriteLine($"映射 {stus.Count} 条数据，用时：{stw.ElapsedMilliseconds}");
+                UserName = "admin",
+                Password = "admin",
+                HostIp = "localhost",
+                Port = 5672,
+                VirtualHost = "/",
+                Exchange = "Abs.Exchange",
+                ExchangeType = "direct",
+                Durable = true,
+                AutoDelete = false
+            };
+            var ehm = new MessageHandlerManager(mqconfig);
+            //_eventbus = new EventBus(ehm);
+            ehm.Register<HelloEvent>(new HelloEventHandler());
             Console.ReadLine();
+        }
+
+        public static string CreateInsertSql(Type type)
+        {
+            var sb1 = new StringBuilder();
+            var sb2 = new StringBuilder();
+            var properties = type.GetProperties().Where(u => u.PropertyType.IsValueType || u.PropertyType == typeof(string));
+            foreach (var property in properties)
+            {
+                sb1.Append($", \"{property.Name}\"");
+                sb2.Append($", :{property.Name}");
+            }
+
+            return $"INSERT INTO \"{type.Name}\"({sb1.ToString().TrimStart(',')}) VALUES({sb2.ToString().TrimStart(',')})";
         }
 
     }
 
 
+    public class HelloEventHandler : IMessageHandler<HelloEvent>
+    {
+
+        public Task HandleAsync(HelloEvent @event)
+        {
+            return Task.Run(() =>
+            {
+                Console.WriteLine($"{DateTime.Now:yyyy-MM-dd HH:mm:ss.ffff} | {@event.Data}");
+            });
+        }
+    }
     public class StudentDto
     {
         public string Name { get; set; }
@@ -70,6 +85,8 @@ namespace ObjectMapperTest
         public DateTime EntryTime { get; set; }
 
         public Address Address { get; set; }
+
+        public virtual ICollection<Address> As { get; set; }
     }
 
     public class Address

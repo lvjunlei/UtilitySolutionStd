@@ -30,7 +30,7 @@ namespace Utility.EntityFramework
     /// <summary>
     /// 工作单元
     /// </summary>
-    public class UnitOfWork : UnitOfWork<IDbContext>
+    public class UnitOfWork : UnitOfWork<IDbContext>, IUnitOfWork
     {
         /// <summary>
         /// 构造函数

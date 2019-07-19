@@ -34,6 +34,13 @@
             文件管理服务API
             </summary>
         </member>
+        <member name="M:FileServer.Controllers.FilesController.Post(Microsoft.AspNetCore.Http.IFormCollection)">
+            <summary>
+            上传文件
+            </summary>
+            <param name="formData">文件数据</param>
+            <returns>处理结果</returns>
+        </member>
         <member name="M:FileServer.Controllers.FilesController.Upload(Microsoft.AspNetCore.Http.IFormFile,System.String,System.Boolean,System.Boolean)">
             <summary>
             上传文件（以表单形式上传）
@@ -59,6 +66,12 @@
             <param name="canCover">能否覆盖已存在文件</param>
             <param name="isAutoRename">是否自动重命名</param>
             <returns>文件上传结果</returns>
+        </member>
+        <member name="M:FileServer.Controllers.FilesController.UploadBigFile">
+            <summary>
+            大文件上传
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:FileServer.Controllers.FilesController.Download(System.String,System.String)">
             <summary>
@@ -164,6 +177,34 @@
             可访问的相对路径
             </summary>
         </member>
+        <member name="T:FileServer.Filters.GlobalActionFilter">
+            <summary>
+            全局 Action 横切注入
+            </summary>
+        </member>
+        <member name="M:FileServer.Filters.GlobalActionFilter.OnActionExecuted(Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:FileServer.Filters.GlobalActionFilter.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:FileServer.Filters.GlobalExceptionFilter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:FileServer.Filters.GlobalExceptionFilter.OnException(Microsoft.AspNetCore.Mvc.Filters.ExceptionContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
         <member name="T:FileServer.Filters.SwaggerFileUploadFilter">
             <summary>
             
@@ -175,6 +216,94 @@
             </summary>
             <param name="operation"></param>
             <param name="context"></param>
+        </member>
+        <member name="T:FileServer.Helpers.DisableFormValueModelBindingAttribute">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:FileServer.Helpers.DisableFormValueModelBindingAttribute.OnResourceExecuting(Microsoft.AspNetCore.Mvc.Filters.ResourceExecutingContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:FileServer.Helpers.DisableFormValueModelBindingAttribute.OnResourceExecuted(Microsoft.AspNetCore.Mvc.Filters.ResourceExecutedContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:FileServer.Helpers.FileStreamingHelper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:FileServer.Helpers.FileStreamingHelper.StreamFiles(Microsoft.AspNetCore.Http.HttpRequest,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="targetDirectory"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FileServer.Helpers.FileStreamingHelper.GetEncoding(Microsoft.AspNetCore.WebUtilities.MultipartSection)">
+            <summary>
+            
+            </summary>
+            <param name="section"></param>
+            <returns></returns>
+        </member>
+        <member name="T:FileServer.Helpers.MultipartRequestHelper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:FileServer.Helpers.MultipartRequestHelper.GetBoundary(Microsoft.Net.Http.Headers.MediaTypeHeaderValue,System.Int32)">
+            <summary>
+            Content-Type: multipart/form-data; boundary="----WebKitFormBoundarymx2fSWqWSd0OxQqq"
+            The spec says 70 characters is a reasonable limit.
+            </summary>
+            <param name="contentType"></param>
+            <param name="lengthLimit"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FileServer.Helpers.MultipartRequestHelper.IsMultipartContentType(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="contentType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FileServer.Helpers.MultipartRequestHelper.HasFormDataContentDisposition(Microsoft.Net.Http.Headers.ContentDispositionHeaderValue)">
+            <summary>
+            如果section是表单键值对section，那么本方法返回true
+            </summary>
+            <param name="contentDisposition"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FileServer.Helpers.MultipartRequestHelper.HasFileContentDisposition(Microsoft.Net.Http.Headers.ContentDispositionHeaderValue)">
+            <summary>
+            如果section是上传文件section，那么本方法返回true
+            </summary>
+            <param name="contentDisposition"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FileServer.Helpers.MultipartRequestHelper.GetFileContentInputName(Microsoft.Net.Http.Headers.ContentDispositionHeaderValue)">
+            <summary>
+            如果一个section的Header是： Content-Disposition: form-data; name="files"; filename="Misc 002.jpg"
+            那么本方法返回： files
+            </summary>
+            <param name="contentDisposition"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FileServer.Helpers.MultipartRequestHelper.GetFileName(Microsoft.Net.Http.Headers.ContentDispositionHeaderValue)">
+            <summary>
+            如果一个section的Header是： Content-Disposition: form-data; name="myfile1"; filename="Misc 002.jpg"
+            那么本方法返回： Misc 002.jpg
+            </summary>
+            <param name="contentDisposition"></param>
+            <returns></returns>
         </member>
         <member name="T:FileServer.Models.DownloadFileModel">
             <summary>
@@ -251,6 +380,16 @@
             <param name="fileName">文件名称</param>
             <param name="originalName">文件原始名称</param>
             <param name="fileSize">文件大小</param>
+        </member>
+        <member name="T:FileServer.Models.FileViewModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FileServer.Models.FileViewModel.UserName">
+            <summary>
+            
+            </summary>
         </member>
         <member name="T:FileServer.Models.UploadFileModel">
             <summary>

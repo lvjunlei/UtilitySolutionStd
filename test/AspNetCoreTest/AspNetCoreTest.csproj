@@ -18,7 +18,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Utility.AspNetCore\Utility.AspNetCore.csproj" />
+    <ProjectReference Include="..\..\src\Utility.Eventbus.RabbitMQ\Utility.Eventbus.RabbitMQ.csproj" />
     <ProjectReference Include="..\..\src\Utility\Utility.csproj" />
+    <ProjectReference Include="..\Eventbus.Common\Eventbus.Common.csproj" />
   </ItemGroup>
 
 </Project>

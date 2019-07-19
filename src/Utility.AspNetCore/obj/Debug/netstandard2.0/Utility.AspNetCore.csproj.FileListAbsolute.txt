@@ -14,3 +14,5 @@ F:\Work\GitHub\UtilitySolutionStd\src\Utility.AspNetCore\bin\Debug\netstandard2.
 F:\Work\GitHub\UtilitySolutionStd\src\Utility.AspNetCore\bin\Debug\netstandard2.0\System.IdentityModel.Tokens.Jwt.xml
 F:\Work\GitHub\UtilitySolutionStd\src\Utility.AspNetCore\bin\Debug\netstandard2.0\Microsoft.AspNetCore.Mvc.Core.dll
 F:\Work\GitHub\UtilitySolutionStd\src\Utility.AspNetCore\bin\Debug\netstandard2.0\Microsoft.AspNetCore.Mvc.Core.xml
+F:\Work\GitHub\UtilitySolutionStd\src\Utility.AspNetCore\bin\Debug\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll
+F:\Work\GitHub\UtilitySolutionStd\src\Utility.AspNetCore\bin\Debug\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.xml

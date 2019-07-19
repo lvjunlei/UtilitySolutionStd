@@ -18,3 +18,7 @@ F:\Work\GitHub\UtilitySolutionStd\Test\AspNetCoreTest\bin\Debug\netcoreapp2.2\As
 F:\Work\GitHub\UtilitySolutionStd\Test\AspNetCoreTest\obj\Debug\netcoreapp2.2\AspNetCoreTest.dll
 F:\Work\GitHub\UtilitySolutionStd\Test\AspNetCoreTest\obj\Debug\netcoreapp2.2\AspNetCoreTest.pdb
 F:\Work\GitHub\UtilitySolutionStd\Test\AspNetCoreTest\bin\Debug\netcoreapp2.2\AspNetCoreTest.xml
+F:\Work\GitHub\UtilitySolutionStd\Test\AspNetCoreTest\bin\Debug\netcoreapp2.2\Eventbus.Common.dll
+F:\Work\GitHub\UtilitySolutionStd\Test\AspNetCoreTest\bin\Debug\netcoreapp2.2\Utility.Eventbus.RabbitMQ.dll
+F:\Work\GitHub\UtilitySolutionStd\Test\AspNetCoreTest\bin\Debug\netcoreapp2.2\Utility.Eventbus.RabbitMQ.pdb
+F:\Work\GitHub\UtilitySolutionStd\Test\AspNetCoreTest\bin\Debug\netcoreapp2.2\Eventbus.Common.pdb

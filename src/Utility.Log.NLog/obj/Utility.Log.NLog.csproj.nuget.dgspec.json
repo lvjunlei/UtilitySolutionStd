@@ -53,7 +53,7 @@
             },
             "NLog": {
               "target": "Package",
-              "version": "[4.5.11, )"
+              "version": "[4.6.5, )"
             }
           },
           "imports": [

@@ -14,6 +14,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Swagger;
+using Utility.Eventbus.RabbitMQ;
+using Utility.Events;
+using Utility.Events.Handlers;
 using Utility.Extensions;
 using Utility.Security;
 
@@ -72,6 +75,23 @@ namespace AspNetCoreTest
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Const.SecurityKey))//拿到SecurityKey
                     };
                 });
+
+            services.AddScoped<IEventBus, EventBus>();
+
+            var mqconfig = new MqConfig
+            {
+                UserName = "admin",
+                Password = "admin",
+                HostIp = "localhost",
+                Port = 5672,
+                VirtualHost = "/",
+                Exchange = "Abs.Exchange",
+                ExchangeType = "direct",
+                Durable = true,
+                AutoDelete = false
+            };
+            var ehm = new MessageHandlerManager(mqconfig);
+            services.AddSingleton<IEventHandlerManager>(ehm);
 
             services.AddScoped<IJwtService, JwtService>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);

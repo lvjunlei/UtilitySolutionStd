@@ -41,12 +41,17 @@
         public string ExchangeType { get; set; }
 
         /// <summary>
-        /// 
+        /// 是否持久化
         /// </summary>
         public bool Durable { get; set; }
 
         /// <summary>
-        /// 
+        /// 队列是否是专属
+        /// </summary>
+        public bool Exclusive { get; set; }
+
+        /// <summary>
+        /// 是否自动删除
         /// </summary>
         public bool AutoDelete { get; set; }
     }

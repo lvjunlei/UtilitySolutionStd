@@ -1,6 +1,12 @@
 F:\Work\GitHub\UtilitySolutionStd\src\Utility.Wpf\obj\Debug\Utility.Wpf.csprojAssemblyReference.cache
-F:\Work\GitHub\UtilitySolutionStd\src\Utility.Wpf\obj\Debug\GeneratedInternalTypeHelper.g.cs
 F:\Work\GitHub\UtilitySolutionStd\src\Utility.Wpf\obj\Debug\Utility.Wpf_MarkupCompile.cache
 F:\Work\GitHub\UtilitySolutionStd\src\Utility.Wpf\obj\Debug\Utility.Wpf_MarkupCompile.lref
 F:\Work\GitHub\UtilitySolutionStd\src\Utility.Wpf\obj\Debug\Utility.Wpf.dll
 F:\Work\GitHub\UtilitySolutionStd\src\Utility.Wpf\obj\Debug\Utility.Wpf.pdb
+F:\Work\GitHub\UtilitySolutionStd\src\Utility.Wpf\bin\Debug\Utility.Wpf.dll
+F:\Work\GitHub\UtilitySolutionStd\src\Utility.Wpf\bin\Debug\Utility.Wpf.pdb
+F:\Work\GitHub\UtilitySolutionStd\src\Utility.Wpf\obj\Debug\Themes\Generic.baml
+F:\Work\GitHub\UtilitySolutionStd\src\Utility.Wpf\obj\Debug\Utility.Wpf.g.resources
+F:\Work\GitHub\UtilitySolutionStd\src\Utility.Wpf\obj\Debug\Utility.Wpf.Properties.Resources.resources
+F:\Work\GitHub\UtilitySolutionStd\src\Utility.Wpf\obj\Debug\Utility.Wpf.csproj.GenerateResource.cache
+F:\Work\GitHub\UtilitySolutionStd\src\Utility.Wpf\obj\Debug\Utility.Wpf.csproj.CoreCompileInputs.cache

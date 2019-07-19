@@ -10,6 +10,19 @@
             动态 WebAPI 接口测试
             </summary>
         </member>
+        <member name="M:Utility.Authority.Test.AppServices.TestAppService.#ctor(Utility.Commands.ICommandBus)">
+            <summary>
+            
+            </summary>
+            <param name="commandBus"></param>
+        </member>
+        <member name="M:Utility.Authority.Test.AppServices.TestAppService.InsertUser(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="account"></param>
+            <param name="name"></param>
+        </member>
         <member name="M:Utility.Authority.Test.AppServices.TestAppService.GetName">
             <summary>
             动态 API 接口
@@ -64,6 +77,35 @@
             DELETE
             </summary>
             <param name="id"></param>
+        </member>
+        <member name="T:Utility.Authority.Test.Startup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Utility.Authority.Test.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="P:Utility.Authority.Test.Startup.Configuration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Utility.Authority.Test.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:Utility.Authority.Test.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
         </member>
     </members>
 </doc>

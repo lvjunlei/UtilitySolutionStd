@@ -1,6 +1,9 @@
-﻿using FileServer.Models;
+﻿using FileServer.Helpers;
+using FileServer.Models;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Net.Http.Headers;
 using System;
 using System.Collections.Generic;
@@ -22,6 +25,50 @@ namespace FileServer.Controllers
         #region Upload
 
         /// <summary>
+        /// 上传文件
+        /// </summary>
+        /// <param name="formData">文件数据</param>
+        /// <returns>处理结果</returns>
+        [HttpPost]
+        [DisableRequestSizeLimit]
+        public async Task<IActionResult> Post([FromForm]IFormCollection formData)
+        {
+            if (!Directory.Exists(FileServerConfig.FileSavePath))
+            {
+                Directory.CreateDirectory(FileServerConfig.FileSavePath);
+            }
+            IFormFileCollection files = formData.Files;
+
+            foreach (var file in files)
+            {
+                if (file.Length > 0)
+                {
+                    var fileName = "";
+                    if (string.IsNullOrEmpty(file.Name))
+                    {
+                        fileName = file.FileName.Substring(file.FileName.LastIndexOf("\\") + 1);
+                    }
+                    else
+                    {
+                        fileName = file.Name + file.FileName.Substring(file.FileName.LastIndexOf("."));
+                    }
+                    if (System.IO.File.Exists(fileName))
+                    {
+                        System.IO.File.Delete(fileName);
+                    }
+                    var filePath = FileServerConfig.FileSavePath + fileName;
+
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await file.CopyToAsync(stream);
+                    }
+                }
+            }
+
+            return Ok(new { Count = files.Count, TotalSize = files.Sum(f => f.Length), Message = "上传成功", SaveTime = DateTime.Now });
+        }
+
+        /// <summary>
         /// 上传文件（以表单形式上传）
         /// </summary>
         /// <param name="fromFile">文件信息</param>
@@ -32,7 +79,9 @@ namespace FileServer.Controllers
         /// <param name="canCover">能否覆盖已存在文件</param>
         /// <param name="isAutoRename">是否自动重命名</param>
         /// <returns>文件上传结果</returns>
+        //[EnableCors("any")]
         [HttpPost("Upload")]
+        [DisableRequestSizeLimit]
         public async Task<IActionResult> Upload(IFormFile fromFile, string filePath = null, bool canCover = false, bool isAutoRename = false)
         {
             try
@@ -109,24 +158,86 @@ namespace FileServer.Controllers
         /// <param name="canCover">能否覆盖已存在文件</param>
         /// <param name="isAutoRename">是否自动重命名</param>
         /// <returns>文件上传结果</returns>
-        [HttpPost]
-        [Route("Uploads")]
+        //[EnableCors("any")]
+        [HttpPost("Uploads")]
+        [DisableRequestSizeLimit]
         public async Task<IActionResult> Uploads(ICollection<IFormFile> files, string filePath = null, bool canCover = false, bool isAutoRename = false)
         {
+            if (!Directory.Exists(FileServerConfig.FileSavePath))
+            {
+                Directory.CreateDirectory(FileServerConfig.FileSavePath);
+            }
             var size = files.Sum(f => f.Length);
 
-            foreach (var formFile in files)
+            foreach (var file in files)
             {
-                if (formFile.Length > 0)
+                if (file.Length > 0)
                 {
-                    using (var stream = new FileStream(FileServerConfig.FileSavePath, FileMode.Create))
+                    var fileName = "";
+                    if (isAutoRename)
                     {
-                        await formFile.CopyToAsync(stream);
+                        fileName = $"{Guid.NewGuid().ToString()}.{fileName.Substring(fileName.LastIndexOf('.') + 1)}";
+                    }
+                    else
+                    {
+                        if (string.IsNullOrEmpty(file.Name))
+                        {
+                            fileName = file.FileName.Substring(file.FileName.LastIndexOf("\\") + 1);
+                        }
+                        else
+                        {
+                            fileName = file.Name + file.FileName.Substring(file.FileName.LastIndexOf("."));
+                        }
+                    }
+                    if (System.IO.File.Exists(fileName))
+                    {
+                        if (!canCover)
+                        {
+                            return Conflict($"已存在文件：{fileName}");
+                        }
+                        System.IO.File.Delete(fileName);
+                    }
+                    var savePath = FileServerConfig.FileSavePath + fileName;
+
+                    using (var stream = new FileStream(savePath, FileMode.Create))
+                    {
+                        await file.CopyToAsync(stream);
                     }
                 }
             }
 
-            return Ok(new { count = files.Count, size, filePath });
+            return Ok(new { Count = files.Count, TotalSize = files.Sum(f => f.Length), Message = "上传成功", SaveTime = DateTime.Now });
+        }
+
+        /// <summary>
+        /// 大文件上传
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost("UploadBigFile")]
+        [DisableFormValueModelBinding]
+        public async Task<IActionResult> UploadBigFile()
+        {
+            if (!Directory.Exists(FileServerConfig.FileSavePath))
+            {
+                Directory.CreateDirectory(FileServerConfig.FileSavePath);
+            }
+            FormValueProvider formModel;
+            formModel = await Request.StreamFiles(FileServerConfig.FileSavePath);
+
+            var viewModel = new FileViewModel();
+
+            var bindingSuccessful = await TryUpdateModelAsync(viewModel, prefix: "",
+                valueProvider: formModel);
+
+            if (!bindingSuccessful)
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+            }
+
+            return Ok(viewModel);
         }
 
         #endregion
@@ -142,6 +253,7 @@ namespace FileServer.Controllers
         /// (为空时则使用默认目录)
         /// </param>
         /// <returns></returns>
+        [EnableCors("any")]
         [HttpGet("Download")]
         public async Task<IActionResult> Download(string fileName, string filePath = null)
         {
@@ -191,6 +303,7 @@ namespace FileServer.Controllers
         /// (为空时则使用默认目录)
         /// </param>
         /// <returns></returns>
+        [EnableCors("any")]
         [HttpDelete("Delete")]
         public async Task<IActionResult> Delete(string fileName, string filePath = null)
         {
@@ -232,6 +345,7 @@ namespace FileServer.Controllers
         /// </summary>
         /// <param name="files">文件名称集合</param>
         /// <returns></returns>
+        [EnableCors("any")]
         [HttpDelete("Deletes")]
         public async Task<IActionResult> Deletes(params string[] files)
         {

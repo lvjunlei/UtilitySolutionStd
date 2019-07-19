@@ -1,6 +1,7 @@
 ﻿using FileServer.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -44,17 +45,29 @@ namespace FileServer
                 o.ForwardClientCertificate = false;
             });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
             // 解决Multipart body length limit 134217728 exceeded
             services.Configure<FormOptions>(u =>
             {
-                u.ValueLengthLimit = 2147483647;
-                u.MultipartBodyLengthLimit = 2147483647; //2G
+                u.ValueLengthLimit = int.MaxValue;
+                u.MultipartBodyLengthLimit = int.MaxValue; //2G
             });
 
+            // 添加跨域访问支持
             services.AddCors();
 
+            services.AddMvc(o =>
+            {
+                // 添加全局Action拦截
+                o.Filters.Add<GlobalActionFilter>();
+
+                // 添加全局异常拦截
+                o.Filters.Add<GlobalExceptionFilter>();
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            // 注入 IHttpContextAccessor 获取客户端IP等信息
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            // 添加 Swagger 文档支持
             services.AddSwaggerGen(u =>
             {
                 u.SwaggerDoc("v1", new Info { Title = "文件服务API", Version = "v1" });
@@ -84,6 +97,7 @@ namespace FileServer
                 u.AllowAnyHeader();
                 u.AllowAnyMethod();
                 u.AllowAnyOrigin();
+                u.AllowCredentials();
             });
 
             //loggerFactory.AddConsole(Configuration.GetSection("Logging"));

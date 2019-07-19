@@ -27,7 +27,7 @@ namespace Utility.Events
         /// <summary>
         /// 事件处理器服务
         /// </summary>
-        public IEventHandlerManager Manager { get; }
+        private readonly IEventHandlerManager _manager;
 
         /// <summary>
         /// 初始化事件总线
@@ -35,7 +35,7 @@ namespace Utility.Events
         /// <param name="manager"></param>
         public EventBus(IEventHandlerManager manager)
         {
-            Manager = manager ?? throw new ArgumentNullException(nameof(manager));
+            _manager = manager ?? throw new ArgumentNullException(nameof(manager));
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace Utility.Events
         /// <returns></returns>
         public async Task PublishAsync<TEvent>(TEvent @event) where TEvent : IEvent
         {
-            await Manager.PublishAsync(@event);
+            await _manager.PublishAsync(@event);
         }
     }
 }

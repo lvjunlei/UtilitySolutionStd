@@ -164,6 +164,34 @@
             可访问的相对路径
             </summary>
         </member>
+        <member name="T:FileServer.Filters.ActionFilter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:FileServer.Filters.ActionFilter.OnActionExecuted(Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:FileServer.Filters.ActionFilter.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:FileServer.Filters.ExceptionFilter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:FileServer.Filters.ExceptionFilter.OnException(Microsoft.AspNetCore.Mvc.Filters.ExceptionContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
         <member name="T:FileServer.Filters.SwaggerFileUploadFilter">
             <summary>
             

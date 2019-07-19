@@ -24,19 +24,5 @@ namespace Utility.Events.Handlers
     /// <typeparam name="TEvent"></typeparam>
     public interface IMessageHandler<in TEvent> : IEventHandler<TEvent> where TEvent : IEvent
     {
-        /// <summary>
-        /// 持久化
-        /// </summary>
-        bool Durable { get; }
-
-        /// <summary>
-        /// Exclusive
-        /// </summary>
-        bool Exclusive { get; }
-
-        /// <summary>
-        /// 自动删除
-        /// </summary>
-        bool AutoDelete { get; }
     }
 }

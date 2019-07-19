@@ -9,3 +9,8 @@ F:\Work\GitHub\UtilitySolutionStd\Test\ObjectMapperTest\obj\Debug\netcoreapp2.1\
 F:\Work\GitHub\UtilitySolutionStd\Test\ObjectMapperTest\obj\Debug\netcoreapp2.1\ObjectMapperTest.AssemblyInfo.cs
 F:\Work\GitHub\UtilitySolutionStd\Test\ObjectMapperTest\obj\Debug\netcoreapp2.1\ObjectMapperTest.dll
 F:\Work\GitHub\UtilitySolutionStd\Test\ObjectMapperTest\obj\Debug\netcoreapp2.1\ObjectMapperTest.pdb
+F:\Work\GitHub\UtilitySolutionStd\Test\ObjectMapperTest\bin\Debug\netcoreapp2.1\Utility.dll
+F:\Work\GitHub\UtilitySolutionStd\Test\ObjectMapperTest\bin\Debug\netcoreapp2.1\Utility.pdb
+F:\Work\GitHub\UtilitySolutionStd\Test\ObjectMapperTest\obj\Debug\netcoreapp2.1\ObjectMapperTest.csproj.CopyComplete
+F:\Work\GitHub\UtilitySolutionStd\Test\ObjectMapperTest\bin\Debug\netcoreapp2.1\Utility.Eventbus.RabbitMQ.dll
+F:\Work\GitHub\UtilitySolutionStd\Test\ObjectMapperTest\bin\Debug\netcoreapp2.1\Utility.Eventbus.RabbitMQ.pdb

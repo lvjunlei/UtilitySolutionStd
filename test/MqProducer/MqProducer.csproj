@@ -7,7 +7,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Utility\Utility.csproj" />
-    <ProjectReference Include="..\MqCommon\MqCommon.csproj" />
   </ItemGroup>
 
   <ItemGroup>
